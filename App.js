@@ -1,33 +1,35 @@
-import React, { Component } from 'react'
-import Tabs from './src/components/Tabs'
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import React, {Component} from 'react';
+import {Text, View} from 'react-native';
+
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+
+import Tabs from './src/components/Tabs';
 
 const RootStack = createStackNavigator(
   {
-     Tabs: {
-        screen: Tabs,
-        navigationOptions: {
-           header: null,
-           gesturesEnabled: false
-        }
-    //  },
-    //  Dashboard: {
-    //     screen: Dashboard,
-    //     navigationOptions: {
-    //        header: null,
-    //        gesturesEnabled: false
-    //     }
-    //  },
-     },
+    Tabs: {
+      screen: Tabs,
+      navigationOptions: {
+        header: null,
+        gesturesEnabled: false,
+      },
+      //  },
+      //  Dashboard: {
+      //     screen: Dashboard,
+      //     navigationOptions: {
+      //        header: null,
+      //        gesturesEnabled: false
+      //     }
+      //  },
+    },
   },
   {
-     initialRouteName: "Tabs"
-  }
+    initialRouteName: 'Tabs',
+  },
 );
 const AppContainer = createAppContainer(RootStack);
-
-export class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <AppContainer
@@ -35,8 +37,6 @@ export class App extends Component {
           this.navigator = nav;
         }}
       />
-    )
+    );
   }
 }
-
-export default App
