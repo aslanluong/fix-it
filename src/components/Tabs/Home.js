@@ -1,52 +1,167 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableNativeFeedback,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
+import FontText from '../FontText';
 
 export default class Home extends Component {
+  constructor() {
+    super();
+    
+    const isPortrait = () => {
+      const dim = Dimensions.get('screen');
+      return dim.height >= dim.width;
+    };
+
+    this.state = {
+      orientation: isPortrait() ? 'portrait' : 'landscape',
+    };
+    // Event Listener for orientation changes
+    Dimensions.addEventListener('change', () => {
+      this.setState({
+        orientation: isPortrait() ? 'portrait' : 'landscape',
+      });
+    });
+  }
   render() {
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'space-evenly',
-          backgroundColor: 'pink',
-        }}>
-        <View style={styles.item}>
-          <Image
-            style={{width: 90, height: 90, marginBottom: 10}}
-            source={require('../../../assets/light-bulb.png')}
-          />
-          <Text>Sửa đồ điện</Text>
+      <View>
+        <View style={styles.header}>
+          <View>
+            <FontText style={{paddingLeft: 0, fontSize: 17}}>
+              Xin chào Thắng,
+            </FontText>
+            <FontText style={{fontSize: 23}}>
+              Chọn loại thiết bị cần sửa chữa
+            </FontText>
+          </View>
         </View>
-        <View style={styles.item}>
-          <Text>Sửa nội thất</Text>
-        </View>
-        <View style={styles.item}>
-          <Text>Sửa hệ thống nước</Text>
-        </View>
-        <View style={styles.item}>
-          <Text>Sửa gas</Text>
-        </View>
-        <View style={styles.item}>
-          <Text>Sửa</Text>
-        </View>
-        <View style={styles.item}>
-          <Text>Sửa</Text>
-        </View>
+        <ScrollView
+          horizontal={this.state.orientation === 'landscape' ? true : false}>
+          <View style={styles.menu}>
+            <View style={styles.itemContainer}>
+              <TouchableNativeFeedback>
+                <View style={styles.item}>
+                  <Image
+                    style={styles.image}
+                    source={require('../../../assets/images/tv.png')}
+                  />
+                  <FontText>Thiết bị giải trí</FontText>
+                </View>
+              </TouchableNativeFeedback>
+            </View>
+            <View style={styles.itemContainer}>
+              <TouchableNativeFeedback>
+                <View style={styles.item}>
+                  <Image
+                    style={styles.image}
+                    source={require('../../../assets/images/lamp.png')}
+                  />
+                  <FontText>Thiết bị chiếu sáng</FontText>
+                </View>
+              </TouchableNativeFeedback>
+            </View>
+            <View style={styles.itemContainer}>
+              <TouchableNativeFeedback>
+                <View style={styles.item}>
+                  <Image
+                    style={styles.image}
+                    source={require('../../../assets/images/washing-machine.png')}
+                  />
+                  <FontText>Thiết bị giặc ủi</FontText>
+                </View>
+              </TouchableNativeFeedback>
+            </View>
+            <View style={styles.itemContainer}>
+              <TouchableNativeFeedback>
+                <View style={styles.item}>
+                  <Image
+                    style={styles.image}
+                    source={require('../../../assets/images/kitchen-pack.png')}
+                  />
+                  <FontText>Thiết bị nhà bếp</FontText>
+                </View>
+              </TouchableNativeFeedback>
+            </View>
+            <View style={styles.itemContainer}>
+              <TouchableNativeFeedback>
+                <View style={styles.item}>
+                  <Image
+                    style={styles.image}
+                    source={require('../../../assets/images/air-conditioner.png')}
+                  />
+                  <FontText>Điều hoà phòng</FontText>
+                </View>
+              </TouchableNativeFeedback>
+            </View>
+            <View style={styles.itemContainer}>
+              <TouchableNativeFeedback>
+                <View style={styles.item}>
+                  <Image
+                    style={styles.image}
+                    source={require('../../../assets/images/tap.png')}
+                  />
+                  <FontText>Hệ thống nước</FontText>
+                </View>
+              </TouchableNativeFeedback>
+            </View>
+          </View>
+        </ScrollView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  header: {
+    height: 75,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    backgroundColor: '#f9f9f9',
+  },
+  menu: {
+    paddingTop: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    paddingHorizontal: 25,
+    paddingBottom: 55,
+    backgroundColor: '#f9f9f9',
+  },
+  itemContainer: {
+    width: 155,
+    height: 190,
+    borderRadius: 20,
+    overflow: 'hidden',
+    marginHorizontal: 5,
+    marginBottom: 20,
+
+    // shadow
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 11,
+    },
+    shadowOpacity: 0.57,
+    shadowRadius: 15.19,
+
+    elevation: 23,
+  },
   item: {
-    width: '42.5%',
-    height: '30%',
+    width: '100%',
+    height: '100%',
     backgroundColor: 'white',
-    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20
+  },
+  image: {
+    width: 80,
+    height: 80,
+    marginBottom: 15,
   },
 });
