@@ -72,6 +72,9 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>lato-regular.ttf</string>
+		<string>lato-bold.ttf</string>
+		<string>lato-light.ttf</string>
+		<string>lato-medium.ttf</string>
 	</array>
 </dict>
 </plist>
