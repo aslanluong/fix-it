@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
+import FontText from './FontText';
 
 import Home from './Tabs/Home';
 import History from './Tabs/History';
@@ -14,40 +15,50 @@ export default class Tabs extends Component {
         Home: {
           screen: Home,
           navigationOptions: {
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ tintColor }) => (
-               <Icon name="home" style={{ color: tintColor, fontSize: 20, marginTop: 3 }} />
-            )
+            tabBarLabel: <FontText>Home</FontText>,
+            tabBarIcon: ({tintColor}) => (
+              <Icon
+                name="home"
+                style={{color: tintColor, fontSize: 20, marginTop: 3}}
+              />
+            ),
           },
         },
         History: {
           screen: History,
           navigationOptions: {
-            tabBarLabel: 'History',
-            tabBarIcon: ({ tintColor }) => (
-               <Icon name="clipboard" style={{ color: tintColor, fontSize: 20, marginTop: 3 }} />
-            )
+            tabBarLabel: <FontText>History</FontText>,
+            tabBarIcon: ({tintColor}) => (
+              <Icon
+                name="clipboard"
+                style={{color: tintColor, fontSize: 20, marginTop: 3}}
+              />
+            ),
           },
         },
         Profile: {
           screen: Profile,
           navigationOptions: {
-            tabBarLabel: 'Profile',
-            tabBarIcon: ({ tintColor }) => (
-               <Icon name="user" style={{ color: tintColor, fontSize: 20, marginTop: 3 }} />
-            )
+            tabBarLabel: <FontText>Profile</FontText>,
+            tabBarIcon: ({tintColor}) => (
+              <Icon
+                name="user"
+                style={{color: tintColor, fontSize: 20, marginTop: 3}}
+              />
+            ),
           },
         },
       },
       {
         initialRouteName: 'Home',
-        activeColor: '#f0edf6',
-        inactiveColor: '#3e2465',
+        activeColor: '#eeeeee',
+        inactiveColor: '#cccccc',
         shifting: true,
-        barStyle: {backgroundColor: '#694fad'},
+        lazy: false,
+        barStyle: {backgroundColor: '#744da8'},
       },
     );
     const AppContainer = createAppContainer(TabNavigator);
-    return <AppContainer/>;
+    return <AppContainer />;
   }
 }
