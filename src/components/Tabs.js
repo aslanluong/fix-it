@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import React, {Component} from 'react';
+import {createAppContainer} from 'react-navigation';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontText from './FontText';
@@ -17,10 +17,10 @@ export default class Tabs extends Component {
                screen: Home,
                navigationOptions: {
                   tabBarLabel: <FontText>Sửa chữa</FontText>,
-                  tabBarIcon: ({ tintColor }) => (
+                  tabBarIcon: ({tintColor}) => (
                      <IconM
                         name="hammer"
-                        style={{ color: tintColor, fontSize: 20, marginTop: 3 }}
+                        style={{color: tintColor, fontSize: 23}}
                      />
                   ),
                },
@@ -28,11 +28,11 @@ export default class Tabs extends Component {
             History: {
                screen: History,
                navigationOptions: {
-                  tabBarLabel: <FontText>History</FontText>,
-                  tabBarIcon: ({ tintColor }) => (
+                  tabBarLabel: <FontText>Lịch sử</FontText>,
+                  tabBarIcon: ({tintColor}) => (
                      <Icon
                         name="clipboard"
-                        style={{ color: tintColor, fontSize: 20, marginTop: 3 }}
+                        style={{color: tintColor, fontSize: 23}}
                      />
                   ),
                },
@@ -40,11 +40,11 @@ export default class Tabs extends Component {
             Profile: {
                screen: Profile,
                navigationOptions: {
-                  tabBarLabel: <FontText>Profile</FontText>,
-                  tabBarIcon: ({ tintColor }) => (
+                  tabBarLabel: <FontText>Tài khoản</FontText>,
+                  tabBarIcon: ({tintColor}) => (
                      <Icon
                         name="user"
-                        style={{ color: tintColor, fontSize: 20, marginTop: 3 }}
+                        style={{color: tintColor, fontSize: 23}}
                      />
                   ),
                },
@@ -53,10 +53,11 @@ export default class Tabs extends Component {
          {
             initialRouteName: 'Home',
             activeColor: '#eeeeee',
-            inactiveColor: '#cccccc',
+            inactiveColor: 'grey',
             shifting: true,
             lazy: false,
-            barStyle: { backgroundColor: '#EA8025' },
+            backBehavior: 'history',
+            barStyle: {backgroundColor: '#EA8025'},
          },
       );
       const AppContainer = createAppContainer(TabNavigator);

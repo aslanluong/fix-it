@@ -6,9 +6,10 @@ import {
 	TouchableNativeFeedback,
 	ScrollView,
 	Dimensions,
+	SafeAreaView
 } from 'react-native';
 import FontText from '../FontText';
-
+import { APP_CONST } from '../../../app.const'
 export default class Home extends Component {
 	constructor() {
 		super();
@@ -30,7 +31,7 @@ export default class Home extends Component {
 	}
 	render() {
 		return (
-			<View>
+			<SafeAreaView>
 				<View style={styles.header}>
 					<View>
 						<FontText style={{ paddingLeft: 0, fontSize: 17 }}>
@@ -49,7 +50,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/television.png')}
+										source={APP_CONST.TV_ICON}
 									/>
 									<FontText>Thiết bị giải trí</FontText>
 								</View>
@@ -60,7 +61,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/lamp.png')}
+										source={APP_CONST.LAMP_ICON}
 									/>
 									<FontText>Thiết bị chiếu sáng</FontText>
 								</View>
@@ -71,7 +72,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/washing-machine.png')}
+										source={APP_CONST.WASHING_MACHINE_ICON}
 									/>
 									<FontText>Thiết bị giặt ủi</FontText>
 								</View>
@@ -82,7 +83,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/cutlery.png')}
+										source={APP_CONST.CUTLERY_ICON}
 									/>
 									<FontText>Thiết bị nhà bếp</FontText>
 								</View>
@@ -93,7 +94,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/air-conditioner.png')}
+										source={APP_CONST.AIR_CONDITIONER_ICON}
 									/>
 									<FontText>Điều hoà phòng</FontText>
 								</View>
@@ -104,7 +105,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/faucet.png')}
+										source={APP_CONST.FAUCET_ICON}
 									/>
 									<FontText>Hệ thống nước</FontText>
 								</View>
@@ -112,7 +113,7 @@ export default class Home extends Component {
 						</View>
 					</View>
 				</ScrollView>
-			</View>
+			</SafeAreaView>
 		);
 	}
 }
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
 		height: 75,
 		alignItems: 'center',
 		justifyContent: 'flex-end',
-		backgroundColor: '#f9f9f9',
+		backgroundColor: '#f0eff4',
 	},
 	menu: {
 		paddingTop: 20,
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-evenly',
 		paddingHorizontal: 25,
 		paddingBottom: 55,
-		backgroundColor: '#f9f9f9',
+		backgroundColor: '#f0eff4',
 	},
 	itemContainer: {
 		width: 155,
