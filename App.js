@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-
+import nav from './src/services/navigate'
 import Tabs from './src/components/Tabs';
+import FindFixer from './src/components/FindFixer';
 
 const RootStack = createStackNavigator(
    {
@@ -22,6 +23,13 @@ const RootStack = createStackNavigator(
          //     }
          //  },
       },
+      FindFixer: {
+         screen: FindFixer,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false,
+         }
+      },
    },
    {
       initialRouteName: 'Tabs',
@@ -32,8 +40,8 @@ export default class App extends Component {
    render() {
       return (
          <AppContainer
-            ref={nav => {
-               this.navigator = nav;
+            ref={navigatorRef => {
+               nav.setTopLevelNavigator(navigatorRef);
             }}
          />
       );

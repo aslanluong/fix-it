@@ -8,7 +8,7 @@ import {
 	Dimensions,
 } from 'react-native';
 import FontText from '../FontText';
-
+import nav from "../../services/navigate";
 export default class Home extends Component {
 	constructor() {
 		super();
@@ -45,7 +45,7 @@ export default class Home extends Component {
 					horizontal={this.state.orientation === 'landscape' ? true : false}>
 					<View style={styles.menu}>
 						<View style={styles.itemContainer}>
-							<TouchableNativeFeedback>
+							<TouchableNativeFeedback onPress={() => nav.navigate("FindFixer",{  type : "TV" })}>
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
