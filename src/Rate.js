@@ -80,11 +80,10 @@ export default class App extends Component {
           flexDirection: 'column',
           height: '100%',
           width: '100%',
-          marginBottom: 40,
           padding: 20
         }}>
           <View style={{
-            flex: 7,
+            flex: 6,
             borderColor: '#ff9051',
             borderTopRightRadius: 15,
             borderTopLeftRadius: 15,
@@ -107,7 +106,7 @@ export default class App extends Component {
 
           </View>
           <View style={{
-            flex: 3,
+            flex: 4,
             // borderWidth: 1,
             height: '100%'
 
