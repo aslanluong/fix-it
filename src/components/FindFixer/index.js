@@ -8,66 +8,76 @@ import styles, { colors } from './index.style';
 import { scrollInterpolators, animatedStyles } from './animation';
 const ENTRIES1 = [
    {
-       title: 'Beautiful and dramatic Antelope Canyon',
-       subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-       illustration: 'https://i.imgur.com/UYiroysl.jpg'
+      title: 'Đặt lịch hẹn',
+      subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+      illustration: 'https://i.imgur.com/UYiroysl.jpg'
    },
    {
-       title: 'Earlier this morning, NYC',
-       subtitle: 'Lorem ipsum dolor sit amet',
-       illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
-   },
-   {
-       title: 'White Pocket Sunset',
-       subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-       illustration: 'https://i.imgur.com/MABUbpDl.jpg'
-   },
-   {
-       title: 'Acrocorinth, Greece',
-       subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-       illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
-   },
-   {
-       title: 'The lone tree, majestic landscape of New Zealand',
-       subtitle: 'Lorem ipsum dolor sit amet',
-       illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
-   },
-   {
-       title: 'Middle Earth, Germany',
-       subtitle: 'Lorem ipsum dolor sit amet',
-       illustration: 'https://i.imgur.com/lceHsT6l.jpg'
+      title: 'Tìm ngay',
+      subtitle: 'Lorem ipsum dolor sit amet',
+      illustration: 'https://i.imgur.com/lceHsT6l.jpg'
    }
+   // {
+   //     title: 'Earlier this morning, NYC',
+   //     subtitle: 'Lorem ipsum dolor sit amet',
+   //     illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
+   // },
+   // {
+   //     title: 'White Pocket Sunset',
+   //     subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
+   //     illustration: 'https://i.imgur.com/MABUbpDl.jpg'
+   // },
+   // {
+   //     title: 'Acrocorinth, Greece',
+   //     subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+   //     illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
+   // },
+   // {
+   //     title: 'The lone tree, majestic landscape of New Zealand',
+   //     subtitle: 'Lorem ipsum dolor sit amet',
+   //     illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
+   // },
 ];
 export const ENTRIES2 = [
    {
-       title: 'Favourites landscapes 1',
-       subtitle: 'Lorem ipsum dolor sit amet',
-       illustration: 'https://i.imgur.com/SsJmZ9jl.jpg'
+      title: 'Đặt lịch hẹn',
+      subtitle: 'Giúp bạn quản lý thời gian dễ dàng hơn',
+      illustration: 'https://i.imgur.com/UYiroysl.jpg'
    },
    {
-       title: 'Favourites landscapes 2',
-       subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-       illustration: 'https://i.imgur.com/5tj6S7Ol.jpg'
+      title: 'Tìm ngay',
+      subtitle: 'Bạn cần gấp? Đừng lo chúng tôi đây rồi',
+      illustration: 'https://i.imgur.com/lceHsT6l.jpg'
    },
    {
-       title: 'Favourites landscapes 3',
-       subtitle: 'Lorem ipsum dolor sit amet et nuncat',
-       illustration: 'https://i.imgur.com/pmSqIFZl.jpg'
+      title: 'Favourites landscapes 1',
+      subtitle: 'Lorem ipsum dolor sit amet',
+      illustration: 'https://i.imgur.com/SsJmZ9jl.jpg'
    },
    {
-       title: 'Favourites landscapes 4',
-       subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-       illustration: 'https://i.imgur.com/cA8zoGel.jpg'
+      title: 'Favourites landscapes 2',
+      subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+      illustration: 'https://i.imgur.com/5tj6S7Ol.jpg'
    },
    {
-       title: 'Favourites landscapes 5',
-       subtitle: 'Lorem ipsum dolor sit amet',
-       illustration: 'https://i.imgur.com/pewusMzl.jpg'
+      title: 'Favourites landscapes 3',
+      subtitle: 'Lorem ipsum dolor sit amet et nuncat',
+      illustration: 'https://i.imgur.com/pmSqIFZl.jpg'
    },
    {
-       title: 'Favourites landscapes 6',
-       subtitle: 'Lorem ipsum dolor sit amet et nuncat',
-       illustration: 'https://i.imgur.com/l49aYS3l.jpg'
+      title: 'Favourites landscapes 4',
+      subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+      illustration: 'https://i.imgur.com/cA8zoGel.jpg'
+   },
+   {
+      title: 'Favourites landscapes 5',
+      subtitle: 'Lorem ipsum dolor sit amet',
+      illustration: 'https://i.imgur.com/pewusMzl.jpg'
+   },
+   {
+      title: 'Favourites landscapes 6',
+      subtitle: 'Lorem ipsum dolor sit amet et nuncat',
+      illustration: 'https://i.imgur.com/l49aYS3l.jpg'
    }
 ];
 const IS_ANDROID = Platform.OS === 'android';
@@ -177,9 +187,9 @@ export default class FindFixer extends Component {
    layoutExample(number, title, type) {
       const isTinder = type === 'tinder';
       return (
-         <View style={[styles.exampleContainer, isTinder ? styles.exampleContainerDark : styles.exampleContainerLight]}>
-            <Text style={[styles.title, isTinder ? {} : styles.titleDark]}>{`Example ${number}`}</Text>
-            <Text style={[styles.subtitle, isTinder ? {} : styles.titleDark]}>{title}</Text>
+         <View style={[styles.exampleContainer,styles.exampleContainerLight]}>
+            <Text style={[styles.title, styles.titleDark]}>{`Chọn phương thức`}</Text>
+            <Text style={[styles.subtitle, styles.titleDark]}>{title}</Text>
             <Carousel
                data={isTinder ? ENTRIES2 : ENTRIES1}
                renderItem={isTinder ? this._renderLightItem : this._renderItem}
@@ -228,10 +238,14 @@ export default class FindFixer extends Component {
       );
    }
 
+   get funa() {
+
+   }
+
    render() {
       const example1 = this.mainExample(1, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots');
       const example2 = this.momentumExample(2, 'Momentum | Left-aligned | Active animation');
-      const example3 = this.layoutExample(3, '"Stack of cards" layout | Loop', 'stack');
+      const example3 = this.layoutExample(3, '"Stack of cards" layout | Loop', 'tinder');
       const example4 = this.layoutExample(4, '"Tinder-like" layout | Loop', 'tinder');
       const example5 = this.customExample(5, 'Custom animation 1', 1, this._renderItem);
       const example6 = this.customExample(6, 'Custom animation 2', 2, this._renderLightItem);
@@ -246,16 +260,16 @@ export default class FindFixer extends Component {
                   backgroundColor={'rgba(0, 0, 0, 0.3)'}
                   barStyle={'light-content'}
                />
-               {this.gradient}
+               {/* {this.gradient} */}
                <ScrollView
                   style={styles.scrollview}
                   scrollEventThrottle={200}
                   directionalLockEnabled={true}
                >
-                  {example1}
-                  {example2}
+                  {/* {example1} */}
+                  {/* {example2} */}
                   {example3}
-                  {example4}
+                  {/* {example4} */}
                   {example5}
                   {example6}
                   {example7}

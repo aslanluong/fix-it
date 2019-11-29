@@ -46,6 +46,7 @@ export default class Tabs extends Component {
                             size={18}
                             navigation={navigation}
                             actionSize={30}
+                            toggleSize={60}
                             routes={[
                                 {
                                     routeName: Routes.OtherScreen,

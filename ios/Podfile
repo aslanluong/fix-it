@@ -37,7 +37,6 @@ target 'fixit' do
 
 
 
-  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
   target 'fixitTests' do
     inherit! :search_paths
