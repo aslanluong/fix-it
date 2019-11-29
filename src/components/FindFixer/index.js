@@ -93,7 +93,7 @@ export default class FindFixer extends Component {
    }
 
    _renderItem({ item, index }) {
-      return <SliderEntry data={item} even={(index + 1) % 2 === 0} />;
+      return <SliderEntry data={item} even={false} />;
    }
 
    _renderItemWithParallax({ item, index }, parallaxProps) {
@@ -187,16 +187,17 @@ export default class FindFixer extends Component {
    layoutExample(number, title, type) {
       const isTinder = type === 'tinder';
       return (
-         <View style={[styles.exampleContainer,styles.exampleContainerLight]}>
-            <Text style={[styles.title, styles.titleDark]}>{`Chọn phương thức`}</Text>
-            <Text style={[styles.subtitle, styles.titleDark]}>{title}</Text>
+         <View>
+            {/* style={[styles.exampleContainer,styles.exampleContainerLight]} */}
+            {/* <Text style={[styles.title, styles.titleDark]}>{`Chọn phương thức`}</Text>
+            <Text style={[styles.subtitle, styles.titleDark]}>{title}</Text> */}
             <Carousel
                data={isTinder ? ENTRIES2 : ENTRIES1}
                renderItem={isTinder ? this._renderLightItem : this._renderItem}
                sliderWidth={sliderWidth}
                itemWidth={itemWidth}
                containerCustomStyle={styles.slider}
-               contentContainerCustomStyle={styles.sliderContentContainer}
+               // contentContainerCustomStyle={styles.sliderContentContainer}
                layout={type}
                loop={true}
             />
@@ -238,10 +239,6 @@ export default class FindFixer extends Component {
       );
    }
 
-   get funa() {
-
-   }
-
    render() {
       const example1 = this.mainExample(1, 'Default layout | Loop | Autoplay | Parallax | Scale | Opacity | Pagination with tappable dots');
       const example2 = this.momentumExample(2, 'Momentum | Left-aligned | Active animation');
@@ -253,30 +250,42 @@ export default class FindFixer extends Component {
       const example8 = this.customExample(8, 'Custom animation 4', 4, this._renderLightItem);
 
       return (
-         <SafeAreaView style={styles.safeArea}>
-            <View style={styles.container}>
-               <StatusBar
-                  translucent={true}
-                  backgroundColor={'rgba(0, 0, 0, 0.3)'}
-                  barStyle={'light-content'}
-               />
-               {/* {this.gradient} */}
-               <ScrollView
-                  style={styles.scrollview}
-                  scrollEventThrottle={200}
-                  directionalLockEnabled={true}
-               >
-                  {/* {example1} */}
-                  {/* {example2} */}
-                  {example3}
-                  {/* {example4} */}
-                  {example5}
-                  {example6}
-                  {example7}
-                  {example8}
-               </ScrollView>
-            </View>
-         </SafeAreaView>
+         // <SafeAreaView style={styles.safeArea}>
+         //    <View style={styles.container}>
+         //       <StatusBar
+         //          translucent={true}
+         //          backgroundColor={'rgba(0, 0, 0, 0.3)'}
+         //          barStyle={'light-content'}
+         //       />
+         //       {/* {this.gradient} */}
+         //       <ScrollView
+         //          style={styles.scrollview}
+         //          scrollEventThrottle={200}
+         //          directionalLockEnabled={true}
+         //       >
+         //          {/* {example1} */}
+         //          {/* {example2} */}
+         //          {example3}
+         //          {/* {example4} */}
+         //          {example5}
+         //          {example6}
+         //          {example7}
+         //          {example8}
+         //       </ScrollView>
+         //    </View>
+         // </SafeAreaView>
+         <View>
+            <Carousel
+               data={ENTRIES1}
+               renderItem={this._renderItem}
+               sliderWidth={sliderWidth}
+               itemWidth={itemWidth}
+               containerCustomStyle={styles.slider}
+               // contentContainerCustomStyle={styles.sliderContentContainer}
+               layout={"tinder"}
+               loop={true}
+            />
+         </View>
       );
    }
 }

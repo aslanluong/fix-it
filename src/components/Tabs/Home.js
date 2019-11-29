@@ -56,7 +56,7 @@ export default class Home extends Component {
 							</TouchableNativeFeedback>
 						</View>
 						<View style={styles.itemContainer}>
-							<TouchableNativeFeedback>
+							<TouchableNativeFeedback onPress={() => nav.navigate("FoldView",{  type : "TV" })}>
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
