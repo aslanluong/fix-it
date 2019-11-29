@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import Tabs from './src/components/Tabs';
 import RequestDetails from './src/components/Tabs/RequestDetails';
-import NavigationService from "./src/services/navigate";
+import NavigationService from './src/services/navigate';
+import ProfileDetails from './src/components/Tabs/ProfileDetails';
+import ProfileEditor from './src/components/Tabs/ProfileEditor';
 
 const RootStack = createStackNavigator(
    {
@@ -13,15 +15,29 @@ const RootStack = createStackNavigator(
          screen: Tabs,
          navigationOptions: {
             header: null,
-            gesturesEnabled: false,
-         },
+            gesturesEnabled: false
+         }
       },
       RequestDetails: {
          screen: RequestDetails,
          navigationOptions: {
             header: null,
-            gesturesEnabled: false,
-         },
+            gesturesEnabled: false
+         }
+      },
+      ProfileDetails: {
+         screen: ProfileDetails,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      ProfileEditor: {
+         screen: ProfileEditor,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
          //  },
          //  Dashboard: {
          //     screen: Dashboard,
@@ -30,11 +46,11 @@ const RootStack = createStackNavigator(
          //        gesturesEnabled: false
          //     }
          //  },
-      },
+      }
    },
    {
-      initialRouteName: 'Tabs',
-   },
+      initialRouteName: 'Tabs'
+   }
 );
 const AppContainer = createAppContainer(RootStack);
 export default class App extends Component {
@@ -45,8 +61,8 @@ export default class App extends Component {
             //    this.navigator = nav;
             // }}
             ref={navigatorRef => {
-                  NavigationService.setTopLevelNavigator(navigatorRef);
-               }}
+               NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
          />
       );
    }

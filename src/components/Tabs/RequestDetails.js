@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
    Text,
    View,
@@ -6,7 +6,7 @@ import {
    StyleSheet,
    ScrollView,
    Image,
-   TouchableOpacity,
+   TouchableOpacity
 } from 'react-native';
 import IconE from 'react-native-vector-icons/EvilIcons';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,30 +18,35 @@ export default class RequestDetails extends Component {
    constructor() {
       super();
       this.timeline = [
-         {time: '09:00', description: 'Yêu cầu sửa chữa mới được tạo'},
-         {time: '09:05', description: 'Thợ xác nhận yêu cầu'},
-         {time: '09:10', description: 'Thợ đang trên đường đến'},
-         {time: '09:30', description: 'Thợ đến nơi'},
-         {time: '10:25', description: 'Sửa xong/Xác nhận hoàn thành'},
+         { time: '09:00', description: 'Yêu cầu sửa chữa mới được tạo' },
+         { time: '09:05', description: 'Thợ xác nhận yêu cầu' },
+         { time: '09:10', description: 'Thợ đang trên đường đến' },
+         { time: '09:30', description: 'Thợ đến nơi' },
+         { time: '10:25', description: 'Sửa xong/Xác nhận hoàn thành' }
       ];
    }
    render() {
       return (
-         <SafeAreaView style={{flex: 1}}>
+         <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.headerContainer}>
                <TouchableOpacity
+                  style={{
+                     width: 35,
+                     height: 35,
+                     justifyContent: 'center'
+                  }}
                   onPress={() => NavigationService.navigate('Tabs')}>
-                  <IconE name="close" style={{fontSize: 25}} />
+                  <IconE name="close" style={{ fontSize: 25 }} />
                </TouchableOpacity>
-               <View style={{alignItems: 'center'}}>
-                  <FontText emphasis="bold" style={{fontSize: 13}}>
+               <View style={{ alignItems: 'center' }}>
+                  <FontText emphasis="bold" style={{ fontSize: 13 }}>
                      Yêu cầu sửa chữa #FICRAA001
                   </FontText>
-                  <FontText style={{fontSize: 12}}>16:00 27/10/2019</FontText>
+                  <FontText style={{ fontSize: 12 }}>16:00 27/10/2019</FontText>
                </View>
                <FontText
                   emphasis="medium"
-                  style={{fontSize: 13, color: '#ff9501'}}>
+                  style={{ fontSize: 13, color: '#ff9501' }}>
                   Hỗ trợ
                </FontText>
             </View>
@@ -49,7 +54,11 @@ export default class RequestDetails extends Component {
                <View style={styles.statusContainer}>
                   <FontText
                      emphasis="bold"
-                     style={{fontSize: 18, color: '#3ddc84', marginBottom: 10}}>
+                     style={{
+                        fontSize: 18,
+                        color: '#3ddc84',
+                        marginBottom: 10
+                     }}>
                      Đã hoàn thành
                   </FontText>
                   <FontText emphasis="light">
@@ -60,14 +69,14 @@ export default class RequestDetails extends Component {
                <View style={styles.feedbackContainer}>
                   <FontText
                      emphasis="bold"
-                     style={{fontSize: 18, marginBottom: 10}}>
+                     style={{ fontSize: 18, marginBottom: 10 }}>
                      Cảm ơn bạn đã sử dụng dịch vụ!
                   </FontText>
-                  <FontText emphasis="light" style={{marginBottom: 5}}>
+                  <FontText emphasis="light" style={{ marginBottom: 5 }}>
                      Đánh giá của bạn sẽ giúp chúng tôi tiếp tục cải thiện dịch
                      vụ tốt hơn.
                   </FontText>
-                  <View style={{flexDirection: 'row'}}>
+                  <View style={{ flexDirection: 'row' }}>
                      <IconM name="star" style={styles.starIcon} />
                      <IconM name="star" style={styles.starIcon} />
                      <IconM name="star" style={styles.starIcon} />
@@ -81,13 +90,13 @@ export default class RequestDetails extends Component {
                      style={{
                         marginHorizontal: '5%',
                         marginTop: 10,
-                        fontSize: 15,
+                        fontSize: 15
                      }}>
                      Trạng thái yêu cầu sửa chữa
                   </FontText>
                   <View style={styles.timelineContainer}>
                      <Timeline
-                        style={{paddingLeft: 5}}
+                        style={{ paddingLeft: 5 }}
                         data={this.timeline}
                         circleColor="#ff9501"
                         circleSize={10}
@@ -101,12 +110,12 @@ export default class RequestDetails extends Component {
                                  width: '95%',
                                  marginTop: -14,
                                  flexDirection: 'row',
-                                 justifyContent: 'space-between',
+                                 justifyContent: 'space-between'
                               }}>
-                              <FontText style={{fontSize: 13}}>
+                              <FontText style={{ fontSize: 13 }}>
                                  {rowData.description}
                               </FontText>
-                              <FontText style={{fontSize: 13}}>
+                              <FontText style={{ fontSize: 13 }}>
                                  {rowData.time}
                               </FontText>
                            </View>
@@ -120,7 +129,7 @@ export default class RequestDetails extends Component {
                      style={{
                         marginHorizontal: '5%',
                         marginTop: 10,
-                        fontSize: 15,
+                        fontSize: 15
                      }}>
                      Chi phí
                   </FontText>
@@ -130,7 +139,7 @@ export default class RequestDetails extends Component {
                         <FontText>150.000đ</FontText>
                      </View>
                      <View style={styles.feeRow}>
-                        <FontText style={{paddingLeft: 25}}>
+                        <FontText style={{ paddingLeft: 25 }}>
                            1 - Máy lạnh
                         </FontText>
                      </View>
@@ -138,7 +147,7 @@ export default class RequestDetails extends Component {
                         style={{
                            borderBottomWidth: 0.5,
                            borderColor: '#c9c9c9',
-                           marginBottom: 15,
+                           marginBottom: 15
                         }}
                      />
                      <View style={styles.feeRow}>
@@ -149,7 +158,7 @@ export default class RequestDetails extends Component {
                         style={{
                            borderBottomWidth: 0.5,
                            borderColor: '#c9c9c9',
-                           marginBottom: 15,
+                           marginBottom: 15
                         }}
                      />
                      <View style={styles.feeRow}>
@@ -163,22 +172,32 @@ export default class RequestDetails extends Component {
                         style={{
                            marginHorizontal: '5%',
                            marginTop: 10,
-                           fontSize: 15,
+                           fontSize: 15
                         }}>
                         Thợ sửa chữa
                      </FontText>
                      <View style={styles.fixerContainer}>
                         <View style={styles.fixerRow}>
-                           <View style={{flex: 1, alignItems: 'center'}}>
-                              <Image
-                                 style={{width: 25, height: 25}}
-                                 source={{
-                                    uri:
-                                       'https://banner2.cleanpng.com/20180625/at/kisspng-business-game-avatar-computer-program-google-smart-object-5b315c2b2ad958.6413531715299615151755.jpg',
-                                 }}
-                              />
+                           <View style={{ flex: 1, alignItems: 'center' }}>
+                              <View
+                                 style={{
+                                    width: 25,
+                                    height: 25,
+                                    paddingTop: 3,
+                                    borderRadius: 12.5,
+                                    overflow: 'hidden',
+                                    backgroundColor: '#3ddc84'
+                                 }}>
+                                 <Image
+                                    style={{ width: 25, height: 25 }}
+                                    source={{
+                                       uri:
+                                          'https://www.pngrepo.com/png/17468/170/avatar.png'
+                                    }}
+                                 />
+                              </View>
                            </View>
-                           <View style={{flex: 7}}>
+                           <View style={{ flex: 7 }}>
                               <FontText>Thắng Lương Thành</FontText>
                            </View>
                         </View>
@@ -186,17 +205,17 @@ export default class RequestDetails extends Component {
                            style={{
                               borderBottomWidth: 0.5,
                               borderColor: '#c9c9c9',
-                              marginVertical: 15,
+                              marginVertical: 15
                            }}
                         />
                         <View style={styles.fixerRow}>
-                           <View style={{flex: 1, alignItems: 'center'}}>
+                           <View style={{ flex: 1, alignItems: 'center' }}>
                               <IconM
                                  name="phone"
-                                 style={{fontSize: 20, color: '#ff9501'}}
+                                 style={{ fontSize: 20, color: '#ff9501' }}
                               />
                            </View>
-                           <View style={{flex: 7}}>
+                           <View style={{ flex: 7 }}>
                               <FontText>091 113 9999</FontText>
                            </View>
                         </View>
@@ -204,19 +223,19 @@ export default class RequestDetails extends Component {
                            style={{
                               borderBottomWidth: 0.5,
                               borderColor: '#c9c9c9',
-                              marginVertical: 15,
+                              marginVertical: 15
                            }}
                         />
                         <View style={styles.fixerRow}>
-                           <View style={{flex: 1, alignItems: 'center'}}>
+                           <View style={{ flex: 1, alignItems: 'center' }}>
                               <IconM
                                  name="map-marker-outline"
-                                 style={{fontSize: 20, color: '#ff9501'}}
+                                 style={{ fontSize: 20, color: '#ff9501' }}
                               />
                            </View>
-                           <View style={{flex: 7}}>
+                           <View style={{ flex: 7 }}>
                               <Text
-                                 style={{fontFamily: 'lato-regular'}}
+                                 style={{ fontFamily: 'lato-regular' }}
                                  numberOfLines={1}
                                  ellipsizeMode="tail">
                                  Lô T2-4 đường D1, Khu Công Nghệ Cao, HCM
@@ -239,11 +258,11 @@ const styles = StyleSheet.create({
       paddingHorizontal: '5%',
       justifyContent: 'space-between',
       flexDirection: 'row',
-      borderBottomWidth: 0.5,
+      borderBottomWidth: 0.5
    },
    bodyContainer: {
       backgroundColor: '#f0eff4',
-      flex: 1,
+      flex: 1
    },
    statusContainer: {
       backgroundColor: 'white',
@@ -252,7 +271,7 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       marginHorizontal: '5%',
       marginTop: 10,
-      padding: 15,
+      padding: 15
    },
    feedbackContainer: {
       backgroundColor: 'white',
@@ -261,11 +280,11 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       marginHorizontal: '5%',
       marginTop: 10,
-      padding: 15,
+      padding: 15
    },
    starIcon: {
       fontSize: 29,
-      color: '#ff9501',
+      color: '#ff9501'
    },
    timelineContainer: {
       justifyContent: 'center',
@@ -278,7 +297,7 @@ const styles = StyleSheet.create({
       marginHorizontal: '5%',
       marginTop: 5,
       paddingTop: 30,
-      flexDirection: 'row',
+      flexDirection: 'row'
    },
    feeContainer: {
       justifyContent: 'center',
@@ -288,12 +307,12 @@ const styles = StyleSheet.create({
       borderRadius: 10,
       marginHorizontal: '5%',
       marginTop: 5,
-      padding: 15,
+      padding: 15
    },
    feeRow: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      marginBottom: 10,
+      marginBottom: 10
    },
    fixerContainer: {
       justifyContent: 'center',
@@ -304,9 +323,9 @@ const styles = StyleSheet.create({
       marginHorizontal: '5%',
       marginTop: 5,
       marginBottom: 10,
-      padding: 15,
+      padding: 15
    },
    fixerRow: {
-      flexDirection: 'row',
-   },
+      flexDirection: 'row'
+   }
 });
