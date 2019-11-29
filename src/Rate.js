@@ -70,7 +70,7 @@ export default class App extends Component {
             fontSize: 18,
             color: 'black',
           }}>
-            I hope to received your comments to improve our services,<Text style={{ color: '#f1c40f', fontWeight: 'bold', fontSize: 25 }}>Thanks you!</Text>
+            I hope to received your comments to improve our services,<Text style={{ color: '#f1c40f', fontWeight: 'bold', fontSize: 25 }}>Thank you!</Text>
           </Text>
         </View>
 
