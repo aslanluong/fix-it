@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
    normal: {
       fontFamily: 'lato-regular'
    },
+   bold: {
+      fontFamily: 'lato-bold'
+   },
    medium: {
       fontFamily: 'lato-medium'
    },
