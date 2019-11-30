@@ -5,8 +5,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import nav from './src/services/navigate'
 import Tabs from './src/components/Tabs';
 import FindFixer from './src/components/FindFixer';
-import FoldView from 'react-native-foldview';
-import ExampleList from './src/components/FoldVIew/ExampleList';
 
 const RootStack = createStackNavigator(
    {
@@ -32,13 +30,13 @@ const RootStack = createStackNavigator(
             gesturesEnabled: false,
          }
       },
-      FoldView: {
-         screen: ExampleList,
-         navigationOptions: {
-            header: null,
-            gesturesEnabled: false,
-         }
-      },
+      // FoldView: {
+      //    screen: ExampleList,
+      //    navigationOptions: {
+      //       header: null,
+      //       gesturesEnabled: false,
+      //    }
+      // },
    },
    {
       initialRouteName: 'Tabs',

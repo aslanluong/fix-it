@@ -14,7 +14,7 @@ import { Routes } from '../../routes';
 export default class Tabs extends Component {
     render() {
         const TabsNavigator = createBottomTabNavigator({
-            [Routes.TabsBookmarks]: {
+            Home: {
                 screen: Home,
                 navigationOptions: () => ({
                     tabBarIcon: ({ tintColor }) => (
@@ -26,8 +26,8 @@ export default class Tabs extends Component {
                     ),
                 })
             },
-            [Routes.TabsLikes]: {
-                screen: Home,
+            History: {
+                screen: History,
                 navigationOptions: () => ({
                     tabBarIcon: ({ tintColor }) => (
                         <Icon
@@ -96,7 +96,7 @@ export default class Tabs extends Component {
                     navigationDisabled: true
                 }
             },
-            [Routes.TabsPrivate]: {
+            NoName: {
                 screen: Home,
                 navigationOptions: () => ({
                     tabBarIcon: ({ tintColor }) => (
@@ -108,7 +108,7 @@ export default class Tabs extends Component {
                     )
                 })
             },
-            [Routes.TabsProfile]: {
+            Profile: {
                 screen: Profile,
                 navigationOptions: () => ({
                     tabBarIcon: ({ tintColor }) => (
