@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import nav from './src/services/navigate'
 import Tabs from './src/components/Tabs';
 import FindFixer from './src/components/FindFixer';
+import RequestDetails from './src/components/Tabs/RequestDetails';
+import NavigationService from './src/services/navigate';
+import ProfileDetails from './src/components/Tabs/ProfileDetails';
+import ProfileEditor from './src/components/Tabs/ProfileEditor';
 
 const RootStack = createStackNavigator(
    {
@@ -12,17 +15,38 @@ const RootStack = createStackNavigator(
          screen: Tabs,
          navigationOptions: {
             header: null,
-            gesturesEnabled: false,
-         },
-         //  },
-         //  Dashboard: {
-         //     screen: Dashboard,
-         //     navigationOptions: {
-         //        header: null,
-         //        gesturesEnabled: false
-         //     }
-         //  },
+            gesturesEnabled: false
+         }
       },
+      RequestDetails: {
+         screen: RequestDetails,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      ProfileDetails: {
+         screen: ProfileDetails,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      ProfileEditor: {
+         screen: ProfileEditor,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      //  },
+      //  Dashboard: {
+      //     screen: Dashboard,
+      //     navigationOptions: {
+      //        header: null,
+      //        gesturesEnabled: false
+      //     }
+      //  },
       FindFixer: {
          screen: FindFixer,
          navigationOptions: {
@@ -38,9 +62,6 @@ const RootStack = createStackNavigator(
       //    }
       // },
    },
-   {
-      initialRouteName: 'Tabs',
-   },
 );
 const AppContainer = createAppContainer(RootStack);
 export default class App extends Component {
@@ -48,7 +69,7 @@ export default class App extends Component {
       return (
          <AppContainer
             ref={navigatorRef => {
-               nav.setTopLevelNavigator(navigatorRef);
+               NavigationService.setTopLevelNavigator(navigatorRef);
             }}
          />
       );

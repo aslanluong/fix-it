@@ -3,13 +3,11 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
-import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontText from './FontText';
 import { MultiBarToggle, MultiBar } from 'react-native-multibar'
 import Home from './Tabs/Home';
 import History from './Tabs/History';
 import Profile from './Tabs/Profile';
-import { Routes } from '../../routes';
 
 export default class Tabs extends Component {
     render() {
@@ -45,11 +43,10 @@ export default class Tabs extends Component {
                         <MultiBarToggle
                             size={18}
                             navigation={navigation}
-                            actionSize={30}
-                            toggleSize={60}
+                            toggleSize={65}
                             routes={[
                                 {
-                                    routeName: Routes.OtherScreen,
+                                    routeName: 'Home',
                                     color: '#FF8360',
                                     icon: (
                                         <Icon
@@ -60,7 +57,7 @@ export default class Tabs extends Component {
                                     )
                                 },
                                 {
-                                    routeName: Routes.OtherScreen,
+                                    routeName: 'Home',
                                     color: '#E8E288',
                                     icon: (
                                         <Icon
@@ -71,7 +68,7 @@ export default class Tabs extends Component {
                                     )
                                 },
                                 {
-                                    routeName: Routes.OtherScreen,
+                                    routeName: 'Home',
                                     color: '#7DCE82',
                                     icon: (
                                         <Icon
