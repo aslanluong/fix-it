@@ -6,9 +6,11 @@ import {
 	TouchableNativeFeedback,
 	ScrollView,
 	Dimensions,
+	SafeAreaView
 } from 'react-native';
 import FontText from '../FontText';
-
+import NavigationService from "../../services/navigate";
+import { APP_CONST } from '../../../app.const';
 export default class Home extends Component {
 	constructor() {
 		super();
@@ -19,37 +21,39 @@ export default class Home extends Component {
 		};
 
 		this.state = {
-			orientation: isPortrait() ? 'portrait' : 'landscape',
+			orientation: isPortrait() ? 'portrait' : 'landscape'
 		};
 		// Event Listener for orientation changes
 		Dimensions.addEventListener('change', () => {
 			this.setState({
-				orientation: isPortrait() ? 'portrait' : 'landscape',
+				orientation: isPortrait() ? 'portrait' : 'landscape'
 			});
 		});
 	}
 	render() {
 		return (
-			<View>
+			<SafeAreaView>
 				<View style={styles.header}>
 					<View>
 						<FontText style={{ paddingLeft: 0, fontSize: 17 }}>
 							Xin chào Thắng,
-            </FontText>
+                  </FontText>
 						<FontText style={{ fontSize: 23 }}>
 							Chọn loại thiết bị cần sửa chữa
-            </FontText>
+                  </FontText>
 					</View>
 				</View>
 				<ScrollView
-					horizontal={this.state.orientation === 'landscape' ? true : false}>
+					horizontal={
+						this.state.orientation === 'landscape' ? true : false
+					}>
 					<View style={styles.menu}>
 						<View style={styles.itemContainer}>
-							<TouchableNativeFeedback>
+							<TouchableNativeFeedback onPress={() => NavigationService.navigate("FindFixer", { type: "TV" })}>
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/television.png')}
+										source={APP_CONST.TV_ICON}
 									/>
 									<FontText>Thiết bị giải trí</FontText>
 								</View>
@@ -60,7 +64,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/lamp.png')}
+										source={APP_CONST.LAMP_ICON}
 									/>
 									<FontText>Thiết bị chiếu sáng</FontText>
 								</View>
@@ -71,7 +75,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/washing-machine.png')}
+										source={APP_CONST.WASHING_MACHINE_ICON}
 									/>
 									<FontText>Thiết bị giặt ủi</FontText>
 								</View>
@@ -82,7 +86,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/cutlery.png')}
+										source={APP_CONST.CUTLERY_ICON}
 									/>
 									<FontText>Thiết bị nhà bếp</FontText>
 								</View>
@@ -93,7 +97,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/air-conditioner.png')}
+										source={APP_CONST.AIR_CONDITIONER_ICON}
 									/>
 									<FontText>Điều hoà phòng</FontText>
 								</View>
@@ -104,7 +108,7 @@ export default class Home extends Component {
 								<View style={styles.item}>
 									<Image
 										style={styles.image}
-										source={require('../../../assets/images/faucet.png')}
+										source={APP_CONST.FAUCET_ICON}
 									/>
 									<FontText>Hệ thống nước</FontText>
 								</View>
@@ -112,7 +116,7 @@ export default class Home extends Component {
 						</View>
 					</View>
 				</ScrollView>
-			</View>
+			</SafeAreaView>
 		);
 	}
 }
@@ -122,7 +126,7 @@ const styles = StyleSheet.create({
 		height: 75,
 		alignItems: 'center',
 		justifyContent: 'flex-end',
-		backgroundColor: '#f9f9f9',
+		backgroundColor: '#f0eff4'
 	},
 	menu: {
 		paddingTop: 20,
@@ -131,7 +135,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-evenly',
 		paddingHorizontal: 25,
 		paddingBottom: 55,
-		backgroundColor: '#f9f9f9',
+		backgroundColor: '#f0eff4'
 	},
 	itemContainer: {
 		width: 155,
@@ -145,23 +149,23 @@ const styles = StyleSheet.create({
 		shadowColor: '#000',
 		shadowOffset: {
 			width: 0,
-			height: 11,
+			height: 11
 		},
 		shadowOpacity: 0.57,
 		shadowRadius: 15.19,
 
-		elevation: 23,
+		elevation: 23
 	},
 	item: {
 		width: '100%',
 		height: '100%',
 		backgroundColor: 'white',
 		justifyContent: 'center',
-		alignItems: 'center',
+		alignItems: 'center'
 	},
 	image: {
 		width: 80,
 		height: 80,
-		marginBottom: 15,
-	},
+		marginBottom: 15
+	}
 });

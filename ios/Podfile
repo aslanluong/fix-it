@@ -34,7 +34,13 @@ target 'fixit' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+<<<<<<< HEAD
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+=======
+
+
+
+>>>>>>> master
 
   target 'fixitTests' do
     inherit! :search_paths
