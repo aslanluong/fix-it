@@ -25,8 +25,11 @@ export default class RequestDetails extends Component {
          { time: '10:25', description: 'Sửa xong/Xác nhận hoàn thành' }
       ];
       this.cancelTimeline = [
-         { time: '09:00', description: 'Yêu cầu sửa chữa mới được tạo' },
-         { time: '09:05', description: 'Khách hàng đã huỷ yêu cầu' }
+         { time: '09:00', description: 'Yêu cầu sửa chữa mới được tạo', circleColor: '#ff9501' },
+         { time: '09:05', description: 'Thợ xác nhận yêu cầu', circleColor: 'red', lineColor: 'gray' },
+         { time: '', description: 'Thợ đang trên đường đến', lineColor: 'gray', circleColor: 'gray' },
+         { time: '', description: 'Thợ đến nơi', lineColor: 'gray', circleColor: 'gray' },
+         { time: '', description: 'Sửa xong/Xác nhận hoàn thành', lineColor: 'gray', circleColor: 'gray' },
       ];
    }
    render() {
@@ -93,8 +96,8 @@ export default class RequestDetails extends Component {
                      </View>
                   </View>
                ) : (
-                  <></>
-               )}
+                     <></>
+                  )}
                <View>
                   <FontText
                      emphasis="bold"
@@ -107,9 +110,9 @@ export default class RequestDetails extends Component {
                   </FontText>
                   <View
                      style={[
-                        styles.timelineContainer,
-                        status == 'Đã huỷ' ? { height: 105 } : {}
+                        styles.timelineContainer
                      ]}>
+
                      <Timeline
                         style={{ paddingLeft: 5 }}
                         data={
@@ -140,6 +143,7 @@ export default class RequestDetails extends Component {
                            </View>
                         )}
                      />
+
                   </View>
                </View>
                {status == 'Đã hoàn thành' ? (
@@ -274,8 +278,8 @@ export default class RequestDetails extends Component {
                      </View>
                   </View>
                ) : (
-                  <></>
-               )}
+                     <></>
+                  )}
             </ScrollView>
          </SafeAreaView>
       );

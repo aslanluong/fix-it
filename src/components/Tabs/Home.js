@@ -11,6 +11,7 @@ import {
 import FontText from '../FontText';
 import NavigationService from '../../services/navigate';
 import { APP_CONST } from '../../../app.const';
+
 export default class Home extends Component {
 	constructor() {
 		super();
@@ -159,18 +160,26 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.57,
 		shadowRadius: 15.19,
 
-		elevation: 23
-	},
-	item: {
-		width: '100%',
-		height: '100%',
-		backgroundColor: 'white',
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	image: {
-		width: 80,
-		height: 80,
-		marginBottom: 15
-	}
+      elevation: 23
+   },
+   item: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center'
+   },
+   image: {
+      width: 80,
+      height: 80,
+      marginBottom: 15
+   },
+   container: {
+      flexDirection: 'row',
+   },
+   detailsContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      marginLeft: 24,
+   },
 });

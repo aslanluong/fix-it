@@ -9,24 +9,34 @@ import {
 } from 'react-native';
 import { FontText } from '../FontText';
 import NavigationService from '../../services/navigate';
+import { Button, Text, Icon, Input } from 'react-native-ui-kitten/ui';
+// import Icon from 'react-native-vector-icons/Feather'
 
+const ContIcon = (style) => (
+   <Icon {...style} name='arrowhead-right-outline' style={{ marginLeft: -5 }} />
+);
+const CancelIcon = (style) => (
+   <Icon {...style} name='close-circle-outline' style={{ marginLeft: -5 }} />
+);
 export default class ForgotPassword extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      numberPhone: '123'
-    };
-  }
- 
-  render() {
-    return (
-      <View style={styles.container}>
-        <KeyboardAvoidingView style={styles.formContainer}>
-          <View style={styles.logoContainer}>
-            <FontText
-              emphasis="bold"
-              style={{ fontSize: 20, marginBottom: '3%' }}>
-              ĐĂNG NHẬP
+   state = {
+      value: "+84 "
+   }
+   render() {
+      const VNFlag = (style) => (
+         <Icon
+            {...style}
+            name={'star'}
+         />
+      );
+      return (
+         <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.formContainer}>
+               <View style={styles.logoContainer}>
+                  <FontText
+                     emphasis="bold"
+                     style={{ fontSize: 20, marginBottom: '3%' }}>
+                     ĐĂNG NHẬP
                   </FontText>
             <Image
               source={{
@@ -49,126 +59,88 @@ export default class ForgotPassword extends Component {
             <FontText style={{ opacity: 0.5 }}>
               số điện thoại của bạn
                   </FontText>
-          </View>
-          <View style={styles.inputFormContainer}>
-            <Image
-              source={{
-                uri:
-                  'https://img.icons8.com/color/48/000000/vietnam.png'
-              }}
-              style={styles.logoVietNam}
-            />
-            <FontText
-              emphasis="bold"
-              style={{ fontSize: 16, marginRight: '3%' }}>
-              +84
-                  </FontText>
-            <TextInput
-              style={styles.phoneNumberInput}
-              placeholder="Nhập số điện thoại"
-              maxLength={10}
-              keyboardType="phone-pad"
-              onChangeText={(numberPhone) => this.setState({ numberPhone })}
-            ></TextInput>
-          </View>
-          <View style={styles.buttonContainer}>
-            <View style={{ width: '30%', marginRight: '7%' }}>
-              <TouchableOpacity
-                style={styles.sendButtonContainer}
-                onPress={() =>
-                  this.props.navigation.navigate('Verification', { numberPhone: this.state.numberPhone })
-                }
-                value={this.state.numberPhone}>
+               </View>
+               <View style={styles.inputFormContainer}>
 
-                <FontText emphasis="bold" style={styles.sendButtonText}>
-                  Tiếp tục
-                        </FontText>
-              </TouchableOpacity>
-            </View>
-            <View style={{ width: '30%' }}>
-              <TouchableOpacity
-                style={styles.backButtonContainer}
-                onPress={() => NavigationService.navigate('Login')}>
-                <FontText emphasis="bold" style={styles.backButtonText}>
-                  Trở về
-                        </FontText>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </KeyboardAvoidingView>
-      </View>
-    );
-  }
+                  <Input
+                     icon={VNFlag}
+                     textStyle={{ padding: 0 }}
+                     style={{ width: '90%' }}
+                     label='Số điện thoại'
+                     placeholder='0943791739'
+                     defaultValue={this.state.value}
+                  />
+                  {/* <Image
+                     source={{
+                        uri:
+                           'https://img.icons8.com/color/48/000000/vietnam.png'
+                     }}
+                     style={styles.logoVietNam}
+                  />
+                  <FontText
+                     emphasis="bold"
+                     style={{ fontSize: 16, marginRight: '3%' }}>
+                     +84
+                  </FontText>
+                  <TextInput
+                     style={styles.phoneNumberInput}
+                     placeholder="Nhập số điện thoại"
+                     maxLength={10}
+                     keyboardType="phone-pad"></TextInput> */}
+               </View>
+               <View >
+                  <View style={styles.buttonContainer}>
+                     <Button TouchableOpacity onPress={() => NavigationService.navigate('Verification')} appearance='outline' icon={ContIcon} status='info' style={{ flexDirection: 'row-reverse' }} >
+                        Tiếp tục
+                        </Button>
+                     <Button TouchableOpacity onPress={() => NavigationService.navigate('Login')} appearance='outline' icon={CancelIcon} status='danger' style={{ flexDirection: 'row-reverse' }} >
+                        Trở về
+                        </Button>
+                  </View>
+               </View>
+            </KeyboardAvoidingView>
+         </View >
+      );
+   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center'
-  },
-  formContainer: {
-    alignItems: 'center'
-  },
-  sloganText: {
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  logoContainer: {
-    alignItems: 'center',
-    marginBottom: '12%'
-  },
-  inputFormContainer: {
-    width: '80%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: '#F56258',
-    borderWidth: 1,
-    borderRadius: 15
-  },
-  phoneNumberInput: {
-    width: '80%',
-    fontSize: 16
-  },
-  logoVietNam: {
-    width: 33,
-    height: 30,
-    marginHorizontal: '3%'
-  },
-  sendButtonContainer: {
-    borderColor: '#fff',
-    backgroundColor: '#F56258',
-    width: '100%',
-    height: 47,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderRadius: 25,
-    justifyContent: 'center',
-    elevation: 10
-  },
-  backButtonContainer: {
-    borderColor: '#F56258',
-    backgroundColor: '#fff',
-    width: '100%',
-    height: 47,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderRadius: 25,
-    justifyContent: 'center',
-    elevation: 10
-  },
-
-  sendButtonText: {
-    color: '#fff',
-    fontSize: 17
-  },
-  backButtonText: {
-    color: '#F56258',
-    fontSize: 17
-  },
-  buttonContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: '8%'
-  }
+   container: {
+      // flex: 1,
+      // justifyContent: 'center',
+      // flexDirection: 'row',
+      // flexWrap: 'wrap',
+      // padding: 8,
+   },
+   formContainer: {
+      // alignItems: 'center'
+   },
+   sloganText: {
+      fontSize: 20,
+      fontWeight: 'bold'
+   },
+   logoContainer: {
+      alignItems: 'center',
+      marginBottom: '12%'
+   },
+   inputFormContainer: {
+      width: '100%',
+      alignItems: 'center',
+   },
+   phoneNumberInput: {
+      width: '80%',
+      fontSize: 16
+   },
+   logoVietNam: {
+      width: 33,
+      height: 30,
+      marginHorizontal: '3%'
+   },
+   buttonContainer: {
+      marginTop: 20,
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingHorizontal: '15%'
+   }
 });
