@@ -1,42 +1,44 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet, Image } from 'react-native';
 
 import FontText from '../FontText';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
-import {TouchableOpacity} from 'react-native';
-import NavigationService from '../../services/navigate'
+import { TouchableOpacity } from 'react-native';
+import NavigationService from '../../services/navigate';
 
 export default class HistoryRow extends Component {
    // typeSource, itemName, status, time, fee
    render() {
-      const {typeSource, itemName, status, time, feedback, fee, navigation} = this.props;
+      const { typeSource, itemName, status, time, feedback, fee } = this.props;
       return (
          <TouchableOpacity
             style={styles.rowContainer}
-            onPress={() => NavigationService.navigate('RequestDetails')}>
+            onPress={() =>
+               NavigationService.navigate('RequestDetails', { status: status })
+            }>
             <View style={styles.rowIcon}>
-               <Image style={{width: 50, height: 50}} source={typeSource} />
+               <Image style={{ width: 50, height: 50 }} source={typeSource} />
             </View>
             <View style={styles.rowContent1}>
                <FontText emphasis="bold">{itemName}</FontText>
-               <FontText style={{fontSize: 13, color: '#ff9501'}}>
+               <FontText style={{ fontSize: 13, color: '#ff9501' }}>
                   {status}
                </FontText>
-               <FontText style={{fontSize: 13}} emphasis="light">
+               <FontText style={{ fontSize: 13 }} emphasis="light">
                   {time}
                </FontText>
             </View>
             <View style={styles.rowContent2}>
                {status == 'Đã hoàn thành' ? (
                   <>
-                     <FontText style={{color: '#ff9501'}}>
+                     <FontText style={{ color: '#ff9501' }}>
                         {feedback}{' '}
                         <IconM
                            name="star"
                            style={{
                               color: '#ff9501',
                               fontSize: 15,
-                              marginTop: 3,
+                              marginTop: 3
                            }}
                         />
                      </FontText>
@@ -60,19 +62,19 @@ const styles = StyleSheet.create({
       borderColor: '#c9c9c9',
       borderRadius: 10,
       backgroundColor: 'white',
-      flexDirection: 'row',
+      flexDirection: 'row'
    },
    rowIcon: {
       flex: 2,
-      justifyContent: 'center',
+      justifyContent: 'center'
    },
    rowContent1: {
       flex: 5,
-      justifyContent: 'center',
+      justifyContent: 'center'
    },
    rowContent2: {
       flex: 3,
       justifyContent: 'center',
-      alignItems: 'flex-end',
-   },
+      alignItems: 'flex-end'
+   }
 });

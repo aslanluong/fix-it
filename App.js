@@ -10,10 +10,9 @@ import ProfileDetails from './src/components/Tabs/ProfileDetails';
 import ProfileEditor from './src/components/Tabs/ProfileEditor';
 
 import Login from './src/components/Screens/Login';
-import LoginForPhoneNumber from './src/components/Screens/LoginForPhoneNumber';
+import LoginByPhone from './src/components/Screens/LoginByPhone';
 import Verification from './src/components/Screens/Verification';
 import CreateRequest from './src/components/Screens/CreateRequest';
-
 
 const RootStack = createStackNavigator(
    {
@@ -24,8 +23,8 @@ const RootStack = createStackNavigator(
             gesturesEnabled: false
          }
       },
-      LoginForPhoneNumber: {
-         screen: LoginForPhoneNumber,
+      LoginByPhone: {
+         screen: LoginByPhone,
          navigationOptions: {
             header: null,
             gesturesEnabled: false
@@ -49,7 +48,7 @@ const RootStack = createStackNavigator(
          screen: Tabs,
          navigationOptions: {
             header: null,
-            gesturesEnabled: false,
+            gesturesEnabled: false
          },
          RequestDetails: {
             screen: RequestDetails,
@@ -71,7 +70,7 @@ const RootStack = createStackNavigator(
                header: null,
                gesturesEnabled: false
             }
-         },
+         }
 
          //  },
          //  Dashboard: {
@@ -81,11 +80,11 @@ const RootStack = createStackNavigator(
          //        gesturesEnabled: false
          //     }
          //  },
-      },
+      }
    },
    {
-      initialRouteName: 'CreateRequest',
-   },
+      initialRouteName: 'Login'
+   }
 );
 const AppContainer = createAppContainer(RootStack);
 export default class App extends Component {

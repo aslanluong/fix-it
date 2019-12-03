@@ -17,15 +17,20 @@ import NavigationService from '../../services/navigate';
 export default class RequestDetails extends Component {
    constructor() {
       super();
-      this.timeline = [
+      this.doneTimeline = [
          { time: '09:00', description: 'Yêu cầu sửa chữa mới được tạo' },
          { time: '09:05', description: 'Thợ xác nhận yêu cầu' },
          { time: '09:10', description: 'Thợ đang trên đường đến' },
          { time: '09:30', description: 'Thợ đến nơi' },
          { time: '10:25', description: 'Sửa xong/Xác nhận hoàn thành' }
       ];
+      this.cancelTimeline = [
+         { time: '09:00', description: 'Yêu cầu sửa chữa mới được tạo' },
+         { time: '09:05', description: 'Khách hàng đã huỷ yêu cầu' }
+      ];
    }
    render() {
+      const { status } = this.props.navigation.state.params;
       return (
          <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.headerContainer}>
@@ -56,34 +61,40 @@ export default class RequestDetails extends Component {
                      emphasis="bold"
                      style={{
                         fontSize: 18,
-                        color: '#3ddc84',
+                        color:
+                           status == 'Đã hoàn thành' ? '#3ddc84' : '#a9a9a9',
                         marginBottom: 10
                      }}>
-                     Đã hoàn thành
+                     {status}
                   </FontText>
                   <FontText emphasis="light">
-                     Quá trình sửa chữa thiết bị của bạn đã hoàn tất. Thiết bị
-                     của bạn đã được khắc phục sự cố rồi đấy!
+                     {status == 'Đã hoàn thành'
+                        ? 'Quá trình sửa chữa thiết bị của bạn đã hoàn tất. Thiết bị của bạn đã được khắc phục sự cố rồi đấy!'
+                        : 'Quá trình sửa chữa thiết bị đã bị huỷ...'}
                   </FontText>
                </View>
-               <View style={styles.feedbackContainer}>
-                  <FontText
-                     emphasis="bold"
-                     style={{ fontSize: 18, marginBottom: 10 }}>
-                     Cảm ơn bạn đã sử dụng dịch vụ!
-                  </FontText>
-                  <FontText emphasis="light" style={{ marginBottom: 5 }}>
-                     Đánh giá của bạn sẽ giúp chúng tôi tiếp tục cải thiện dịch
-                     vụ tốt hơn.
-                  </FontText>
-                  <View style={{ flexDirection: 'row' }}>
-                     <IconM name="star" style={styles.starIcon} />
-                     <IconM name="star" style={styles.starIcon} />
-                     <IconM name="star" style={styles.starIcon} />
-                     <IconM name="star" style={styles.starIcon} />
-                     <IconM name="star" style={styles.starIcon} />
+               {status == 'Đã hoàn thành' ? (
+                  <View style={styles.feedbackContainer}>
+                     <FontText
+                        emphasis="bold"
+                        style={{ fontSize: 18, marginBottom: 10 }}>
+                        Cảm ơn bạn đã sử dụng dịch vụ!
+                     </FontText>
+                     <FontText emphasis="light" style={{ marginBottom: 5 }}>
+                        Đánh giá của bạn sẽ giúp chúng tôi tiếp tục cải thiện
+                        dịch vụ tốt hơn.
+                     </FontText>
+                     <View style={{ flexDirection: 'row' }}>
+                        <IconM name="star" style={styles.starIcon} />
+                        <IconM name="star" style={styles.starIcon} />
+                        <IconM name="star" style={styles.starIcon} />
+                        <IconM name="star" style={styles.starIcon} />
+                        <IconM name="star" style={styles.starIcon} />
+                     </View>
                   </View>
-               </View>
+               ) : (
+                  <></>
+               )}
                <View>
                   <FontText
                      emphasis="bold"
@@ -94,10 +105,18 @@ export default class RequestDetails extends Component {
                      }}>
                      Trạng thái yêu cầu sửa chữa
                   </FontText>
-                  <View style={styles.timelineContainer}>
+                  <View
+                     style={[
+                        styles.timelineContainer,
+                        status == 'Đã huỷ' ? { height: 105 } : {}
+                     ]}>
                      <Timeline
                         style={{ paddingLeft: 5 }}
-                        data={this.timeline}
+                        data={
+                           status == 'Đã hoàn thành'
+                              ? this.doneTimeline
+                              : this.cancelTimeline
+                        }
                         circleColor="#ff9501"
                         circleSize={10}
                         lineColor="#ff9501"
@@ -123,49 +142,7 @@ export default class RequestDetails extends Component {
                      />
                   </View>
                </View>
-               <View>
-                  <FontText
-                     emphasis="bold"
-                     style={{
-                        marginHorizontal: '5%',
-                        marginTop: 10,
-                        fontSize: 15
-                     }}>
-                     Chi phí
-                  </FontText>
-                  <View style={styles.feeContainer}>
-                     <View style={styles.feeRow}>
-                        <FontText>Phí sữa chữa (công)</FontText>
-                        <FontText>150.000đ</FontText>
-                     </View>
-                     <View style={styles.feeRow}>
-                        <FontText style={{ paddingLeft: 25 }}>
-                           1 - Máy lạnh
-                        </FontText>
-                     </View>
-                     <View
-                        style={{
-                           borderBottomWidth: 0.5,
-                           borderColor: '#c9c9c9',
-                           marginBottom: 15
-                        }}
-                     />
-                     <View style={styles.feeRow}>
-                        <FontText>Phụ phí mua thêm thiết bị</FontText>
-                        <FontText>15.000đ</FontText>
-                     </View>
-                     <View
-                        style={{
-                           borderBottomWidth: 0.5,
-                           borderColor: '#c9c9c9',
-                           marginBottom: 15
-                        }}
-                     />
-                     <View style={styles.feeRow}>
-                        <FontText>Tổng cộng</FontText>
-                        <FontText>165.000đ</FontText>
-                     </View>
-                  </View>
+               {status == 'Đã hoàn thành' ? (
                   <View>
                      <FontText
                         emphasis="bold"
@@ -174,77 +151,131 @@ export default class RequestDetails extends Component {
                            marginTop: 10,
                            fontSize: 15
                         }}>
-                        Thợ sửa chữa
+                        Chi phí
                      </FontText>
-                     <View style={styles.fixerContainer}>
-                        <View style={styles.fixerRow}>
-                           <View style={{ flex: 1, alignItems: 'center' }}>
-                              <View
-                                 style={{
-                                    width: 25,
-                                    height: 25,
-                                    paddingTop: 3,
-                                    borderRadius: 12.5,
-                                    overflow: 'hidden',
-                                    backgroundColor: '#3ddc84'
-                                 }}>
-                                 <Image
-                                    style={{ width: 25, height: 25 }}
-                                    source={{
-                                       uri:
-                                          'https://www.pngrepo.com/png/17468/170/avatar.png'
-                                    }}
-                                 />
+                     <View style={styles.feeContainer}>
+                        <View style={styles.feeRow}>
+                           <FontText>Phí sữa chữa (công)</FontText>
+                           <FontText>150.000đ</FontText>
+                        </View>
+                        <View style={styles.feeRow}>
+                           <FontText style={{ paddingLeft: 25 }}>
+                              1 - Máy lạnh
+                           </FontText>
+                        </View>
+                        <View
+                           style={{
+                              borderBottomWidth: 0.5,
+                              borderColor: '#c9c9c9',
+                              marginBottom: 15
+                           }}
+                        />
+                        <View style={styles.feeRow}>
+                           <FontText>Phụ phí mua thêm thiết bị</FontText>
+                           <FontText>15.000đ</FontText>
+                        </View>
+                        <View
+                           style={{
+                              borderBottomWidth: 0.5,
+                              borderColor: '#b9b9b9',
+                              marginTop: 20,
+                              marginBottom: 3
+                           }}
+                        />
+                        <View
+                           style={{
+                              borderBottomWidth: 0.5,
+                              borderColor: '#b9b9b9',
+                              marginBottom: 10
+                           }}
+                        />
+                        <View style={styles.feeRow}>
+                           <FontText>Tổng cộng</FontText>
+                           <FontText>165.000đ</FontText>
+                        </View>
+                     </View>
+                     <View>
+                        <FontText
+                           emphasis="bold"
+                           style={{
+                              marginHorizontal: '5%',
+                              marginTop: 10,
+                              fontSize: 15
+                           }}>
+                           Thợ sửa chữa
+                        </FontText>
+                        <View style={styles.fixerContainer}>
+                           <View style={styles.fixerRow}>
+                              <View style={{ flex: 1, alignItems: 'center' }}>
+                                 <View
+                                    style={{
+                                       width: 25,
+                                       height: 25,
+                                       paddingTop: 3,
+                                       borderRadius: 12.5,
+                                       overflow: 'hidden',
+                                       backgroundColor: '#3ddc84'
+                                    }}>
+                                    <Image
+                                       style={{ width: 25, height: 25 }}
+                                       source={{
+                                          uri:
+                                             'https://www.pngrepo.com/png/17468/170/avatar.png'
+                                       }}
+                                    />
+                                 </View>
+                              </View>
+                              <View style={{ flex: 7 }}>
+                                 <FontText>Thắng Lương Thành</FontText>
                               </View>
                            </View>
-                           <View style={{ flex: 7 }}>
-                              <FontText>Thắng Lương Thành</FontText>
+                           <View
+                              style={{
+                                 borderBottomWidth: 0.5,
+                                 borderColor: '#c9c9c9',
+                                 marginVertical: 15
+                              }}
+                           />
+                           <View style={styles.fixerRow}>
+                              <View style={{ flex: 1, alignItems: 'center' }}>
+                                 <IconM
+                                    name="phone"
+                                    style={{ fontSize: 20, color: '#ff9501' }}
+                                 />
+                              </View>
+                              <View style={{ flex: 7 }}>
+                                 <FontText>091 113 9999</FontText>
+                              </View>
                            </View>
-                        </View>
-                        <View
-                           style={{
-                              borderBottomWidth: 0.5,
-                              borderColor: '#c9c9c9',
-                              marginVertical: 15
-                           }}
-                        />
-                        <View style={styles.fixerRow}>
-                           <View style={{ flex: 1, alignItems: 'center' }}>
-                              <IconM
-                                 name="phone"
-                                 style={{ fontSize: 20, color: '#ff9501' }}
-                              />
-                           </View>
-                           <View style={{ flex: 7 }}>
-                              <FontText>091 113 9999</FontText>
-                           </View>
-                        </View>
-                        <View
-                           style={{
-                              borderBottomWidth: 0.5,
-                              borderColor: '#c9c9c9',
-                              marginVertical: 15
-                           }}
-                        />
-                        <View style={styles.fixerRow}>
-                           <View style={{ flex: 1, alignItems: 'center' }}>
-                              <IconM
-                                 name="map-marker-outline"
-                                 style={{ fontSize: 20, color: '#ff9501' }}
-                              />
-                           </View>
-                           <View style={{ flex: 7 }}>
-                              <Text
-                                 style={{ fontFamily: 'lato-regular' }}
-                                 numberOfLines={1}
-                                 ellipsizeMode="tail">
-                                 Lô T2-4 đường D1, Khu Công Nghệ Cao, HCM
-                              </Text>
+                           <View
+                              style={{
+                                 borderBottomWidth: 0.5,
+                                 borderColor: '#c9c9c9',
+                                 marginVertical: 15
+                              }}
+                           />
+                           <View style={styles.fixerRow}>
+                              <View style={{ flex: 1, alignItems: 'center' }}>
+                                 <IconM
+                                    name="map-marker-outline"
+                                    style={{ fontSize: 20, color: '#ff9501' }}
+                                 />
+                              </View>
+                              <View style={{ flex: 7 }}>
+                                 <Text
+                                    style={{ fontFamily: 'lato-regular' }}
+                                    numberOfLines={1}
+                                    ellipsizeMode="tail">
+                                    Lô T2-4 đường D1, Khu Công Nghệ Cao, HCM
+                                 </Text>
+                              </View>
                            </View>
                         </View>
                      </View>
                   </View>
-               </View>
+               ) : (
+                  <></>
+               )}
             </ScrollView>
          </SafeAreaView>
       );
