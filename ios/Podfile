@@ -35,7 +35,6 @@ target 'fixit' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 <<<<<<< HEAD
-  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 =======
 
 

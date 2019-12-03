@@ -50,36 +50,27 @@ const RootStack = createStackNavigator(
             header: null,
             gesturesEnabled: false
          },
-         RequestDetails: {
-            screen: RequestDetails,
-            navigationOptions: {
-               header: null,
-               gesturesEnabled: false
-            }
-         },
-         ProfileDetails: {
-            screen: ProfileDetails,
-            navigationOptions: {
-               header: null,
-               gesturesEnabled: false
-            }
-         },
-         ProfileEditor: {
-            screen: ProfileEditor,
-            navigationOptions: {
-               header: null,
-               gesturesEnabled: false
-            }
+      },
+      RequestDetails: {
+         screen: RequestDetails,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
          }
-
-         //  },
-         //  Dashboard: {
-         //     screen: Dashboard,
-         //     navigationOptions: {
-         //        header: null,
-         //        gesturesEnabled: false
-         //     }
-         //  },
+      },
+      ProfileDetails: {
+         screen: ProfileDetails,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      ProfileEditor: {
+         screen: ProfileEditor,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
       }
    },
    {
