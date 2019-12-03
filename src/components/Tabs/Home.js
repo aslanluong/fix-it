@@ -9,7 +9,7 @@ import {
 	SafeAreaView
 } from 'react-native';
 import FontText from '../FontText';
-import NavigationService from "../../services/navigate";
+import NavigationService from '../../services/navigate';
 import { APP_CONST } from '../../../app.const';
 export default class Home extends Component {
 	constructor() {
@@ -49,7 +49,12 @@ export default class Home extends Component {
 					}>
 					<View style={styles.menu}>
 						<View style={styles.itemContainer}>
-							<TouchableNativeFeedback onPress={() => NavigationService.navigate("CreateRequest", { type: "TV" })}>
+							<TouchableNativeFeedback
+								onPress={() =>
+									NavigationService.navigate('CreateRequest', {
+										type: 'TV'
+									})
+								}>
 								<View style={styles.item}>
 									<Image
 										style={styles.image}

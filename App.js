@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Tabs from './src/components/Tabs';
-import FindFixer from './src/components/FindFixer';
+// import FindFixer from './src/components/FindFixer';
 import RequestDetails from './src/components/Tabs/RequestDetails';
 import NavigationService from './src/services/navigate';
 import ProfileDetails from './src/components/Tabs/ProfileDetails';
@@ -13,6 +13,7 @@ import Login from './src/components/Screens/Login';
 import LoginByPhone from './src/components/Screens/LoginByPhone';
 import Verification from './src/components/Screens/Verification';
 import CreateRequest from './src/components/Screens/CreateRequest';
+import FindFixer from './src/components/Screens/FindFixer';
 
 const RootStack = createStackNavigator(
       {
@@ -71,10 +72,25 @@ const RootStack = createStackNavigator(
                         header: null,
                         gesturesEnabled: false
                   }
+            },
+            FindFixer: {
+                  screen: FindFixer,
+                  navigationOptions: {
+                        header: null,
+                        gesturesEnabled: false
+                  }
             }
+            //  },
+            //  Dashboard: {
+            //     screen: Dashboard,
+            //     navigationOptions: {
+            //        header: null,
+            //        gesturesEnabled: false
+            //     }
+            //  },
       },
       {
-            initialRouteName: 'Login'
+            initialRouteName: 'Tabs'
       }
 );
 const AppContainer = createAppContainer(RootStack);

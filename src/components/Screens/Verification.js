@@ -79,110 +79,110 @@ export default class Verification extends Component {
               đã gửi đến số điện thoại của bạn
                   </FontText>
           </View>
-          {this.state.numberPhone == '123' ? 
-          <View style={styles.inputFormContainer}>
-            <TextInput
-              style={styles.numberInput}
-              maxLength={1}
-              keyboardType="number-pad"
-              blurOnSubmit={false}
-              ref={ref => (this.passwordRef1 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(_, null, this.passwordRef2);
-              }}></TextInput>
-            <TextInput
-              style={styles.numberInput}
-              maxLength={1}
-              keyboardType="number-pad"
-              ref={ref => (this.passwordRef2 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(
-                  _,
-                  this.passwordRef1,
-                  this.passwordRef3
-                );
-              }}></TextInput>
-            <TextInput
-              style={styles.numberInput}
-              maxLength={1}
-              keyboardType="number-pad"
-              ref={ref => (this.passwordRef3 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(
-                  _,
-                  this.passwordRef2,
-                  this.passwordRef4
-                );
-              }}></TextInput>
-            <TextInput
-              style={styles.numberInput}
-              maxLength={1}
-              keyboardType="number-pad"
-              ref={ref => (this.passwordRef4 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(_, this.passwordRef3, null);
-              }}></TextInput>
-          </View> : 
+          {this.state.numberPhone == '123' ?
+            <View style={styles.inputFormContainer}>
+              <TextInput
+                style={styles.numberInput}
+                maxLength={1}
+                keyboardType="number-pad"
+                blurOnSubmit={false}
+                ref={ref => (this.passwordRef1 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(_, null, this.passwordRef2);
+                }}></TextInput>
+              <TextInput
+                style={styles.numberInput}
+                maxLength={1}
+                keyboardType="number-pad"
+                ref={ref => (this.passwordRef2 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(
+                    _,
+                    this.passwordRef1,
+                    this.passwordRef3
+                  );
+                }}></TextInput>
+              <TextInput
+                style={styles.numberInput}
+                maxLength={1}
+                keyboardType="number-pad"
+                ref={ref => (this.passwordRef3 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(
+                    _,
+                    this.passwordRef2,
+                    this.passwordRef4
+                  );
+                }}></TextInput>
+              <TextInput
+                style={styles.numberInput}
+                maxLength={1}
+                keyboardType="number-pad"
+                ref={ref => (this.passwordRef4 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(_, this.passwordRef3, null);
+                }}></TextInput>
+            </View> :
 
-           <View style={styles.inputFormContainer}>
-            <TextInput
-              style={[styles.numberInput, {width:'12%'}]}
-              maxLength={1}
-              keyboardType="number-pad"
-              blurOnSubmit={false}
-              ref={ref => (this.passwordRef1 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(_, null, this.passwordRef2);
-              }}></TextInput>
-            <TextInput
-             style={[styles.numberInput, {width:'12%'}]}
-              maxLength={1}
-              keyboardType="number-pad"
-              ref={ref => (this.passwordRef2 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(
-                  _,
-                  this.passwordRef1,
-                  this.passwordRef3
-                );
-              }}></TextInput>
-            <TextInput
-              style={[styles.numberInput, {width:'12%'}]}
-              maxLength={1}
-              keyboardType="number-pad"
-              ref={ref => (this.passwordRef3 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(
-                  _,
-                  this.passwordRef2,
-                  this.passwordRef4
-                );
-              }}></TextInput>
-            <TextInput
-              style={[styles.numberInput, {width:'12%'}]}
-              maxLength={1}
-              keyboardType="number-pad"
-              ref={ref => (this.passwordRef4 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(_, this.passwordRef3, this.passwordRef5);
-              }}></TextInput>
+            <View style={styles.inputFormContainer}>
               <TextInput
-              style={[styles.numberInput, {width:'12%'}]}
-              maxLength={1}
-              keyboardType="number-pad"
-              ref={ref => (this.passwordRef5 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(_, this.passwordRef4, this.passwordRef6);
-              }}></TextInput>
+                style={[styles.numberInput, { width: '12%' }]}
+                maxLength={1}
+                keyboardType="number-pad"
+                blurOnSubmit={false}
+                ref={ref => (this.passwordRef1 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(_, null, this.passwordRef2);
+                }}></TextInput>
               <TextInput
-              style={[styles.numberInput, {width:'12%'}]}
-              maxLength={1}
-              keyboardType="number-pad"
-              ref={ref => (this.passwordRef6 = ref)}
-              onChangeText={_ => {
-                this.goToNextRef(_, this.passwordRef5, null);
-              }}></TextInput>
-          </View>}
+                style={[styles.numberInput, { width: '12%' }]}
+                maxLength={1}
+                keyboardType="number-pad"
+                ref={ref => (this.passwordRef2 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(
+                    _,
+                    this.passwordRef1,
+                    this.passwordRef3
+                  );
+                }}></TextInput>
+              <TextInput
+                style={[styles.numberInput, { width: '12%' }]}
+                maxLength={1}
+                keyboardType="number-pad"
+                ref={ref => (this.passwordRef3 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(
+                    _,
+                    this.passwordRef2,
+                    this.passwordRef4
+                  );
+                }}></TextInput>
+              <TextInput
+                style={[styles.numberInput, { width: '12%' }]}
+                maxLength={1}
+                keyboardType="number-pad"
+                ref={ref => (this.passwordRef4 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(_, this.passwordRef3, this.passwordRef5);
+                }}></TextInput>
+              <TextInput
+                style={[styles.numberInput, { width: '12%' }]}
+                maxLength={1}
+                keyboardType="number-pad"
+                ref={ref => (this.passwordRef5 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(_, this.passwordRef4, this.passwordRef6);
+                }}></TextInput>
+              <TextInput
+                style={[styles.numberInput, { width: '12%' }]}
+                maxLength={1}
+                keyboardType="number-pad"
+                ref={ref => (this.passwordRef6 = ref)}
+                onChangeText={_ => {
+                  this.goToNextRef(_, this.passwordRef5, null);
+                }}></TextInput>
+            </View>}
 
           <View style={styles.buttonContainer}>
             <View style={{ width: '30%' }}>
