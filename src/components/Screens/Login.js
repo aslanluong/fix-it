@@ -74,7 +74,7 @@ export default class Login extends Component {
                <View style={styles.buttonContainer}>
                   <TouchableOpacity
                      style={styles.button}
-                     onPress={() => NavigationService.navigate('Tabs')}>
+                     onPress={() => NavigationService.navigate('Tabs',{type:'Login'})}>
                      <Image
                         source={{
                            uri:

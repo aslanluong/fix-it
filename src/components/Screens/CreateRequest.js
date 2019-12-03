@@ -47,7 +47,7 @@ export default class CreateRequest extends Component {
     return (
       <KeyboardAvoidingView style={styles.createRequestContainer}>
         <View style={styles.viewContainer}>
-          <View style={styles.headerContainer}>
+          <View style={styles.titleContainer}>
             <FontText
               emphasis="bold"
               style={{ fontSize: 17, color: '#F56258' }}>
@@ -55,15 +55,15 @@ export default class CreateRequest extends Component {
                   </FontText>
           </View>
           <ScrollView>
-            <View style={styles.locationContainer}>
-              <View style={styles.locationHeaderContainer}>
+            <View style={styles.formContainer}>
+              <View style={styles.headerContainer}>
                 <FontText
                   emphasis="bold"
-                  style={styles.loacationHeader}>
+                  style={styles.headerText}>
                   Vị trí của bạn
                         </FontText>
               </View>
-              <View style={styles.inputLocationContainer}>
+              <View style={styles.inputContainer}>
                 <FontText emphasis="bold" style={styles.locationText}>
                   Đại học FPT, khu công nghệ cao quận 9
                         </FontText>
@@ -72,15 +72,15 @@ export default class CreateRequest extends Component {
                   placeholder="Ghi chú: Kế bên công ty dịch vụ tin học HPT..."></TextInput>
               </View>
             </View>
-            <View style={styles.locationContainer}>
-              <View style={styles.locationHeaderContainer}>
+            <View style={styles.formContainer}>
+              <View style={styles.headerContainer}>
                 <FontText
                   emphasis="bold"
-                  style={styles.loacationHeader}>
+                  style={styles.headerText}>
                   Thiết bị cần sửa
                         </FontText>
               </View>
-              <View style={styles.inputLocationContainer}>
+              <View style={styles.inputContainer}>
                 <TextInput
                   style={styles.deviceType}
                   placeholder="Tủ lạnh, máy lạnh, bếp, ống nước..."></TextInput>
@@ -92,26 +92,64 @@ export default class CreateRequest extends Component {
                   placeholder="Chi tiết: TV không lên màn hình..."></TextInput>
               </View>
             </View>
-            <View style={{ width: '100%', flexDirection: 'row', paddingHorizontal: '5%', justifyContent:'space-evenly', flexWrap: 'wrap' }}>
-              {this.state.avatarSource.map((image, index) =>
-                <View key={index} style={{
-                  height: 100, width: 100,
-                  // marginHorizontal: 5,
-                  marginTop: 10
+            <View style={styles.formContainer}>
+              <View style={styles.headerContainer}>
+                <FontText
+                  emphasis="bold"
+                  style={styles.headerText}>
+                  Hình ảnh thiết bị
+                        </FontText>
+              </View>
+              <View style={styles.inputContainer}>
+                <View style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  paddingHorizontal: '4%',
+                  justifyContent: 'space-evenly',
+                  flexWrap: 'wrap',
+                  marginBottom: 10
                 }}>
-                  <Image  style={{
-                    height: 100, width: 100,
-                    // marginHorizontal: 5
-                  }} source={{ uri: image }} />
-                </View>)}
+                  {this.state.avatarSource.map((image, index) =>
+                    <View key={index} style={{
+                      height: 100, width: 100,
+                      // marginHorizontal: 5,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginTop: 5,
+
+                    }}>
+                      <Image style={{
+                        height: 100, width: 100,
+                        // marginHorizontal: 5
+                      }} source={{ uri: image }} />
+                    </View>)}
+                  <TouchableOpacity style={{
+                    height: 100,
+                    width: 100,
+                    borderWidth: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    opacity: 0.3,
+                    marginTop: 5,
+                    borderRadius: 10
+
+                  }}
+                    onPress={this.chooseImage}>
+                    <Image source={{ uri: 'https://img.icons8.com/small/64/000000/add-camera.png' }}
+                      style={{
+                        height: 60, width: 60
+                        // marginHorizontal: 5
+                      }} />
+
+                  </TouchableOpacity>
+                </View>
+
+              </View>
             </View>
 
 
-
-
-
             <View style={styles.buttonContainer}>
-              <View style={{ width: '100%', alignItems: 'center', marginBottom: 20 }}>
+              {/* <View style={{ width: '100%', alignItems: 'center', marginBottom: 20 }}>
                 <TouchableOpacity style={styles.button}
                   onPress={this.chooseImage}>
                   <Icon
@@ -123,10 +161,7 @@ export default class CreateRequest extends Component {
                     Tải ảnh lên
                            </FontText>
                 </TouchableOpacity>
-              </View>
-
-
-
+              </View> */}
               <View style={{ width: '100%', alignItems: 'center' }}>
                 <TouchableOpacity
                   style={[
@@ -157,18 +192,18 @@ const styles = StyleSheet.create({
     flex: 1
   },
   viewContainer: { flex: 1 },
-  headerContainer: {
+  titleContainer: {
     height: 56,
     alignItems: 'center',
     justifyContent: 'center',
     borderBottomColor: '#c9c9c9',
     borderBottomWidth: 0.5
   },
-  locationContainer: {
+  formContainer: {
     paddingHorizontal: '5%',
     marginTop: 20
   },
-  locationHeaderContainer: {
+  headerContainer: {
     width: '39%',
     alignItems: 'center',
     backgroundColor: '#F56258',
@@ -176,11 +211,11 @@ const styles = StyleSheet.create({
     zIndex: 2,
     marginLeft: '3%'
   },
-  loacationHeader: {
+  headerText: {
     fontSize: 16,
     color: '#fff'
   },
-  inputLocationContainer: {
+  inputContainer: {
     borderColor: 'black',
     borderWidth: 1.5,
     borderRadius: 10,
