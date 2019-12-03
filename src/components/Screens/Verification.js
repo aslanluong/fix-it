@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { FontText } from '../FontText';
+import NavigationService from '../../services/navigate';
 
 export default class Verification extends Component {
    constructor(props) {
@@ -122,7 +123,9 @@ export default class Verification extends Component {
                </View>
                <View style={styles.buttonContainer}>
                   <View style={{ width: '30%' }}>
-                     <TouchableOpacity style={styles.sendButtonContainer}>
+                     <TouchableOpacity
+                        style={styles.sendButtonContainer}
+                        onPress={() => NavigationService.navigate('Tabs')}>
                         <FontText emphasis="bold" style={styles.sendButtonText}>
                            Tiếp tục
                         </FontText>
