@@ -94,7 +94,7 @@ const RootStack = createStackNavigator(
             //  },
       },
       {
-            initialRouteName: 'Tabs'
+            initialRouteName: 'FindFixer'
       }
 );
 const AppContainer = createAppContainer(RootStack);
