@@ -11,7 +11,9 @@ import {
 import FontText from '../FontText';
 import NavigationService from "../../services/navigate";
 import { APP_CONST } from '../../../app.const';
+
 export default class Home extends Component {
+
 	constructor() {
 		super();
 
@@ -167,5 +169,13 @@ const styles = StyleSheet.create({
 		width: 80,
 		height: 80,
 		marginBottom: 15
-	}
+	},
+	container: {
+		flexDirection: 'row',
+	},
+	detailsContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		marginLeft: 24,
+	},
 });
