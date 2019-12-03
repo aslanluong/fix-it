@@ -9,9 +9,26 @@ import {
 } from 'react-native';
 import { FontText } from '../FontText';
 import NavigationService from '../../services/navigate';
+import { Button, Text, Icon, Input } from 'react-native-ui-kitten/ui';
+// import Icon from 'react-native-vector-icons/Feather'
 
+const ContIcon = (style) => (
+   <Icon {...style} name='arrowhead-right-outline' style={{ marginLeft: -5 }} />
+);
+const CancelIcon = (style) => (
+   <Icon {...style} name='close-circle-outline' style={{ marginLeft: -5 }} />
+);
 export default class ForgotPassword extends Component {
+   state = {
+      value: "+84 "
+   }
    render() {
+      const VNFlag = (style) => (
+         <Icon
+            {...style}
+            name={'star'}
+         />
+      );
       return (
          <View style={styles.container}>
             <KeyboardAvoidingView style={styles.formContainer}>
@@ -44,7 +61,16 @@ export default class ForgotPassword extends Component {
                   </FontText>
                </View>
                <View style={styles.inputFormContainer}>
-                  <Image
+
+                  <Input
+                     icon={VNFlag}
+                     textStyle={{ padding: 0 }}
+                     style={{ width: '90%' }}
+                     label='Số điện thoại'
+                     placeholder='0943791739'
+                     defaultValue={this.state.value}
+                  />
+                  {/* <Image
                      source={{
                         uri:
                            'https://img.icons8.com/color/48/000000/vietnam.png'
@@ -60,43 +86,34 @@ export default class ForgotPassword extends Component {
                      style={styles.phoneNumberInput}
                      placeholder="Nhập số điện thoại"
                      maxLength={10}
-                     keyboardType="phone-pad"></TextInput>
+                     keyboardType="phone-pad"></TextInput> */}
                </View>
-               <View style={styles.buttonContainer}>
-                  <View style={{ width: '30%', marginRight: '7%' }}>
-                     <TouchableOpacity
-                        style={styles.sendButtonContainer}
-                        onPress={() =>
-                           NavigationService.navigate('Verification')
-                        }>
-                        <FontText emphasis="bold" style={styles.sendButtonText}>
-                           Tiếp tục
-                        </FontText>
-                     </TouchableOpacity>
-                  </View>
-                  <View style={{ width: '30%' }}>
-                     <TouchableOpacity
-                        style={styles.backButtonContainer}
-                        onPress={() => NavigationService.navigate('Login')}>
-                        <FontText emphasis="bold" style={styles.backButtonText}>
-                           Trở về
-                        </FontText>
-                     </TouchableOpacity>
+               <View >
+                  <View style={styles.buttonContainer}>
+                     <Button TouchableOpacity onPress={() => NavigationService.navigate('Verification')} appearance='outline' icon={ContIcon} status='info' style={{ flexDirection: 'row-reverse' }} >
+                        Tiếp tục
+                        </Button>
+                     <Button TouchableOpacity onPress={() => NavigationService.navigate('Login')} appearance='outline' icon={CancelIcon} status='danger' style={{ flexDirection: 'row-reverse' }} >
+                        Trở về
+                        </Button>
                   </View>
                </View>
             </KeyboardAvoidingView>
-         </View>
+         </View >
       );
    }
 }
 
 const styles = StyleSheet.create({
    container: {
-      flex: 1,
-      justifyContent: 'center'
+      // flex: 1,
+      // justifyContent: 'center',
+      // flexDirection: 'row',
+      // flexWrap: 'wrap',
+      // padding: 8,
    },
    formContainer: {
-      alignItems: 'center'
+      // alignItems: 'center'
    },
    sloganText: {
       fontSize: 20,
@@ -107,12 +124,8 @@ const styles = StyleSheet.create({
       marginBottom: '12%'
    },
    inputFormContainer: {
-      width: '80%',
-      flexDirection: 'row',
+      width: '100%',
       alignItems: 'center',
-      borderColor: '#F56258',
-      borderWidth: 1,
-      borderRadius: 15
    },
    phoneNumberInput: {
       width: '80%',
@@ -123,41 +136,11 @@ const styles = StyleSheet.create({
       height: 30,
       marginHorizontal: '3%'
    },
-   sendButtonContainer: {
-      borderColor: '#fff',
-      backgroundColor: '#F56258',
-      width: '100%',
-      height: 47,
-      alignItems: 'center',
-      borderWidth: 1,
-      borderRadius: 25,
-      justifyContent: 'center',
-      elevation: 10
-   },
-   backButtonContainer: {
-      borderColor: '#F56258',
-      backgroundColor: '#fff',
-      width: '100%',
-      height: 47,
-      alignItems: 'center',
-      borderWidth: 1,
-      borderRadius: 25,
-      justifyContent: 'center',
-      elevation: 10
-   },
-
-   sendButtonText: {
-      color: '#fff',
-      fontSize: 17
-   },
-   backButtonText: {
-      color: '#F56258',
-      fontSize: 17
-   },
    buttonContainer: {
+      marginTop: 20,
       width: '100%',
       flexDirection: 'row',
-      justifyContent: 'center',
-      marginVertical: '8%'
+      justifyContent: 'space-between',
+      paddingHorizontal: '15%'
    }
 });

@@ -15,6 +15,10 @@ import Verification from './src/components/Screens/Verification';
 import CreateRequest from './src/components/Screens/CreateRequest';
 import FindFixer from './src/components/Screens/FindFixer';
 
+import { ApplicationProvider, Layout, Text, IconRegistry } from 'react-native-ui-kitten';
+import { mapping, light as lightTheme } from '@eva-design/eva';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+
 const RootStack = createStackNavigator(
    {
       Login: {
@@ -97,11 +101,16 @@ const AppContainer = createAppContainer(RootStack);
 export default class App extends Component {
    render() {
       return (
-         <AppContainer
-            ref={navigatorRef => {
-               NavigationService.setTopLevelNavigator(navigatorRef);
-            }}
-         />
+         <>
+            <IconRegistry icons={EvaIconsPack} />
+            <ApplicationProvider mapping={mapping} theme={lightTheme}>
+               <AppContainer
+                  ref={navigatorRef => {
+                     NavigationService.setTopLevelNavigator(navigatorRef);
+                  }}
+               />
+            </ApplicationProvider>
+         </>
       );
    }
 }
