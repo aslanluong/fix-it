@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
-   View,
-   KeyboardAvoidingView,
-   StyleSheet,
-   Image,
-   TextInput,
-   TouchableOpacity
+  View,
+  KeyboardAvoidingView,
+  StyleSheet,
+  Image,
+  TextInput,
+  TouchableOpacity
 } from 'react-native';
 import { FontText } from '../FontText';
 import NavigationService from '../../services/navigate';
@@ -38,26 +38,26 @@ export default class ForgotPassword extends Component {
                      style={{ fontSize: 20, marginBottom: '3%' }}>
                      ĐĂNG NHẬP
                   </FontText>
-                  <Image
-                     source={{
-                        uri:
-                           'https://img.icons8.com/officel/80/000000/guest-male.png'
-                     }}
-                     style={{ width: 100, height: 100, marginVertical: '2%' }}
-                  />
-                  <FontText emphasis="bold" style={{ fontSize: 16 }}>
-                     Nhập số điện thoại
+            <Image
+              source={{
+                uri:
+                  'https://img.icons8.com/officel/80/000000/guest-male.png'
+              }}
+              style={{ width: 100, height: 100, marginVertical: '2%' }}
+            />
+            <FontText emphasis="bold" style={{ fontSize: 16 }}>
+              Nhập số điện thoại
                   </FontText>
-                  <FontText
-                     emphasis="bold"
-                     style={{ fontSize: 16, marginBottom: '2%' }}>
-                     liên kết với tài khoản của bạn
+            <FontText
+              emphasis="bold"
+              style={{ fontSize: 16, marginBottom: '2%' }}>
+              liên kết với tài khoản của bạn
                   </FontText>
-                  <FontText style={{ opacity: 0.5 }}>
-                     Chúng tôi sẽ gửi mã xác nhận về
+            <FontText style={{ opacity: 0.5 }}>
+              Chúng tôi sẽ gửi mã xác nhận về
                   </FontText>
-                  <FontText style={{ opacity: 0.5 }}>
-                     số điện thoại của bạn
+            <FontText style={{ opacity: 0.5 }}>
+              số điện thoại của bạn
                   </FontText>
                </View>
                <View style={styles.inputFormContainer}>
