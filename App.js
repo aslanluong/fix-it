@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-
-import { createAppContainer } from 'react-navigation';
-
-
-
-import Rate from './src/Rate';
-import Timeline from './src/Timeline';
-
-
-
+import ChooseBank from './src/TopUp/ChooseBank';
 export default class App extends Component {
   render() {
     return (
-      <Timeline/>
+      <ChooseBank/>
     )
   }
-}
+ }
+//export default ChooseBank
+
