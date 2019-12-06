@@ -47,7 +47,7 @@ export default class FindFixer extends Component {
                         backgroundColor: '#3ddc84'
                      }}>
                      <Image
-                        style={{ width: 80, height: 80 }}
+                        style={{ width: 70, height: 70 }}
                         source={{
                            uri:
                               'https://www.pngrepo.com/png/17468/170/avatar.png'

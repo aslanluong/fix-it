@@ -80,9 +80,12 @@ export default class Profile extends Component {
                   />
                   <FontText>Đánh giá ứng dụng</FontText>
                </View>
-               <FontText style={{ marginLeft: 20, marginTop: 15 }}>
-                  Đăng xuất
-               </FontText>
+               <TouchableOpacity
+                  onPress={() => NavigationService.navigate('Login')}>
+                  <FontText style={{ marginLeft: 20, marginTop: 15 }}>
+                     Đăng xuất
+                  </FontText>
+               </TouchableOpacity>
             </View>
          </SafeAreaView>
       );
