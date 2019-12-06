@@ -14,6 +14,7 @@ import FontText from '../FontText';
 
 import NavigationService from '../../services/navigate';
 import { APP_CONST } from '../../../app.const';
+import HeaderInfo from '../Screens/HeaderInfo';
 
 export default class Home extends Component {
    constructor() {
@@ -40,16 +41,7 @@ export default class Home extends Component {
          <SafeAreaView style={{ flex: 1 }}>
             <View
                style={[styles.index, { elevation: this.state.choice ? 0 : 1 }]}>
-               <View style={styles.header}>
-                  <View>
-                     <FontText style={{ paddingLeft: 0, fontSize: 17 }}>
-                        Xin chào Thắng,
-                     </FontText>
-                     <FontText style={{ fontSize: 23 }}>
-                        Chọn loại thiết bị cần sửa chữa
-                     </FontText>
-                  </View>
-               </View>
+               <HeaderInfo />
                <ScrollView
                   horizontal={
                      this.state.orientation === 'landscape' ? true : false
@@ -203,18 +195,16 @@ const styles = StyleSheet.create({
       elevation: 0
    },
    header: {
-      height: 75,
       alignItems: 'center',
       justifyContent: 'flex-end',
       backgroundColor: '#f0eff4'
    },
    menu: {
-      paddingTop: 20,
       flexDirection: 'row',
       flexWrap: 'wrap',
+      paddingTop: 10,
       justifyContent: 'space-evenly',
       paddingHorizontal: 25,
-      paddingBottom: 55,
       backgroundColor: '#f0eff4'
    },
    itemContainer: {
@@ -223,7 +213,7 @@ const styles = StyleSheet.create({
       borderRadius: 20,
       overflow: 'hidden',
       marginHorizontal: 5,
-      marginBottom: 20,
+      marginBottom: 18,
 
       // shadow
       shadowColor: '#000',

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StyleSheet, FlatList } from 'react-native';
+import { SafeAreaView, StyleSheet, FlatList, View } from 'react-native';
 import HistoryRow from './HistoryRow';
 import { APP_CONST } from '../../../app.const';
-import { TouchableOpacity } from 'react-native';
+import FontText from '../FontText';
 
 const list = [
    {
@@ -69,6 +69,11 @@ export default class History extends Component {
       const randomList = shuffleArray(list);
       return (
          <SafeAreaView style={styles.container}>
+            <View style={styles.headerContainer}>
+               <FontText emphasis="medium" style={{ fontSize: 17 }}>
+                  Lịch sử sửa chữa
+               </FontText>
+            </View>
             <FlatList
                contentContainerStyle={{ alignItems: 'center' }}
                data={randomList}
@@ -93,5 +98,13 @@ const styles = StyleSheet.create({
    container: {
       flex: 1,
       backgroundColor: '#f0eff4'
+   },
+   headerContainer: {
+      height: 56,
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingHorizontal: '5%',
+      borderBottomWidth: 0.5,
+      backgroundColor: 'white'
    }
 });
