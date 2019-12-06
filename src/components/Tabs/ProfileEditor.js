@@ -113,7 +113,7 @@ export default class ProfileEditor extends Component {
                      width: '90%',
                      alignItems: 'center',
                      justifyContent: 'center',
-                     backgroundColor: '#f56258',
+                     backgroundColor: 'rgba(253,126,20,0.85)',
                      borderRadius: 10,
                      marginVertical: 20,
                      borderColor: 'white',
