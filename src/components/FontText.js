@@ -7,7 +7,8 @@ export class FontText extends Component {
       // [emphasis="bold/light] is option
 
       const { style, children } = this.props;
-      const emphasis = this.props.emphasis == undefined ? "normal" : this.props.emphasis;
+      const emphasis =
+         this.props.emphasis == undefined ? 'normal' : this.props.emphasis;
       return <Text style={[style, styles[emphasis]]}>{children}</Text>;
    }
 }
@@ -24,7 +25,10 @@ const styles = StyleSheet.create({
    },
    light: {
       fontFamily: 'lato-light'
+   },
+   italic: {
+      fontFamily: 'lato-italic'
    }
-})
+});
 
 export default FontText;

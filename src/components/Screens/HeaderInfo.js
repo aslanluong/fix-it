@@ -1,26 +1,24 @@
-import React, { Component } from 'react'
-import {
-   View,
-   StyleSheet,
-   Image,
-} from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import FontText from '../FontText';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import NavigationService from '../../services/navigate';
 
 export default class HeaderInfo extends Component {
    render() {
       return (
          <View style={styles.detailsContainerHeader}>
-            <View style={styles.detailsHeader}>
+            <TouchableOpacity
+               style={styles.detailsHeader}
+               onPress={() => NavigationService.navigate('ProfileDetails')}>
                <View style={{ flex: 1, justifyContent: 'center' }}>
                   <FontText style={{ fontSize: 19 }}>
                      Hi, Thắng Lương Thành
-                     </FontText>
+                  </FontText>
                   <FontText style={{ fontSize: 13 }}>
                      <Icon name="map-marker" />
                      Quận 9, HCM
-                     </FontText>
+                  </FontText>
                </View>
                <View
                   style={{
@@ -34,31 +32,27 @@ export default class HeaderInfo extends Component {
                   <Image
                      style={{ width: 70, height: 70 }}
                      source={{
-                        uri:
-                           'https://www.pngrepo.com/png/17468/170/avatar.png'
+                        uri: 'https://www.pngrepo.com/png/17468/170/avatar.png'
                      }}
                   />
                </View>
-            </View>
-            {/* <View style={styles.details}>
-               <View style={{ flex: 1 }}>
-                  <FontText emphasis="medium">Thiết bị</FontText>
-                  <FontText emphasis="light">Máy lạnh</FontText>
-               </View>
-               <View style={{ flex: 2 }}>
-                  <FontText emphasis="medium">Mô tả sự cố</FontText>
-                  <FontText emphasis="light">Ngăn dưới không lạnh</FontText>
-               </View>
-            </View> */}
+            </TouchableOpacity>
          </View>
-      )
+      );
    }
 }
 
 const styles = StyleSheet.create({
    detailsContainerHeader: {
       width: '100%',
+      height: 90,
+      paddingHorizontal: '5%',
+      justifyContent: 'center',
+
       backgroundColor: 'white',
+      borderBottomWidth: 0.5,
+      borderBottomColor: '#c9c9c9',
+
       shadowColor: '#000',
       shadowOffset: {
          width: 0,
@@ -70,10 +64,8 @@ const styles = StyleSheet.create({
       elevation: 23
    },
    detailsHeader: {
-      paddingVertical: 10,
-      paddingHorizontal: '10%',
+      flex: 1,
       flexDirection: 'row',
-      borderBottomColor: '#e9e9e9',
-      borderBottomWidth: 1
-   },
+      alignItems: 'center'
+   }
 });

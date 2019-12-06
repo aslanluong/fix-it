@@ -55,15 +55,18 @@ export default class Login extends Component {
                <View style={styles.buttonContainer}>
                   <Button
                      TouchableOpacity
-                     onPress={() =>
-                        NavigationService.navigate('LoginByPhone')
-                     }
-                     icon={(style) => <Icon {...style} name="phone" style={{ marginLeft: -5 }} />}
+                     onPress={() => NavigationService.navigate('LoginByPhone')}
+                     icon={style => (
+                        <Icon
+                           {...style}
+                           name="phone"
+                           style={{ marginLeft: -5 }}
+                        />
+                     )}
                      status="warning"
-                     style={{ width: "100%" }}
-                  >
+                     style={{ width: '100%' }}>
                      Đăng nhập bằng số điện thoại
-                     </Button>
+                  </Button>
                   {/* <Button
                      TouchableOpacity
                      onPress={() =>
@@ -79,15 +82,18 @@ export default class Login extends Component {
                <View style={styles.buttonContainer}>
                   <Button
                      TouchableOpacity
-                     onPress={() =>
-                        NavigationService.navigate('Tabs')
-                     }
-                     icon={(style) => <Icon {...style} name="facebook" style={{ marginLeft: -5 }} />}
+                     onPress={() => NavigationService.navigate('Tabs')}
+                     icon={style => (
+                        <Icon
+                           {...style}
+                           name="facebook"
+                           style={{ marginLeft: -5 }}
+                        />
+                     )}
                      status="info"
-                     style={{ width: "100%" }}
-                  >
+                     style={{ width: '100%' }}>
                      Đăng nhập bằng Facebook
-                     </Button>
+                  </Button>
                </View>
             </View>
          </ImageBackground>
@@ -115,7 +121,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       paddingHorizontal: '15%',
       width: '100%',
-      paddingVertical: "2%"
+      paddingVertical: '2%'
    },
    titleText: {
       fontSize: 16

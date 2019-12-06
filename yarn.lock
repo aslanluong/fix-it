@@ -6616,10 +6616,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-toggle-switch-react-native@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/toggle-switch-react-native/-/toggle-switch-react-native-2.1.0.tgz#e7d27ea95a70aedfbed12c691a5063a2eee16c93"
-  integrity sha512-2LCGdfqZcHw/Y4yOJkiN3VV5xnZkkztdy5MTVZ9DJRLkmL6xi1QlFM5vC/EBMTm+xetOae7zg55F8iid9XFR6g==
+toggle-switch-react@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/toggle-switch-react/-/toggle-switch-react-1.0.0.tgz#6dfe3fc3fb02c1c99675e697d42c33a72d64f721"
+  integrity sha512-7Kic8pR1T2rbEywsyszL2cgVxH5W7+GwPKMnAy685Y5Ts+a5V3NLDvhSpaDaCPutHOktFMaI4puoFLgaEJbhyw==
   dependencies:
     prop-types "^15.5.7"
 
