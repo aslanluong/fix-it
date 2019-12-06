@@ -12,6 +12,7 @@ import {
 
 import { FontText } from '../FontText';
 import NavigationService from '../../services/navigate';
+import { Button, Icon } from 'react-native-ui-kitten/ui';
 export default class Verification extends Component {
    constructor(props) {
       super(props);
@@ -127,85 +128,86 @@ export default class Verification extends Component {
                         }}></TextInput>
                   </View>
                ) : (
-                  <View style={styles.inputFormContainer}>
-                     <TextInput
-                        style={[styles.numberInput, { width: '12%' }]}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        blurOnSubmit={false}
-                        ref={ref => (this.passwordRef1 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(_, null, this.passwordRef2);
-                        }}></TextInput>
-                     <TextInput
-                        style={[styles.numberInput, { width: '12%' }]}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        ref={ref => (this.passwordRef2 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(
-                              _,
-                              this.passwordRef1,
-                              this.passwordRef3
-                           );
-                        }}></TextInput>
-                     <TextInput
-                        style={[styles.numberInput, { width: '12%' }]}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        ref={ref => (this.passwordRef3 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(
-                              _,
-                              this.passwordRef2,
-                              this.passwordRef4
-                           );
-                        }}></TextInput>
-                     <TextInput
-                        style={[styles.numberInput, { width: '12%' }]}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        ref={ref => (this.passwordRef4 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(
-                              _,
-                              this.passwordRef3,
-                              this.passwordRef5
-                           );
-                        }}></TextInput>
-                     <TextInput
-                        style={[styles.numberInput, { width: '12%' }]}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        ref={ref => (this.passwordRef5 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(
-                              _,
-                              this.passwordRef4,
-                              this.passwordRef6
-                           );
-                        }}></TextInput>
-                     <TextInput
-                        style={[styles.numberInput, { width: '12%' }]}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        ref={ref => (this.passwordRef6 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(_, this.passwordRef5, null);
-                        }}></TextInput>
-                  </View>
-               )}
-
+                     <View style={styles.inputFormContainer}>
+                        <TextInput
+                           style={[styles.numberInput, { width: '12%' }]}
+                           maxLength={1}
+                           keyboardType="number-pad"
+                           blurOnSubmit={false}
+                           ref={ref => (this.passwordRef1 = ref)}
+                           onChangeText={_ => {
+                              this.goToNextRef(_, null, this.passwordRef2);
+                           }}></TextInput>
+                        <TextInput
+                           style={[styles.numberInput, { width: '12%' }]}
+                           maxLength={1}
+                           keyboardType="number-pad"
+                           ref={ref => (this.passwordRef2 = ref)}
+                           onChangeText={_ => {
+                              this.goToNextRef(
+                                 _,
+                                 this.passwordRef1,
+                                 this.passwordRef3
+                              );
+                           }}></TextInput>
+                        <TextInput
+                           style={[styles.numberInput, { width: '12%' }]}
+                           maxLength={1}
+                           keyboardType="number-pad"
+                           ref={ref => (this.passwordRef3 = ref)}
+                           onChangeText={_ => {
+                              this.goToNextRef(
+                                 _,
+                                 this.passwordRef2,
+                                 this.passwordRef4
+                              );
+                           }}></TextInput>
+                        <TextInput
+                           style={[styles.numberInput, { width: '12%' }]}
+                           maxLength={1}
+                           keyboardType="number-pad"
+                           ref={ref => (this.passwordRef4 = ref)}
+                           onChangeText={_ => {
+                              this.goToNextRef(
+                                 _,
+                                 this.passwordRef3,
+                                 this.passwordRef5
+                              );
+                           }}></TextInput>
+                        <TextInput
+                           style={[styles.numberInput, { width: '12%' }]}
+                           maxLength={1}
+                           keyboardType="number-pad"
+                           ref={ref => (this.passwordRef5 = ref)}
+                           onChangeText={_ => {
+                              this.goToNextRef(
+                                 _,
+                                 this.passwordRef4,
+                                 this.passwordRef6
+                              );
+                           }}></TextInput>
+                        <TextInput
+                           style={[styles.numberInput, { width: '12%' }]}
+                           maxLength={1}
+                           keyboardType="number-pad"
+                           ref={ref => (this.passwordRef6 = ref)}
+                           onChangeText={_ => {
+                              this.goToNextRef(_, this.passwordRef5, null);
+                           }}></TextInput>
+                     </View>
+                  )}
                <View style={styles.buttonContainer}>
-                  <View style={{ width: '30%' }}>
-                     <TouchableOpacity
-                        style={styles.sendButtonContainer}
-                        onPress={() => NavigationService.navigate('Tabs')}>
-                        <FontText emphasis="bold" style={styles.sendButtonText}>
-                           Tiếp tục
-                        </FontText>
-                     </TouchableOpacity>
-                  </View>
+                  <Button
+                     TouchableOpacity
+                     onPress={() =>
+                        NavigationService.navigate('Tabs')
+                     }
+                     appearance="outline"
+                     icon={(style) => <Icon {...style} name="arrowhead-right-outline" style={{ marginLeft: -5 }} />}
+                     status="info"
+                     style={{ flexDirection: 'row-reverse' }}>
+                     Tiếp tục
+                     </Button>
                </View>
                <View style={styles.resendButttonContainer}>
                   <FontText
@@ -299,9 +301,10 @@ const styles = StyleSheet.create({
    },
 
    buttonContainer: {
+      marginTop: 20,
       width: '100%',
-      alignItems: 'center',
-      marginVertical: '8%'
+      flexDirection: 'row',
+      justifyContent: 'center',
    },
    resendButttonContainer: {
       marginTop: 30,
