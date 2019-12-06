@@ -15,87 +15,92 @@ import Verification from './src/components/Screens/Verification';
 import CreateRequest from './src/components/Screens/CreateRequest';
 import FindFixer from './src/components/Screens/FindFixer';
 
-import { ApplicationProvider, Layout, Text, IconRegistry } from 'react-native-ui-kitten';
+import {
+   ApplicationProvider,
+   Layout,
+   Text,
+   IconRegistry
+} from 'react-native-ui-kitten';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 const RootStack = createStackNavigator(
-      {
-            Login: {
-                  screen: Login,
-                  navigationOptions: {
-                        header: null,
-                        gesturesEnabled: false
-                  }
-            },
-            LoginByPhone: {
-                  screen: LoginByPhone,
-                  navigationOptions: {
-                        header: null,
-                        gesturesEnabled: false
-                  }
-            },
-            Verification: {
-                  screen: Verification,
-                  navigationOptions: {
-                        header: null,
-                        gesturesEnabled: false
-                  }
-            },
-            CreateRequest: {
-                  screen: CreateRequest,
-                  navigationOptions: {
-                        header: null,
-                        gesturesEnabled: false
-                  }
-            },
-            Tabs: {
-                  screen: Tabs,
-                  navigationOptions: {
-                        header: null,
-                        gesturesEnabled: false
-                  }
-            },
-            RequestDetails: {
-                  screen: RequestDetails,
-                  navigationOptions: {
-                        header: null,
-                        gesturesEnabled: false
-                  }
-            },
-            ProfileDetails: {
-                  screen: ProfileDetails,
-                  navigationOptions: {
-                        header: null,
-                        gesturesEnabled: false
-                  }
-            },
-            ProfileEditor: {
-                  screen: ProfileEditor,
-                  navigationOptions: {
-                        header: null,
-                        gesturesEnabled: false
-                  }
-            },
-            FindFixer: {
-                  screen: FindFixer,
-                  navigationOptions: {
-                        header: null,
-                        gesturesEnabled: false
-                  }
-            }
-            //  },
-            //  Dashboard: {
-            //     screen: Dashboard,
-            //     navigationOptions: {
-            //        header: null,
-            //        gesturesEnabled: false
-            //     }
-            //  },
+   {
+      Login: {
+         screen: Login,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
       },
-      {
-            initialRouteName: 'FindFixer'
+      LoginByPhone: {
+         screen: LoginByPhone,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      Verification: {
+         screen: Verification,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      CreateRequest: {
+         screen: CreateRequest,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      Tabs: {
+         screen: Tabs,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      RequestDetails: {
+         screen: RequestDetails,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      ProfileDetails: {
+         screen: ProfileDetails,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      ProfileEditor: {
+         screen: ProfileEditor,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      FindFixer: {
+         screen: FindFixer,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
       }
+      //  },
+      //  Dashboard: {
+      //     screen: Dashboard,
+      //     navigationOptions: {
+      //        header: null,
+      //        gesturesEnabled: false
+      //     }
+      //  },
+   },
+   {
+      initialRouteName: 'Login'
+   }
 );
 const AppContainer = createAppContainer(RootStack);
 export default class App extends Component {
