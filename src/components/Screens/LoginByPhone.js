@@ -66,7 +66,7 @@ export default class ForgotPassword extends Component {
                      onChangeText={numberPhone => {
                         this.setState({ numberPhone: numberPhone });
                      }}
-                     // defaultValue={this.state.value}
+                  // defaultValue={this.state.value}
                   />
                   {/* <Image
                      source={{
@@ -90,6 +90,15 @@ export default class ForgotPassword extends Component {
                   <View style={styles.buttonContainer}>
                      <Button
                         TouchableOpacity
+                        onPress={() => NavigationService.navigate('Login')}
+                        appearance="outline"
+                        icon={CancelIcon}
+                        status="danger"
+                        style={{ flexDirection: 'row-reverse' }}>
+                        Trở về
+                     </Button>
+                     <Button
+                        TouchableOpacity
                         onPress={() =>
                            this.props.navigation.navigate('Verification', {
                               numberPhone: this.state.numberPhone
@@ -100,15 +109,6 @@ export default class ForgotPassword extends Component {
                         status="info"
                         style={{ flexDirection: 'row-reverse' }}>
                         Tiếp tục
-                     </Button>
-                     <Button
-                        TouchableOpacity
-                        onPress={() => NavigationService.navigate('Login')}
-                        appearance="outline"
-                        icon={CancelIcon}
-                        status="danger"
-                        style={{ flexDirection: 'row-reverse' }}>
-                        Trở về
                      </Button>
                   </View>
                </View>

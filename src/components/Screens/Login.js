@@ -8,8 +8,9 @@ import {
    Dimensions
 } from 'react-native';
 import FontText from '../FontText';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import NavigationService from '../../services/navigate';
+import { Button, Icon } from 'react-native-ui-kitten';
 
 export default class Login extends Component {
    constructor() {
@@ -34,7 +35,7 @@ export default class Login extends Component {
    render() {
       return (
          <ImageBackground
-            source={require('../../../assets/images/login-background.jpg')}
+            source={require('../../../assets/images/bg.jpg')}
             style={styles.containerBackground}>
             <View style={styles.container}>
                <View style={styles.logoCointainer}>
@@ -52,61 +53,41 @@ export default class Login extends Component {
                   />
                </View>
                <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                     style={styles.button}
-                     onPress={() => NavigationService.navigate('LoginByPhone')}>
-                     <Image
-                        source={{
-                           uri:
-                              'https://img.icons8.com/plasticine/40/000000/sms.png'
-                        }}
-                        style={{
-                           width: 35,
-                           height: 35
-                        }}
-                     />
-                     <FontText style={styles.titleText}>
-                        Đăng nhập bằng số điện thoại
-                     </FontText>
-                     <Icon name="arrow-right" style={{ fontSize: 20 }} />
-                  </TouchableOpacity>
+                  <Button
+                     TouchableOpacity
+                     onPress={() =>
+                        NavigationService.navigate('LoginByPhone')
+                     }
+                     icon={(style) => <Icon {...style} name="phone" style={{ marginLeft: -5 }} />}
+                     status="warning"
+                     style={{ width: "100%" }}
+                  >
+                     Đăng nhập bằng số điện thoại
+                     </Button>
+                  {/* <Button
+                     TouchableOpacity
+                     onPress={() =>
+                        NavigationService.navigate('Tabs')
+                     }
+                     icon={(style) => <Icon {...style} name="facebook" style={{ marginLeft: -5 }} />}
+                     status="info"
+                     style={{ width: "100%" }}
+                  >
+                     Đăng nhập bằng Facebook
+                     </Button> */}
                </View>
                <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                     style={styles.button}
-                     onPress={() => NavigationService.navigate('Tabs',{type:'Login'})}>
-                     <Image
-                        source={{
-                           uri:
-                              'https://img.icons8.com/plasticine/100/000000/google-logo.png'
-                        }}
-                        style={{ width: 30, height: 30 }}
-                     />
-                     <FontText style={styles.titleText}>
-                        Đăng nhập bằng Google
-                     </FontText>
-                     <Icon name="arrow-right" style={{ fontSize: 20 }} />
-                  </TouchableOpacity>
-               </View>
-               <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                     style={styles.button}
-                     onPress={() => NavigationService.navigate('Tabs')}>
-                     <Image
-                        source={{
-                           uri:
-                              'https://img.icons8.com/office/40/000000/facebook-new.png'
-                        }}
-                        style={{
-                           width: 28,
-                           height: 28
-                        }}
-                     />
-                     <FontText style={styles.titleText}>
-                        Đăng nhập bằng Facebook
-                     </FontText>
-                     <Icon name="arrow-right" style={{ fontSize: 20 }} />
-                  </TouchableOpacity>
+                  <Button
+                     TouchableOpacity
+                     onPress={() =>
+                        NavigationService.navigate('Tabs')
+                     }
+                     icon={(style) => <Icon {...style} name="facebook" style={{ marginLeft: -5 }} />}
+                     status="info"
+                     style={{ width: "100%" }}
+                  >
+                     Đăng nhập bằng Facebook
+                     </Button>
                </View>
             </View>
          </ImageBackground>
@@ -131,9 +112,10 @@ const styles = StyleSheet.create({
       alignItems: 'center'
    },
    buttonContainer: {
-      marginVertical: 10,
       alignItems: 'center',
-      paddingHorizontal: '10%'
+      paddingHorizontal: '15%',
+      width: '100%',
+      paddingVertical: "2%"
    },
    titleText: {
       fontSize: 16
