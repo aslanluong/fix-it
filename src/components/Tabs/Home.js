@@ -11,6 +11,7 @@ import {
 import FontText from '../FontText';
 import NavigationService from '../../services/navigate';
 import { APP_CONST } from '../../../app.const';
+import HeaderInfo from '../Screens/HeaderInfo';
 
 export default class Home extends Component {
 	constructor() {
@@ -35,14 +36,16 @@ export default class Home extends Component {
 		return (
 			<SafeAreaView>
 				<View style={styles.header}>
-					<View>
+					<HeaderInfo />
+
+					{/* <View>
 						<FontText style={{ paddingLeft: 0, fontSize: 17 }}>
 							Xin chào Thắng,
                   </FontText>
 						<FontText style={{ fontSize: 23 }}>
 							Chọn loại thiết bị cần sửa chữa
                   </FontText>
-					</View>
+					</View> */}
 				</View>
 				<ScrollView
 					horizontal={
@@ -129,7 +132,6 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
 	header: {
-		height: 75,
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		backgroundColor: '#f0eff4'
@@ -160,26 +162,26 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.57,
 		shadowRadius: 15.19,
 
-      elevation: 23
-   },
-   item: {
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      alignItems: 'center'
-   },
-   image: {
-      width: 80,
-      height: 80,
-      marginBottom: 15
-   },
-   container: {
-      flexDirection: 'row',
-   },
-   detailsContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      marginLeft: 24,
-   },
+		elevation: 23
+	},
+	item: {
+		width: '100%',
+		height: '100%',
+		backgroundColor: 'white',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	image: {
+		width: 80,
+		height: 80,
+		marginBottom: 15
+	},
+	container: {
+		flexDirection: 'row',
+	},
+	detailsContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		marginLeft: 24,
+	}
 });
