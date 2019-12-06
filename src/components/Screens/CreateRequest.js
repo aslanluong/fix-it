@@ -279,10 +279,10 @@ export default class CreateRequest extends Component {
                   Yêu cầu thêm về thợ
                         </FontText>
               </View>
-              <View style={styles.inputContainer}>
+              <View style={[styles.inputContainer, { paddingHorizontal: "3%" }]}>
                 <ToggleSwitch
                   isOn={this.state.switchOn1}
-                  onColor='green'
+                  onColor='#f4511e'
                   offColor='gray'
                   label='Thợ có bằng cấp'
                   labelStyle={{ color: 'black', fontSize: 16, marginBottom: 5, }}
@@ -292,16 +292,16 @@ export default class CreateRequest extends Component {
 
                 <ToggleSwitch
                   isOn={this.state.switchOn2}
-                  onColor='green'
+                  onColor='#f4511e'
                   offColor='gray'
                   label='Thợ có lượt đánh giá cao'
                   labelStyle={{ color: 'black', fontSize: 16, }}
                   size='small'
                   onToggle={(isOn) => this.setState({ switchOn2: isOn })} />
-                 <FontText  style={[styles.locationText, {marginTop: 5,fontSize:13}]}>
-                 Lưu ý: Sẽ mất thêm thời gian tìm thợ khi chọn những tiêu chí này
+                <FontText style={[{ marginTop: 5, fontSize: 13, fontStyle: 'italic' }]}>
+                  *Lưu ý: Sẽ mất thêm thời gian tìm thợ khi chọn những tiêu chí này
                         </FontText>
-               
+
               </View>
             </View>
             <View style={styles.formContainer}>
