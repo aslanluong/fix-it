@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+// import NavigationService from './NavigationService';
 import { AppRegistry, Text, View, Button } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { Dropdown } from 'react-native-material-dropdown';
+import {StackNavigator} from 'react-navigation-stack'
 import { white } from 'ansi-colors';
+import { from } from 'rxjs';
+import { NavigationEvents } from 'react-navigation';
 
 
 
-class Example extends Component {
+class ChooseBank extends React.Component {
   constructor(props) {
     super(props);
 
@@ -46,6 +50,7 @@ class Example extends Component {
       styles.text,
       styles[amout],
     ];
+    console.log(this.props.navigation);
 
     return (
 
@@ -117,8 +122,10 @@ class Example extends Component {
         </View>
         <View>
           <Button
-            title="Press me"
+          onPress={() => this.props.navigation.navigate('LoginBank')}
+            title="Xác nhận"
             style={{ fontSize: 24, width: '40%' }}
+                                    
           />
         </View>
       </View>
@@ -186,6 +193,6 @@ const amoutData = [
 ];
 
 
-export default Example
+export default ChooseBank
 
 
