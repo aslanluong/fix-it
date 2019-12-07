@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
    View,
-   Text,
+   TextInput,
    KeyboardAvoidingView,
    StyleSheet,
    TouchableOpacity,
@@ -12,10 +12,10 @@ import {
 import ImagePicker from 'react-native-image-picker';
 import FontText from '../FontText';
 import IconE from 'react-native-vector-icons/EvilIcons';
-import { TextInput } from 'react-native-gesture-handler';
 import NavigationService from '../../services/navigate';
 import RNPicker from 'search-modal-picker';
 import ToggleSwitch from 'toggle-switch-react';
+import DatePicker from 'react-native-date-picker';
 
 const options = {
    title: 'Chọn hình',
@@ -128,7 +128,8 @@ export default class CreateRequest extends Component {
          placeHolderText: 'Chọn hãng thiết bị',
          selectedText: '',
          switchOn1: false,
-         switchOn2: false
+         switchOn2: false,
+         date: new Date()
       };
    }
    chooseImage = () => {
@@ -160,6 +161,12 @@ export default class CreateRequest extends Component {
 
    render() {
       const { option } = this.props.navigation.state.params;
+      const today = new Date();
+      const next7days = new Date(
+         today.getFullYear(),
+         today.getMonth(),
+         today.getDate() + 7
+      );
       return (
          <KeyboardAvoidingView style={styles.createRequestContainer}>
             <View style={styles.viewContainer}>
@@ -185,6 +192,58 @@ export default class CreateRequest extends Component {
                   </FontText>
                </View>
                <ScrollView style={{ backgroundColor: '#f0eff4' }}>
+                  {option == 'Tìm ngay' ? (
+                     <></>
+                  ) : (
+                     <View style={styles.formContainer}>
+                        <View style={styles.headerContainer}>
+                           <FontText
+                              emphasis="medium"
+                              style={styles.headerText}>
+                              Thời gian mong muốn
+                           </FontText>
+                        </View>
+                        <View style={styles.inputContainer}>
+                           <View
+                              style={{
+                                 marginTop: 10,
+                                 paddingHorizontal: '13%',
+                                 flexDirection: 'row',
+                                 justifyContent: 'space-between'
+                              }}>
+                              <FontText emphasis="bold">Ngày</FontText>
+                              <FontText emphasis="bold">Giờ</FontText>
+                           </View>
+                           <View
+                              style={{
+                                 width: '100%',
+                                 justifyContent: 'center',
+                                 overflow: 'hidden',
+                                 height: 100,
+                                 alignItems: 'center',
+                                 flexDirection: 'row'
+                              }}>
+                              <DatePicker
+                                 style={{ width: 220, height: 100 }}
+                                 date={this.state.date}
+                                 locale="vn"
+                                 mode="date"
+                                 minimumDate={today}
+                                 maximumDate={next7days}
+                                 onDateChange={date => this.setState({ date })}
+                              />
+                              <DatePicker
+                                 style={{ width: 130, height: 100 }}
+                                 date={this.state.date}
+                                 locale="vn"
+                                 mode="time"
+                                 minuteInterval={15}
+                                 onDateChange={date => this.setState({ date })}
+                              />
+                           </View>
+                        </View>
+                     </View>
+                  )}
                   <View style={styles.formContainer}>
                      <View style={styles.headerContainer}>
                         <FontText emphasis="medium" style={styles.headerText}>
@@ -356,6 +415,24 @@ export default class CreateRequest extends Component {
                            *Lưu ý: Sẽ mất thêm thời gian tìm thợ khi chọn những
                            tiêu chí này
                         </FontText>
+                        <FontText
+                           emphasis="bold"
+                           style={{
+                              fontSize: 16,
+                              marginHorizontal: 6,
+                              marginTop: 7
+                           }}>
+                           Ghi chú thêm:
+                        </FontText>
+                        <TextInput
+                           style={{
+                              fontSize: 16,
+                              borderBottomColor: '#ebebeb',
+                              borderBottomWidth: 1.5,
+                              paddingVertical: 5,
+                              marginHorizontal: 6
+                           }}
+                           placeholder={'Nhập ghi chú...'}></TextInput>
                      </View>
                   </View>
                   <View style={styles.formContainer}>
@@ -425,12 +502,24 @@ export default class CreateRequest extends Component {
                         </FontText>
                      </View>
                      <View style={styles.inputContainer}>
-                        <FontText emphasis="bold" style={styles.locationText}>
-                           Đại học FPT, khu công nghệ cao quận 9
+                        <FontText
+                           emphasis="bold"
+                           style={{
+                              fontSize: 16,
+                              marginTop: 7
+                           }}>
+                           Đại học FPT, khu Công Nghệ Cao, quận 9
                         </FontText>
                         <TextInput
-                           style={styles.locationNote}
-                           placeholder="Ghi chú: Kế bên công ty dịch vụ tin học HPT..."></TextInput>
+                           style={{
+                              fontSize: 16,
+                              borderBottomColor: '#ebebeb',
+                              borderBottomWidth: 1.5,
+                              paddingVertical: 5
+                           }}
+                           placeholder={
+                              'Ghi chú: Kế bên c.ty dịch vụ tin học HPT...'
+                           }></TextInput>
                      </View>
                   </View>
                   <View style={styles.buttonContainer}>

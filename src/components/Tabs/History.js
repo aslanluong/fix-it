@@ -68,6 +68,7 @@ export default class History extends Component {
    render() {
       // disabled
       // const randomList = shuffleArray(list);
+
       return (
          <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>
