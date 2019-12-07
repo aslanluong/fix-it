@@ -42,7 +42,7 @@ export default class ProfileDetails extends Component {
                         />
                      </View>
                      <FontText style={{ fontSize: 17, marginTop: 10 }}>
-                        Thắng Lương Thành
+                        Lương Thành Thắng
                      </FontText>
                   </View>
                </View>
@@ -68,7 +68,7 @@ export default class ProfileDetails extends Component {
                         <FontText style={{ opacity: 0.5, fontSize: 12 }}>
                            Tên
                         </FontText>
-                        <FontText>Thắng Lương Thành</FontText>
+                        <FontText>Lương Thành Thắng</FontText>
                      </View>
                      <View style={styles.profileRow}>
                         <FontText style={{ opacity: 0.5, fontSize: 12 }}>
@@ -78,7 +78,7 @@ export default class ProfileDetails extends Component {
                            style={{ fontFamily: 'lato-regular' }}
                            numberOfLines={1}
                            ellipsizeMode="tail">
-                           Lô T2-4 đường D1, Khu Công Nghệ Cao, HCM
+                           Đại học FPT, khu Công Nghệ Cao, quận 9, TP.HCM
                         </Text>
                      </View>
                      <View style={styles.profileRow}>

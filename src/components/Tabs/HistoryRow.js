@@ -21,7 +21,18 @@ export default class HistoryRow extends Component {
             </View>
             <View style={styles.rowContent1}>
                <FontText emphasis="bold">{itemName}</FontText>
-               <FontText style={{ fontSize: 13, color: '#ff9501' }}>
+               <FontText
+                  style={{
+                     fontSize: 13,
+                     color:
+                        status == 'Đã hoàn thành'
+                           ? '#3ddc84'
+                           : status == 'Đang thực hiện'
+                           ? '#4285f4'
+                           : status == 'Đang đặt lịch'
+                           ? '#4285f4'
+                           : '#a9a9a9'
+                  }}>
                   {status}
                </FontText>
                <FontText style={{ fontSize: 13 }} emphasis="light">

@@ -44,7 +44,7 @@ export default class ProfileEditor extends Component {
                      Tên
                   </FontText>
                   <TextInput
-                     defaultValue="Thắng Lương Thành"
+                     defaultValue="Lương Thành Thắng"
                      style={{
                         padding: 0,
                         fontSize: 15
@@ -56,7 +56,7 @@ export default class ProfileEditor extends Component {
                      Địa chỉ
                   </FontText>
                   <TextInput
-                     defaultValue="Lô T2-4 đường D1, Khu Công Nghệ Cao, HCM"
+                     defaultValue="Đại học FPT, khu Công Nghệ Cao, quận 9, TP.HCM"
                      style={{
                         padding: 0,
                         fontSize: 15

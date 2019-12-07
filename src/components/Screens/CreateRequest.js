@@ -5,6 +5,7 @@ import {
    KeyboardAvoidingView,
    StyleSheet,
    TouchableOpacity,
+   TouchableHighlight,
    ScrollView,
    Image
 } from 'react-native';
@@ -68,7 +69,7 @@ export default class CreateRequest extends Component {
                name: 'LG Electronics'
             }
          ],
-         diviceType: [
+         deviceType: [
             {
                id: 1,
                name: 'TV'
@@ -127,8 +128,7 @@ export default class CreateRequest extends Component {
          placeHolderText: 'Chọn hãng thiết bị',
          selectedText: '',
          switchOn1: false,
-         switchOn2: false,
-         switchOn3: false
+         switchOn2: false
       };
    }
    chooseImage = () => {
@@ -159,6 +159,7 @@ export default class CreateRequest extends Component {
    }
 
    render() {
+      const { option } = this.props.navigation.state.params;
       return (
          <KeyboardAvoidingView style={styles.createRequestContainer}>
             <View style={styles.viewContainer}>
@@ -183,7 +184,7 @@ export default class CreateRequest extends Component {
                      {'      '}
                   </FontText>
                </View>
-               <ScrollView>
+               <ScrollView style={{ backgroundColor: '#f0eff4' }}>
                   <View style={styles.formContainer}>
                      <View style={styles.headerContainer}>
                         <FontText emphasis="medium" style={styles.headerText}>
@@ -196,7 +197,7 @@ export default class CreateRequest extends Component {
                         </FontText>
 
                         <RNPicker
-                           dataSource={this.state.diviceType}
+                           dataSource={this.state.deviceType}
                            // dummyDataSource={this.state.diviceType}
                            defaultValue={false}
                            pickerTitle={'Country Picker'}
@@ -292,33 +293,55 @@ export default class CreateRequest extends Component {
                            { paddingHorizontal: '3%' }
                         ]}>
                         <View style={{ paddingVertical: 5 }}>
-                           <ToggleSwitch
-                              isOn={this.state.switchOn1}
-                              onColor="#f4511e"
-                              offColor="gray"
-                              label={<FontText>Thợ có bằng cấp</FontText>}
-                              labelStyle={{
-                                 color: 'black',
-                                 fontSize: 16
-                              }}
-                              size="medium"
-                              onToggle={isOn =>
-                                 this.setState({ switchOn1: isOn })
-                              }
-                           />
-                           <ToggleSwitch
-                              isOn={this.state.switchOn2}
-                              onColor="#f4511e"
-                              offColor="gray"
-                              label={
-                                 <FontText>Thợ có lượt đánh giá cao</FontText>
-                              }
-                              labelStyle={{ color: 'black', fontSize: 16 }}
-                              size="medium"
-                              onToggle={isOn =>
-                                 this.setState({ switchOn2: isOn })
-                              }
-                           />
+                           <TouchableOpacity
+                              activeOpacity={0.5}
+                              onPress={() =>
+                                 this.setState({
+                                    switchOn1: this.state.switchOn1
+                                       ? false
+                                       : true
+                                 })
+                              }>
+                              <ToggleSwitch
+                                 isOn={this.state.switchOn1}
+                                 onColor="#f4511e"
+                                 offColor="gray"
+                                 label={<FontText>Thợ có bằng cấp</FontText>}
+                                 labelStyle={{
+                                    color: 'black',
+                                    fontSize: 16
+                                 }}
+                                 size="medium"
+                                 onToggle={isOn =>
+                                    this.setState({ switchOn1: isOn })
+                                 }
+                              />
+                           </TouchableOpacity>
+                           <TouchableOpacity
+                              activeOpacity={0.5}
+                              onPress={() =>
+                                 this.setState({
+                                    switchOn2: this.state.switchOn2
+                                       ? false
+                                       : true
+                                 })
+                              }>
+                              <ToggleSwitch
+                                 isOn={this.state.switchOn2}
+                                 onColor="#f4511e"
+                                 offColor="gray"
+                                 label={
+                                    <FontText>
+                                       Thợ có lượt đánh giá cao
+                                    </FontText>
+                                 }
+                                 labelStyle={{ color: 'black', fontSize: 16 }}
+                                 size="medium"
+                                 onToggle={isOn =>
+                                    this.setState({ switchOn2: isOn })
+                                 }
+                              />
+                           </TouchableOpacity>
                         </View>
 
                         <FontText
@@ -348,18 +371,14 @@ export default class CreateRequest extends Component {
                               flexDirection: 'row',
                               justifyContent: 'space-evenly',
                               flexWrap: 'wrap',
-                              marginBottom: 10
+                              marginBottom: 5
                            }}>
                            {this.state.avatarSource.map((image, index) => (
                               <View
                                  key={index}
                                  style={{
-                                    height: 100,
-                                    width: 100,
                                     borderRadius: 10,
                                     overflow: 'hidden',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
                                     margin: 5,
                                     marginTop: 20
                                  }}>
@@ -367,7 +386,6 @@ export default class CreateRequest extends Component {
                                     style={{
                                        height: 100,
                                        width: 100
-                                       // marginHorizontal: 5
                                     }}
                                     source={{ uri: image }}
                                  />
@@ -394,7 +412,6 @@ export default class CreateRequest extends Component {
                                  style={{
                                     height: 60,
                                     width: 60
-                                    // marginHorizontal: 5
                                  }}
                               />
                            </TouchableOpacity>
@@ -418,30 +435,59 @@ export default class CreateRequest extends Component {
                   </View>
                   <View style={styles.buttonContainer}>
                      <View style={{ width: '100%', alignItems: 'center' }}>
-                        <TouchableOpacity
-                           onPress={() =>
-                              NavigationService.navigate('FindFixer')
-                           }
-                           style={[
-                              styles.button,
-                              {
-                                 backgroundColor: '#3ddc84',
-                                 width: '70%',
-                                 alignItems: 'center',
-                                 justifyContent: 'center',
-                                 borderColor: '#fff'
+                        {option == 'Tìm ngay' ? (
+                           <TouchableOpacity
+                              onPress={() =>
+                                 NavigationService.navigate('FindFixer')
                               }
-                           ]}>
-                           <FontText
-                              emphasis="bold"
-                              style={{
-                                 fontSize: 17,
-                                 color: '#fff',
-                                 borderColor: '#fff'
-                              }}>
-                              Gửi yêu cầu
-                           </FontText>
-                        </TouchableOpacity>
+                              style={[
+                                 styles.button,
+                                 {
+                                    backgroundColor: '#3ddc84',
+                                    width: '60%',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    borderColor: '#fff'
+                                 }
+                              ]}>
+                              <FontText
+                                 emphasis="bold"
+                                 style={{
+                                    fontSize: 17,
+                                    color: '#fff',
+                                    borderColor: '#fff'
+                                 }}>
+                                 Tìm thợ ngay
+                              </FontText>
+                           </TouchableOpacity>
+                        ) : (
+                           <TouchableOpacity
+                              onPress={() =>
+                                 NavigationService.navigate('RequestDetails', {
+                                    status: 'Đang đặt lịch'
+                                 })
+                              }
+                              style={[
+                                 styles.button,
+                                 {
+                                    backgroundColor: '#3ddc84',
+                                    width: '60%',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    borderColor: '#fff'
+                                 }
+                              ]}>
+                              <FontText
+                                 emphasis="bold"
+                                 style={{
+                                    fontSize: 17,
+                                    color: '#fff',
+                                    borderColor: '#fff'
+                                 }}>
+                                 Đặt lịch
+                              </FontText>
+                           </TouchableOpacity>
+                        )}
                      </View>
                   </View>
                </ScrollView>
@@ -462,7 +508,6 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      borderBottomColor: '#c9c9c9',
       borderBottomWidth: 0.5
    },
    formContainer: {
@@ -476,22 +521,35 @@ const styles = StyleSheet.create({
 
       backgroundColor: '#F56258',
       borderRadius: 15,
-      zIndex: 2
+      zIndex: 2,
+      elevation: 23
    },
    headerText: {
       fontSize: 15,
       color: '#fff'
    },
    inputContainer: {
-      borderColor: 'black',
-      borderWidth: 1.5,
+      backgroundColor: 'white',
+      borderColor: '#a9a9a9',
+      borderWidth: 0.5,
       borderRadius: 10,
       width: '100%',
       paddingHorizontal: '5%',
       paddingTop: 10,
+      paddingBottom: 20,
       marginTop: -12,
       zIndex: 1,
-      paddingBottom: 10
+
+      // shadow
+      shadowColor: '#000',
+      shadowOffset: {
+         width: 0,
+         height: 11
+      },
+      shadowOpacity: 0.57,
+      shadowRadius: 15.19,
+
+      elevation: 23
    },
    locationNote: {
       fontSize: 16,
@@ -505,19 +563,6 @@ const styles = StyleSheet.create({
       marginBottom: -7
       // color: '#F56258'
    },
-   deviceType: {
-      fontSize: 16,
-      borderBottomColor: '#ebebeb',
-      borderBottomWidth: 1.5,
-      marginBottom: 10
-   },
-   detailErr: {
-      fontSize: 16,
-      borderBottomColor: '#ebebeb',
-      borderBottomWidth: 1.5,
-      marginTop: 10,
-      marginBottom: 20
-   },
    buttonContainer: {
       marginTop: 20
    },
@@ -530,10 +575,22 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-between',
       paddingHorizontal: '6%',
-      borderRadius: 25
+      borderRadius: 25,
+      marginBottom: 10,
+
+      // shadow
+      shadowColor: '#000',
+      shadowOffset: {
+         width: 0,
+         height: 11
+      },
+      shadowOpacity: 0.57,
+      shadowRadius: 15.19,
+
+      elevation: 23
    },
    searchBarContainerStyle: {
-      marginBottom: 10,
+      marginBottom: 5,
       flexDirection: 'row',
       height: 40,
       shadowOpacity: 1.0,
@@ -546,17 +603,17 @@ const styles = StyleSheet.create({
       shadowColor: '#d3d3d3',
       borderRadius: 10,
       elevation: 3,
-      marginHorizontal: 10
+      marginHorizontal: 20
    },
-
    selectLabelTextStyle: {
+      fontFamily: 'lato-regular',
       color: '#000',
-      textAlign: 'left',
-      width: '99%',
-      padding: 10,
-      flexDirection: 'row'
+      width: '97%',
+      flexDirection: 'row',
+      padding: 10
    },
    placeHolderTextStyle: {
+      fontFamily: 'lato-regular',
       color: '#D3D3D3',
       padding: 10,
       textAlign: 'left',
@@ -564,31 +621,29 @@ const styles = StyleSheet.create({
       flexDirection: 'row'
    },
    dropDownImageStyle: {
-      // marginLeft: 10,
       width: 10,
       height: 10,
       alignSelf: 'center'
    },
    listTextViewStyle: {
+      fontFamily: 'lato-regular',
       color: '#000',
       marginVertical: 10,
-      flex: 0.9,
-      marginLeft: 20,
-      marginHorizontal: 10,
-      textAlign: 'left'
+      marginHorizontal: 20
    },
    pickerStyle: {
       elevation: 3,
       paddingRight: 10,
       width: '100%',
-      marginBottom: 2,
+      marginBottom: 0,
       shadowOpacity: 1.0,
       marginVertical: 10,
       shadowOffset: {
          width: 1,
          height: 1
       },
-      borderWidth: 1,
+      borderWidth: 0.5,
+      borderColor: '#a9a9a9',
       shadowRadius: 10,
       backgroundColor: 'rgba(255,255,255,1)',
       shadowColor: '#d3d3d3',

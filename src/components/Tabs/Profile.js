@@ -38,7 +38,7 @@ export default class Profile extends Component {
                   style={styles.userInfo}
                   onPress={() => NavigationService.navigate('ProfileDetails')}>
                   <FontText style={{ fontSize: 19 }}>
-                     Thắng Lương Thành
+                     Lương Thành Thắng
                   </FontText>
                   <FontText
                      emphasis="medium"

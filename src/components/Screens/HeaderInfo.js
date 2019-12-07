@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import FontText from '../FontText';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import NavigationService from '../../services/navigate';
@@ -13,12 +13,18 @@ export default class HeaderInfo extends Component {
                onPress={() => NavigationService.navigate('ProfileDetails')}>
                <View style={{ flex: 1, justifyContent: 'center' }}>
                   <FontText style={{ fontSize: 19 }}>
-                     Hi, Thắng Lương Thành
+                     Hi, Lương Thành Thắng
                   </FontText>
-                  <FontText style={{ fontSize: 13 }}>
-                     <Icon name="map-marker" />
-                     Quận 9, HCM
-                  </FontText>
+                  <Text
+                     style={{
+                        fontFamily: 'lato-regular',
+                        fontSize: 14,
+                        width: '85%'
+                     }}
+                     numberOfLines={1}>
+                     <Icon name="map-marker" /> Đại học FPT, khu Công Nghệ Cao,
+                     quận 9, TP.HCM
+                  </Text>
                </View>
                <View
                   style={{
