@@ -241,7 +241,7 @@ export default class FindFixer extends Component {
                            <Button
                               TouchableOpacity
                               onPress={() =>
-                                 NavigationService.navigate('Tabs')
+                                 NavigationService.navigate('Rating')
                               }
                               appearance="outline"
                               icon={style => (

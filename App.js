@@ -24,6 +24,7 @@ import {
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import SelectLocation from './src/components/Screens/SelectLocation';
+import Rate from './src/components/Screens/Rate';
 
 const RootStack = createStackNavigator(
    {
@@ -92,6 +93,13 @@ const RootStack = createStackNavigator(
       },
       SelectLocation: {
          screen: SelectLocation,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
+      },
+      Rating: {
+         screen: Rate,
          navigationOptions: {
             header: null,
             gesturesEnabled: false
