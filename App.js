@@ -23,6 +23,7 @@ import {
 } from 'react-native-ui-kitten';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import SelectLocation from './src/components/Screens/SelectLocation';
 
 const RootStack = createStackNavigator(
    {
@@ -88,15 +89,14 @@ const RootStack = createStackNavigator(
             header: null,
             gesturesEnabled: false
          }
+      },
+      SelectLocation: {
+         screen: SelectLocation,
+         navigationOptions: {
+            header: null,
+            gesturesEnabled: false
+         }
       }
-      //  },
-      //  Dashboard: {
-      //     screen: Dashboard,
-      //     navigationOptions: {
-      //        header: null,
-      //        gesturesEnabled: false
-      //     }
-      //  },
    },
    {
       initialRouteName: 'Login'

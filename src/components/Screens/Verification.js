@@ -9,7 +9,7 @@ import {
    TouchableOpacity,
    Alert
 } from 'react-native';
-
+import { Root, Popup, Toast } from 'popup-ui'
 import { FontText } from '../FontText';
 import NavigationService from '../../services/navigate';
 import { Button, Icon } from 'react-native-ui-kitten/ui';
@@ -22,26 +22,14 @@ export default class Verification extends Component {
       console.log(this.state.numberPhone);
    }
 
-   simpleAlertHandler = () => {
-      //function to make simple alert
-      alert('Hello I am Simple Alert');
-   };
    resendAlertHandler = () => {
-      Alert.alert(
-         //title
-         'Thông báo',
-         //body
-         'Gửi lại mã xác nhận thành công!',
-         [
-            {
-               text: 'OK',
-               onPress: () => console.log('No Pressed'),
-               style: 'cancel'
-            }
-         ],
-         { cancelable: false }
-         //clicking out side of alert will not cancel
-      );
+      Toast.show({
+         title: 'Thông báo',
+         text: 'Gửi lại mã xác nhận thành công!',
+         color: '#2ecc71',
+         timing: 2000,
+         icon: <Image source={require('../../../assets/images/bell-outline.png')} style={{ width: 25, height: 25 }} resizeMode="contain" />
+      })
    };
 
    goToNextRef(text, refPrev, refNext) {
@@ -53,84 +41,41 @@ export default class Verification extends Component {
    }
    render() {
       return (
-         <View style={styles.container}>
-            <KeyboardAvoidingView style={styles.formContainer}>
-               <View style={styles.logoContainer}>
-                  <FontText
-                     emphasis="medium"
-                     style={{ fontSize: 20, marginBottom: '3%' }}>
-                     XÁC THỰC TÀI KHOẢN
+         <Root>
+            <View style={styles.container}>
+               <KeyboardAvoidingView style={styles.formContainer}>
+                  <View style={styles.logoContainer}>
+                     <FontText
+                        emphasis="medium"
+                        style={{ fontSize: 20, marginBottom: '3%' }}>
+                        XÁC THỰC TÀI KHOẢN
                   </FontText>
-                  <Image
-                     source={{
-                        uri:
-                           'https://img.icons8.com/officel/80/000000/guest-male.png'
-                     }}
-                     style={{
-                        width: 100,
-                        height: 100,
-                        marginVertical: '3%'
-                     }}
-                  />
-                  <FontText emphasis="medium" style={{ fontSize: 16 }}>
-                     Nhập mã xác thực gồm{' '}
-                     {this.state.numberPhone == '123' ? '4' : '6'} chữ số chúng
-                     tôi
+                     <Image
+                        source={{
+                           uri:
+                              'https://img.icons8.com/officel/80/000000/guest-male.png'
+                        }}
+                        style={{
+                           width: 100,
+                           height: 100,
+                           marginVertical: '3%'
+                        }}
+                     />
+                     <FontText emphasis="medium" style={{ fontSize: 16 }}>
+                        Nhập mã xác thực gồm{' '}
+                        {this.state.numberPhone == '123' ? '4' : '6'} chữ số chúng
+                        tôi
                   </FontText>
-                  <FontText
-                     emphasis="medium"
-                     style={{ fontSize: 16, marginBottom: '2%' }}>
-                     đã gửi đến số điện thoại của bạn
+                     <FontText
+                        emphasis="medium"
+                        style={{ fontSize: 16, marginBottom: '2%' }}>
+                        đã gửi đến số điện thoại của bạn
                   </FontText>
-               </View>
-               {this.state.numberPhone == '123' ? (
-                  <View style={styles.inputFormContainer}>
-                     <TextInput
-                        style={styles.numberInput}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        blurOnSubmit={false}
-                        ref={ref => (this.passwordRef1 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(_, null, this.passwordRef2);
-                        }}></TextInput>
-                     <TextInput
-                        style={styles.numberInput}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        ref={ref => (this.passwordRef2 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(
-                              _,
-                              this.passwordRef1,
-                              this.passwordRef3
-                           );
-                        }}></TextInput>
-                     <TextInput
-                        style={styles.numberInput}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        ref={ref => (this.passwordRef3 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(
-                              _,
-                              this.passwordRef2,
-                              this.passwordRef4
-                           );
-                        }}></TextInput>
-                     <TextInput
-                        style={styles.numberInput}
-                        maxLength={1}
-                        keyboardType="number-pad"
-                        ref={ref => (this.passwordRef4 = ref)}
-                        onChangeText={_ => {
-                           this.goToNextRef(_, this.passwordRef3, null);
-                        }}></TextInput>
                   </View>
-               ) : (
+                  {this.state.numberPhone == '123' ? (
                      <View style={styles.inputFormContainer}>
                         <TextInput
-                           style={[styles.numberInput, { width: '12%' }]}
+                           style={styles.numberInput}
                            maxLength={1}
                            keyboardType="number-pad"
                            blurOnSubmit={false}
@@ -139,7 +84,7 @@ export default class Verification extends Component {
                               this.goToNextRef(_, null, this.passwordRef2);
                            }}></TextInput>
                         <TextInput
-                           style={[styles.numberInput, { width: '12%' }]}
+                           style={styles.numberInput}
                            maxLength={1}
                            keyboardType="number-pad"
                            ref={ref => (this.passwordRef2 = ref)}
@@ -151,7 +96,7 @@ export default class Verification extends Component {
                               );
                            }}></TextInput>
                         <TextInput
-                           style={[styles.numberInput, { width: '12%' }]}
+                           style={styles.numberInput}
                            maxLength={1}
                            keyboardType="number-pad"
                            ref={ref => (this.passwordRef3 = ref)}
@@ -163,67 +108,112 @@ export default class Verification extends Component {
                               );
                            }}></TextInput>
                         <TextInput
-                           style={[styles.numberInput, { width: '12%' }]}
+                           style={styles.numberInput}
                            maxLength={1}
                            keyboardType="number-pad"
                            ref={ref => (this.passwordRef4 = ref)}
                            onChangeText={_ => {
-                              this.goToNextRef(
-                                 _,
-                                 this.passwordRef3,
-                                 this.passwordRef5
-                              );
-                           }}></TextInput>
-                        <TextInput
-                           style={[styles.numberInput, { width: '12%' }]}
-                           maxLength={1}
-                           keyboardType="number-pad"
-                           ref={ref => (this.passwordRef5 = ref)}
-                           onChangeText={_ => {
-                              this.goToNextRef(
-                                 _,
-                                 this.passwordRef4,
-                                 this.passwordRef6
-                              );
-                           }}></TextInput>
-                        <TextInput
-                           style={[styles.numberInput, { width: '12%' }]}
-                           maxLength={1}
-                           keyboardType="number-pad"
-                           ref={ref => (this.passwordRef6 = ref)}
-                           onChangeText={_ => {
-                              this.goToNextRef(_, this.passwordRef5, null);
+                              this.goToNextRef(_, this.passwordRef3, null);
                            }}></TextInput>
                      </View>
-                  )}
-               <View style={styles.buttonContainer}>
-                  <Button
-                     TouchableOpacity
-                     onPress={() =>
-                        NavigationService.navigate('Tabs')
-                     }
-                     appearance="outline"
-                     icon={(style) => <Icon {...style} name="arrowhead-right-outline" style={{ marginLeft: -5 }} />}
-                     status="info"
-                     style={{ flexDirection: 'row-reverse' }}>
-                     Tiếp tục
+                  ) : (
+                        <View style={styles.inputFormContainer}>
+                           <TextInput
+                              style={[styles.numberInput, { width: '12%' }]}
+                              maxLength={1}
+                              keyboardType="number-pad"
+                              blurOnSubmit={false}
+                              ref={ref => (this.passwordRef1 = ref)}
+                              onChangeText={_ => {
+                                 this.goToNextRef(_, null, this.passwordRef2);
+                              }}></TextInput>
+                           <TextInput
+                              style={[styles.numberInput, { width: '12%' }]}
+                              maxLength={1}
+                              keyboardType="number-pad"
+                              ref={ref => (this.passwordRef2 = ref)}
+                              onChangeText={_ => {
+                                 this.goToNextRef(
+                                    _,
+                                    this.passwordRef1,
+                                    this.passwordRef3
+                                 );
+                              }}></TextInput>
+                           <TextInput
+                              style={[styles.numberInput, { width: '12%' }]}
+                              maxLength={1}
+                              keyboardType="number-pad"
+                              ref={ref => (this.passwordRef3 = ref)}
+                              onChangeText={_ => {
+                                 this.goToNextRef(
+                                    _,
+                                    this.passwordRef2,
+                                    this.passwordRef4
+                                 );
+                              }}></TextInput>
+                           <TextInput
+                              style={[styles.numberInput, { width: '12%' }]}
+                              maxLength={1}
+                              keyboardType="number-pad"
+                              ref={ref => (this.passwordRef4 = ref)}
+                              onChangeText={_ => {
+                                 this.goToNextRef(
+                                    _,
+                                    this.passwordRef3,
+                                    this.passwordRef5
+                                 );
+                              }}></TextInput>
+                           <TextInput
+                              style={[styles.numberInput, { width: '12%' }]}
+                              maxLength={1}
+                              keyboardType="number-pad"
+                              ref={ref => (this.passwordRef5 = ref)}
+                              onChangeText={_ => {
+                                 this.goToNextRef(
+                                    _,
+                                    this.passwordRef4,
+                                    this.passwordRef6
+                                 );
+                              }}></TextInput>
+                           <TextInput
+                              style={[styles.numberInput, { width: '12%' }]}
+                              maxLength={1}
+                              keyboardType="number-pad"
+                              ref={ref => (this.passwordRef6 = ref)}
+                              onChangeText={_ => {
+                                 this.goToNextRef(_, this.passwordRef5, null);
+                              }}></TextInput>
+                        </View>
+                     )}
+                  <View style={styles.buttonContainer}>
+                     <Button
+                        TouchableOpacity
+                        onPress={() =>
+                           NavigationService.navigate('Tabs')
+                        }
+                        appearance="outline"
+                        icon={(style) => <Icon {...style} name="arrowhead-right-outline" style={{ marginLeft: -5 }} />}
+                        status="info"
+                        style={{ flexDirection: 'row-reverse' }}>
+                        Tiếp tục
                      </Button>
-               </View>
-               <View style={styles.resendButttonContainer}>
-                  <FontText
-                     style={{
-                        opacity: 0.6
-                     }}>
-                     Bạn không nhận được mã xác thực?{' '}
-                  </FontText>
-                  <TouchableOpacity onPress={this.resendAlertHandler}>
-                     <FontText emphasis="bold" style={{ color: '#F56258' }}>
-                        Gửi lại
+                  </View>
+                  <View style={styles.resendButttonContainer}>
+                     <FontText
+                        style={{
+                           opacity: 0.6
+                        }}>
+                        Bạn không nhận được mã xác thực?{' '}
                      </FontText>
-                  </TouchableOpacity>
-               </View>
-            </KeyboardAvoidingView>
-         </View>
+                     <TouchableOpacity onPress={this.resendAlertHandler}>
+                        <FontText emphasis="bold" style={{ color: '#F56258' }}>
+                           Gửi lại
+                     </FontText>
+                     </TouchableOpacity>
+                  </View>
+               </KeyboardAvoidingView>
+            </View>
+         </Root>
       );
    }
 }
