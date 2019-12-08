@@ -16,6 +16,7 @@ import NavigationService from '../../services/navigate';
 import RNPicker from 'search-modal-picker';
 import ToggleSwitch from 'toggle-switch-react';
 import DatePicker from 'react-native-date-picker';
+import { Button, Icon, Input } from 'react-native-ui-kitten/ui';
 
 const options = {
    title: 'Chọn hình',
@@ -195,55 +196,55 @@ export default class CreateRequest extends Component {
                   {option == 'Tìm ngay' ? (
                      <></>
                   ) : (
-                     <View style={styles.formContainer}>
-                        <View style={styles.headerContainer}>
-                           <FontText
-                              emphasis="medium"
-                              style={styles.headerText}>
-                              Thời gian mong muốn
+                        <View style={styles.formContainer}>
+                           <View style={styles.headerContainer}>
+                              <FontText
+                                 emphasis="medium"
+                                 style={styles.headerText}>
+                                 Thời gian mong muốn
                            </FontText>
-                        </View>
-                        <View style={styles.inputContainer}>
-                           <View
-                              style={{
-                                 marginTop: 10,
-                                 paddingHorizontal: '13%',
-                                 flexDirection: 'row',
-                                 justifyContent: 'space-between'
-                              }}>
-                              <FontText emphasis="bold">Ngày</FontText>
-                              <FontText emphasis="bold">Giờ</FontText>
                            </View>
-                           <View
-                              style={{
-                                 width: '100%',
-                                 justifyContent: 'center',
-                                 overflow: 'hidden',
-                                 height: 100,
-                                 alignItems: 'center',
-                                 flexDirection: 'row'
-                              }}>
-                              <DatePicker
-                                 style={{ width: 220, height: 100 }}
-                                 date={this.state.date}
-                                 locale="vn"
-                                 mode="date"
-                                 minimumDate={today}
-                                 maximumDate={next7days}
-                                 onDateChange={date => this.setState({ date })}
-                              />
-                              <DatePicker
-                                 style={{ width: 130, height: 100 }}
-                                 date={this.state.date}
-                                 locale="vn"
-                                 mode="time"
-                                 minuteInterval={15}
-                                 onDateChange={date => this.setState({ date })}
-                              />
+                           <View style={styles.inputContainer}>
+                              <View
+                                 style={{
+                                    marginTop: 10,
+                                    paddingHorizontal: '13%',
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-between'
+                                 }}>
+                                 <FontText emphasis="bold">Ngày</FontText>
+                                 <FontText emphasis="bold">Giờ</FontText>
+                              </View>
+                              <View
+                                 style={{
+                                    width: '100%',
+                                    justifyContent: 'center',
+                                    overflow: 'hidden',
+                                    height: 100,
+                                    alignItems: 'center',
+                                    flexDirection: 'row'
+                                 }}>
+                                 <DatePicker
+                                    style={{ width: 220, height: 100 }}
+                                    date={this.state.date}
+                                    locale="vn"
+                                    mode="date"
+                                    minimumDate={today}
+                                    maximumDate={next7days}
+                                    onDateChange={date => this.setState({ date })}
+                                 />
+                                 <DatePicker
+                                    style={{ width: 130, height: 100 }}
+                                    date={this.state.date}
+                                    locale="vn"
+                                    mode="time"
+                                    minuteInterval={15}
+                                    onDateChange={date => this.setState({ date })}
+                                 />
+                              </View>
                            </View>
                         </View>
-                     </View>
-                  )}
+                     )}
                   <View style={styles.formContainer}>
                      <View style={styles.headerContainer}>
                         <FontText emphasis="medium" style={styles.headerText}>
@@ -502,14 +503,22 @@ export default class CreateRequest extends Component {
                         </FontText>
                      </View>
                      <View style={styles.inputContainer}>
-                        <FontText
-                           emphasis="bold"
-                           style={{
-                              fontSize: 16,
-                              marginTop: 7
-                           }}>
-                           Đại học FPT, khu Công Nghệ Cao, quận 9
-                        </FontText>
+                        <Input
+                           textStyle={{ padding: 0 }}
+                           label="Địa điểm"
+                           // style={{ backgroundColor: 'red' }}
+                           value={"Đại học FPT, khu công nghệ cao quận 9"}
+                           icon={style => (<Icon
+                              {...style}
+                              name="navigation-2"
+                              style={{ marginLeft: 0 }}
+                           />)}
+                           onIconPress={() => NavigationService.navigate("SelectLocation")}
+                        // onChangeText={setValue}
+                        />
+                        {/* <FontText emphasis="bold" style={styles.locationText}>
+                           Đại học FPT, khu công nghệ cao quận 9
+                        </FontText> */}
                         <TextInput
                            style={{
                               fontSize: 16,
@@ -525,58 +534,36 @@ export default class CreateRequest extends Component {
                   <View style={styles.buttonContainer}>
                      <View style={{ width: '100%', alignItems: 'center' }}>
                         {option == 'Tìm ngay' ? (
-                           <TouchableOpacity
-                              onPress={() =>
-                                 NavigationService.navigate('FindFixer')
-                              }
-                              style={[
-                                 styles.button,
-                                 {
-                                    backgroundColor: '#3ddc84',
-                                    width: '60%',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    borderColor: '#fff'
-                                 }
-                              ]}>
-                              <FontText
-                                 emphasis="bold"
-                                 style={{
-                                    fontSize: 17,
-                                    color: '#fff',
-                                    borderColor: '#fff'
-                                 }}>
-                                 Tìm thợ ngay
-                              </FontText>
-                           </TouchableOpacity>
+                           <Button
+                              TouchableOpacity
+                              onPress={() => NavigationService.navigate('FindFixer')}
+                              icon={style => (
+                                 <Icon
+                                    {...style}
+                                    name="paper-plane-outline"
+                                    style={{ marginLeft: -5 }}
+                                 />
+                              )}
+                              status="danger"
+                              style={{ width: '100%' }}>
+                              Tìm thợ ngay
+                     </Button>
                         ) : (
-                           <TouchableOpacity
-                              onPress={() =>
-                                 NavigationService.navigate('RequestDetails', {
-                                    status: 'Đang đặt lịch'
-                                 })
-                              }
-                              style={[
-                                 styles.button,
-                                 {
-                                    backgroundColor: '#3ddc84',
-                                    width: '60%',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    borderColor: '#fff'
-                                 }
-                              ]}>
-                              <FontText
-                                 emphasis="bold"
-                                 style={{
-                                    fontSize: 17,
-                                    color: '#fff',
-                                    borderColor: '#fff'
-                                 }}>
-                                 Đặt lịch
-                              </FontText>
-                           </TouchableOpacity>
-                        )}
+                              <Button
+                                 TouchableOpacity
+                                 onPress={() => NavigationService.navigate('FindFixer')}
+                                 icon={style => (
+                                    <Icon
+                                       {...style}
+                                       name="paper-plane-outline"
+                                       style={{ marginLeft: -5 }}
+                                    />
+                                 )}
+                                 status="danger"
+                                 style={{ width: '100%' }}>
+                                 Đặt lịch ngay
+                     </Button>
+                           )}
                      </View>
                   </View>
                </ScrollView>
@@ -653,7 +640,12 @@ const styles = StyleSheet.create({
       // color: '#F56258'
    },
    buttonContainer: {
-      marginTop: 20
+      marginTop: 10,
+      marginBottom: 10,
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingHorizontal: '15%'
    },
    button: {
       width: '40%',

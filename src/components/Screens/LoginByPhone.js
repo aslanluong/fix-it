@@ -68,23 +68,6 @@ export default class ForgotPassword extends Component {
                      }}
                   // defaultValue={this.state.value}
                   />
-                  {/* <Image
-                     source={{
-                        uri:
-                           'https://img.icons8.com/color/48/000000/vietnam.png'
-                     }}
-                     style={styles.logoVietNam}
-                  />
-                  <FontText
-                     emphasis="bold"
-                     style={{ fontSize: 16, marginRight: '3%' }}>
-                     +84
-                  </FontText>
-                  <TextInput
-                     style={styles.phoneNumberInput}
-                     placeholder="Nhập số điện thoại"
-                     maxLength={10}
-                     keyboardType="phone-pad"></TextInput> */}
                </View>
                <View>
                   <View style={styles.buttonContainer}>

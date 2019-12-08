@@ -12,6 +12,7 @@
   "dependencies": {
     "@eva-design/eva": "^1.2.0",
     "@ui-kitten/eva-icons": "^4.2.0",
+    "popup-ui": "^1.0.10",
     "react": "16.9.0",
     "react-native": "0.61.4",
     "react-native-bouncing-preloader": "^1.0.1",
@@ -19,6 +20,7 @@
     "react-native-gesture-handler": "^1.5.0",
     "react-native-image-picker": "^1.1.0",
     "react-native-linear-gradient": "^2.5.6",
+    "react-native-maps": "https://github.com/react-community/react-native-maps.git",
     "react-native-multibar": "^0.0.12",
     "react-native-paper": "^3.2.1",
     "react-native-reanimated": "^1.4.0",
