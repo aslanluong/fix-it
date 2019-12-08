@@ -15,6 +15,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import NavigationService from '../../services/navigate';
 import RNPicker from 'search-modal-picker';
 import ToggleSwitch from 'toggle-switch-react';
+import { Button, Icon } from 'react-native-ui-kitten/ui';
 
 const options = {
    title: 'Chọn hình',
@@ -417,32 +418,20 @@ export default class CreateRequest extends Component {
                      </View>
                   </View>
                   <View style={styles.buttonContainer}>
-                     <View style={{ width: '100%', alignItems: 'center' }}>
-                        <TouchableOpacity
-                           onPress={() =>
-                              NavigationService.navigate('FindFixer')
-                           }
-                           style={[
-                              styles.button,
-                              {
-                                 backgroundColor: '#3ddc84',
-                                 width: '70%',
-                                 alignItems: 'center',
-                                 justifyContent: 'center',
-                                 borderColor: '#fff'
-                              }
-                           ]}>
-                           <FontText
-                              emphasis="bold"
-                              style={{
-                                 fontSize: 17,
-                                 color: '#fff',
-                                 borderColor: '#fff'
-                              }}>
-                              Gửi yêu cầu
-                           </FontText>
-                        </TouchableOpacity>
-                     </View>
+                     <Button
+                        TouchableOpacity
+                        onPress={() => NavigationService.navigate('FindFixer')}
+                        icon={style => (
+                           <Icon
+                              {...style}
+                              name="paper-plane-outline"
+                              style={{ marginLeft: -5 }}
+                           />
+                        )}
+                        status="danger"
+                        style={{ width: '100%' }}>
+                        Gửi yêu cầu
+                  </Button>
                   </View>
                </ScrollView>
             </View>
@@ -519,7 +508,12 @@ const styles = StyleSheet.create({
       marginBottom: 20
    },
    buttonContainer: {
-      marginTop: 20
+      marginTop: 10,
+      marginBottom: 10,
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingHorizontal: '15%'
    },
    button: {
       width: '40%',

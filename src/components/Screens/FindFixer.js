@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconE from 'react-native-vector-icons/Entypo';
 import Swipeable from 'react-native-swipeable';
 import NavigationService from '../../services/navigate';
+import { Button, Icon as IconUI } from 'react-native-ui-kitten/ui';
+
 
 const icons = [
    require('../../../assets/images/groove-joint-pliers.png'),
@@ -156,94 +158,108 @@ export default class FindFixer extends Component {
                               onRightActionActivate={() =>
                                  NavigationService.navigate('CreateRequest')
                               }>
-                              <View style={styles.cancelButton}>
-                                 <FontText style={styles.cancelText}>
-                                    Trượt qua trái để huỷ
-                                 </FontText>
-                              </View>
+                              <Button
+                                 appearance="outline"
+                                 icon={style => (
+                                    <>
+                                       <IconUI
+                                          {...style}
+                                          name="arrowhead-left-outline"
+                                          style={{ marginLeft: -15 }}
+
+                                       />
+                                       <IconUI
+                                          {...style}
+                                          name="arrowhead-left-outline"
+                                          style={{ marginLeft: 0 }}
+                                       />
+                                    </>
+                                 )}
+                                 status="danger"
+                                 style={{ flexDirection: 'row-reverse', marginVertical: 10, }}>
+                                 Trượt qua trái để huỷ
+                              </Button>
                            </Swipeable>
                         </View>
                      </View>
                   ) : (
-                     <View style={styles.foundContainer}>
-                        <View
-                           style={{
-                              width: 130,
-                              height: 130,
-                              borderRadius: 65,
-                              marginTop: -65,
-                              backgroundColor: '#F56258',
-                              overflow: 'hidden',
-                              borderWidth: 4,
-                              borderColor: 'white'
-                           }}>
-                           <Image
-                              style={{ width: 122, height: 122, marginTop: 15 }}
-                              source={{
-                                 uri:
-                                    'https://www.pngrepo.com/png/17468/170/avatar.png'
+                        <View style={styles.foundContainer}>
+                           <View
+                              style={{
+                                 width: 130,
+                                 height: 130,
+                                 borderRadius: 65,
+                                 marginTop: -65,
+                                 backgroundColor: '#F56258',
+                                 overflow: 'hidden',
+                                 borderWidth: 4,
+                                 borderColor: 'white'
+                              }}>
+                              <Image
+                                 style={{ width: 122, height: 122, marginTop: 15 }}
+                                 source={{
+                                    uri:
+                                       'https://www.pngrepo.com/png/17468/170/avatar.png'
+                                 }}
+                              />
+                           </View>
+                           <FontText>Đã tìm thấy thợ!</FontText>
+
+                           <View
+                              style={{
+                                 flexDirection: 'row',
+                                 alignItems: 'center'
+                              }}>
+                              <FontText
+                                 emphasis="bold"
+                                 style={{
+                                    fontSize: 25,
+                                    justifyContent: 'center'
+                                 }}>
+                                 Bùi Văn Khánh{' '}
+                              </FontText>
+                              <Icon
+                                 name="shield-check"
+                                 style={{ fontSize: 25, color: '#3ddc84' }}
+                              />
+                           </View>
+                           <FontText>Chuyên môn: Sửa điều hoà phòng</FontText>
+                           <View style={{ flexDirection: 'row' }}>
+                              <Icon name="star" style={styles.starIcon} />
+                              <Icon name="star" style={styles.starIcon} />
+                              <Icon name="star" style={styles.starIcon} />
+                              <Icon name="star" style={styles.starIcon} />
+                              <Icon name="star-half" style={styles.starIcon} />
+                           </View>
+                           <FontText style={{ fontSize: 16 }}>
+                              097 123 4567
+                        </FontText>
+                           <Button
+                              TouchableOpacity
+                              onPress={() =>
+                                 NavigationService.navigate('Tabs')
+                              }
+                              appearance="outline"
+                              icon={style => (
+                                 <IconUI
+                                    {...style}
+                                    name="arrowhead-right-outline"
+                                    style={{ marginLeft: -5 }}
+                                 />)}
+                              status="info"
+                              style={{ flexDirection: 'row-reverse', marginVertical: 10, }}>
+                              Tiếp tục
+                     </Button>
+                           <IconE
+                              name="triangle-down"
+                              style={{
+                                 fontSize: 100,
+                                 color: '#FFF',
+                                 marginTop: -30
                               }}
                            />
                         </View>
-                        <FontText>Đã tìm thấy thợ!</FontText>
-
-                        <View
-                           style={{
-                              flexDirection: 'row',
-                              alignItems: 'center'
-                           }}>
-                           <FontText
-                              emphasis="bold"
-                              style={{
-                                 fontSize: 25,
-                                 justifyContent: 'center'
-                              }}>
-                              Bùi Văn Khánh{' '}
-                           </FontText>
-                           <Icon
-                              name="shield-check"
-                              style={{ fontSize: 25, color: '#3ddc84' }}
-                           />
-                        </View>
-                        <FontText>Chuyên môn: Sửa điều hoà phòng</FontText>
-                        <View style={{ flexDirection: 'row' }}>
-                           <Icon name="star" style={styles.starIcon} />
-                           <Icon name="star" style={styles.starIcon} />
-                           <Icon name="star" style={styles.starIcon} />
-                           <Icon name="star" style={styles.starIcon} />
-                           <Icon name="star-half" style={styles.starIcon} />
-                        </View>
-                        <FontText style={{ fontSize: 16 }}>
-                           097 123 4567
-                        </FontText>
-                        <TouchableOpacity
-                           style={{
-                              width: '40%',
-                              backgroundColor: '#F56258',
-                              borderRadius: 10,
-                              marginVertical: 10,
-                              paddingVertical: 12,
-                              paddingHorizontal: 25,
-                              flexDirection: 'row',
-                              justifyContent: 'space-between',
-                              alignItems: 'center'
-                           }}>
-                           <FontText>Tiếp tục</FontText>
-                           <Icon
-                              name="chevron-double-right"
-                              style={{ fontSize: 17 }}
-                           />
-                        </TouchableOpacity>
-                        <IconE
-                           name="triangle-down"
-                           style={{
-                              fontSize: 100,
-                              color: '#FFF',
-                              marginTop: -30
-                           }}
-                        />
-                     </View>
-                  )}
+                     )}
                </View>
             </ImageBackground>
          </View>
@@ -288,24 +304,11 @@ const styles = StyleSheet.create({
       height: 300
    },
    cancelContainer: {
+
       marginTop: -33,
       width: '70%',
       alignItems: 'center',
       overflow: 'hidden',
-      backgroundColor: 'white',
-      borderColor: '#e9e9e9',
-      borderWidth: 1,
-      borderRadius: 10,
-
-      shadowColor: '#000',
-      shadowOffset: {
-         width: 0,
-         height: 11
-      },
-      shadowOpacity: 0.57,
-      shadowRadius: 15.19,
-
-      elevation: 23
    },
    cancelButton: {
       width: '100%',
