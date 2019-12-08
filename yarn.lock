@@ -5506,6 +5506,10 @@ react-native-linear-gradient@^2.5.6:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
   integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
 
+"react-native-maps@https://github.com/react-community/react-native-maps.git":
+  version "0.26.1"
+  resolved "https://github.com/react-community/react-native-maps.git#bac105efbeee43c335ae81082b054ca43447fbea"
+
 react-native-multibar@^0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/react-native-multibar/-/react-native-multibar-0.0.12.tgz#d4f161621f47636d671f876db9fc0b2bb4e91992"

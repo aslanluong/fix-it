@@ -15,7 +15,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import NavigationService from '../../services/navigate';
 import RNPicker from 'search-modal-picker';
 import ToggleSwitch from 'toggle-switch-react';
-import { Button, Icon } from 'react-native-ui-kitten/ui';
+import { Button, Icon, Input } from 'react-native-ui-kitten/ui';
 
 const options = {
    title: 'Chọn hình',
@@ -409,9 +409,22 @@ export default class CreateRequest extends Component {
                         </FontText>
                      </View>
                      <View style={styles.inputContainer}>
-                        <FontText emphasis="bold" style={styles.locationText}>
+                        <Input
+                           textStyle={{ padding: 0 }}
+                           label="Địa điểm"
+                           // style={{ backgroundColor: 'red' }}
+                           value={"Đại học FPT, khu công nghệ cao quận 9"}
+                           icon={style => (<Icon
+                              {...style}
+                              name="navigation-2"
+                              style={{ marginLeft: 0 }}
+                           />)}
+                           onIconPress={() => NavigationService.navigate("SelectLocation")}
+                        // onChangeText={setValue}
+                        />
+                        {/* <FontText emphasis="bold" style={styles.locationText}>
                            Đại học FPT, khu công nghệ cao quận 9
-                        </FontText>
+                        </FontText> */}
                         <TextInput
                            style={styles.locationNote}
                            placeholder="Ghi chú: Kế bên công ty dịch vụ tin học HPT..."></TextInput>
