@@ -13,7 +13,7 @@ export default class AccumulatePoint extends Component {
          <ScrollView>
             <View style={{
                flex: 1,
-               backgroundColor:'#ff9051',
+               backgroundColor:'#white',
                //backgroundColor: '##EEEEEE'
             }}>
                <View style={{
@@ -129,8 +129,7 @@ export default class AccumulatePoint extends Component {
 
 
                         <View style={{
-                           backgroundColor: 'white',
-                           borderWidth: 1,
+                           backgroundColor: '#DDDDDD',
                            height: 50,
                            borderRadius: 5,
                            margin: 5,
@@ -145,6 +144,7 @@ export default class AccumulatePoint extends Component {
                               borderLeftWidth: 0,
                               borderBottomWidth: 0,
                               marginRight: 0,
+                              marginTop:15,
                               margin: 10,
                               flex: 1
                            }}>
@@ -180,13 +180,13 @@ export default class AccumulatePoint extends Component {
 
 
                         <View style={{
-                           backgroundColor: 'white',
-                           borderWidth: 1,
+                           backgroundColor: '#DDDDDD',
                            height: 50,
                            borderRadius: 5,
                            margin: 5,
                            marginLeft: 10,
                            marginRight: 10,
+                           marginBottom: 10,
                            flexDirection: 'row',
 
                         }}>
@@ -196,6 +196,7 @@ export default class AccumulatePoint extends Component {
                               borderLeftWidth: 0,
                               borderBottomWidth: 0,
                               marginRight: 0,
+                              marginTop:15,
                               margin: 10,
                               flex: 1
                            }}>
@@ -243,14 +244,14 @@ export default class AccumulatePoint extends Component {
                         fontSize: 18,
                         fontWeight: 'bold',
                      }}>
-                        Bạn đang là thành viên vàng!
+                        Bạn đang là thành viên vàng
                   </Text>
                      <Text style={{
                         padding: 10,
                         fontSize: 16,
 
                      }}>
-                        Bạn cần tích lũy thêm 100 points trước ngày 01/02/2020 để giữ hạng vàng
+                        Bạn cần tích lũy thêm 100 <Text style={{color:'gold'}}>Points</Text> trước ngày 01/02/2020 để giữ hạng vàng
                   </Text>
                   </View>
 
