@@ -83,13 +83,25 @@ export default class FindFixer extends Component {
                            <FontText emphasis="light">Máy lạnh</FontText>
                         </View>
                      </View>
-                     <View style={{ flexDirection: 'row' }}>
+                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 2 }}>
                            <FontText emphasis="medium">Mô tả sự cố</FontText>
                         </View>
                         <View style={{ flex: 5 }}>
                            <FontText emphasis="light">
                               Không điều chỉnh được nhiệt độ
+                           </FontText>
+                        </View>
+                     </View>
+                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <View style={{ flex: 2 }}>
+                           <FontText emphasis="medium">Phí ước tính</FontText>
+                        </View>
+                        <View style={{ flex: 5 }}>
+                           <FontText emphasis="light">
+                              150.000đ +{' '}
+                              <FontText emphasis="medium">Tiền tip:</FontText>{' '}
+                              50.000đ
                            </FontText>
                         </View>
                      </View>
@@ -105,14 +117,6 @@ export default class FindFixer extends Component {
                            <FontText emphasis="light">
                               Gọi trước khi tới khoảng 10p
                            </FontText>
-                        </View>
-                     </View>
-                     <View style={{ flexDirection: 'row' }}>
-                        <View style={{ flex: 2 }}>
-                           <FontText emphasis="medium">Tiền tip</FontText>
-                        </View>
-                        <View style={{ flex: 5 }}>
-                           <FontText emphasis="light">50.000đ</FontText>
                         </View>
                      </View>
                   </View>

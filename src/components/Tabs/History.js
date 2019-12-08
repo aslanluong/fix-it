@@ -6,10 +6,18 @@ import FontText from '../FontText';
 
 const list = [
    {
-      typeSource: APP_CONST.TV_ICON,
-      itemName: 'Tivi 40 inch',
-      status: 'Đã huỷ',
-      time: '18:11 01/10/2019',
+      typeSource: APP_CONST.FAUCET_ICON,
+      itemName: 'Vòi sen',
+      status: 'Đang đặt lịch',
+      time: '16:00 - 27/10/2019',
+      feedback: '',
+      fee: ''
+   },
+   {
+      typeSource: APP_CONST.AIR_CONDITIONER_ICON,
+      itemName: 'Máy lạnh',
+      status: 'Đang thực hiện',
+      time: '11:17 - 09/12/2019',
       feedback: '',
       fee: ''
    },
@@ -17,15 +25,23 @@ const list = [
       typeSource: APP_CONST.LAMP_ICON,
       itemName: 'Đèn trần lớn',
       status: 'Đã hoàn thành',
-      time: '13:17 01/11/2019',
+      time: '13:17 - 01/11/2019',
       feedback: 4,
       fee: '350.000đ'
+   },
+   {
+      typeSource: APP_CONST.TV_ICON,
+      itemName: 'Tivi 40 inch',
+      status: 'Đã huỷ',
+      time: '18:11 - 01/10/2019',
+      feedback: '',
+      fee: ''
    },
    {
       typeSource: APP_CONST.WASHING_MACHINE_ICON,
       itemName: 'Tủ lạnh 30 lít',
       status: 'Đã hoàn thành',
-      time: '09:31 07/11/2019',
+      time: '09:31 - 07/11/2019',
       feedback: 5,
       fee: '500.000đ'
    },
@@ -33,25 +49,9 @@ const list = [
       typeSource: APP_CONST.CUTLERY_ICON,
       itemName: 'Bếp điện',
       status: 'Đã hoàn thành',
-      time: '16:23 09/10/2019',
+      time: '16:23 - 09/10/2019',
       feedback: 3,
-      fee: '100.000đ'
-   },
-   {
-      typeSource: APP_CONST.AIR_CONDITIONER_ICON,
-      itemName: 'Máy lạnh',
-      status: 'Đang thực hiện',
-      time: '14:11 05/10/2019',
-      feedback: '',
-      fee: ''
-   },
-   {
-      typeSource: APP_CONST.FAUCET_ICON,
-      itemName: 'Vòi sen',
-      status: 'Đã hoàn thành',
-      time: '16:00 27/10/2019',
-      feedback: 5,
-      fee: '70.000đ'
+      fee: '90.000đ'
    }
 ];
 const shuffleArray = array => {
@@ -66,7 +66,9 @@ const shuffleArray = array => {
 };
 export default class History extends Component {
    render() {
-      const randomList = shuffleArray(list);
+      // disabled
+      // const randomList = shuffleArray(list);
+
       return (
          <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>
@@ -76,7 +78,7 @@ export default class History extends Component {
             </View>
             <FlatList
                contentContainerStyle={{ alignItems: 'center' }}
-               data={randomList}
+               data={list}
                renderItem={({ item }) => (
                   <HistoryRow
                      typeSource={item.typeSource}

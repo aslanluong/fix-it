@@ -137,9 +137,12 @@ export default class Home extends Component {
                      }}>
                      <TouchableOpacity
                         style={styles.option}
-                        onPress={() =>
-                           NavigationService.navigate('CreateRequest')
-                        }>
+                        onPress={() => {
+                           this.setState({ choice: false });
+                           NavigationService.navigate('CreateRequest', {
+                              option: 'Tìm ngay'
+                           });
+                        }}>
                         <Image
                            source={require('../../../assets/images/search.png')}
                            style={{ width: 80, height: 80 }}
@@ -158,9 +161,12 @@ export default class Home extends Component {
                      }}>
                      <TouchableOpacity
                         style={styles.option}
-                        onPress={() =>
-                           NavigationService.navigate('CreateRequest')
-                        }>
+                        onPress={() => {
+                           this.setState({ choice: false });
+                           NavigationService.navigate('CreateRequest', {
+                              option: 'Đặt lịch'
+                           });
+                        }}>
                         <Image
                            source={require('../../../assets/images/calendar.png')}
                            style={{ width: 80, height: 80 }}

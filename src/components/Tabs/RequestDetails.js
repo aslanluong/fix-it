@@ -25,11 +25,98 @@ export default class RequestDetails extends Component {
          { time: '10:25', description: 'Sửa xong/Xác nhận hoàn thành' }
       ];
       this.cancelTimeline = [
-         { time: '09:00', description: 'Yêu cầu sửa chữa mới được tạo', circleColor: '#ff9501' },
-         { time: '09:05', description: 'Thợ xác nhận yêu cầu', circleColor: 'red', lineColor: 'gray' },
-         { time: '', description: 'Thợ đang trên đường đến', lineColor: 'gray', circleColor: 'gray' },
-         { time: '', description: 'Thợ đến nơi', lineColor: 'gray', circleColor: 'gray' },
-         { time: '', description: 'Sửa xong/Xác nhận hoàn thành', lineColor: 'gray', circleColor: 'gray' },
+         {
+            time: '09:00',
+            description: 'Yêu cầu sửa chữa mới được tạo',
+            circleColor: '#ff9501'
+         },
+         {
+            time: '09:05',
+            description: 'Thợ xác nhận yêu cầu',
+            circleColor: 'red',
+            lineColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Thợ đang trên đường đến',
+            lineColor: '#a9a9a9',
+            circleColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Thợ đến nơi',
+            lineColor: '#a9a9a9',
+            circleColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Sửa xong/Xác nhận hoàn thành',
+            lineColor: '#a9a9a9',
+            circleColor: '#a9a9a9'
+         }
+      ];
+      this.processTimeline = [
+         {
+            time: '11:17',
+            description: 'Yêu cầu sửa chữa mới được tạo',
+            circleColor: '#ff9501'
+         },
+         {
+            time: '11:20',
+            description: 'Thợ xác nhận yêu cầu',
+            circleColor: '#ff9501',
+            lineColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Thợ đang trên đường đến',
+            lineColor: '#a9a9a9',
+            circleColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Thợ đến nơi',
+            lineColor: '#a9a9a9',
+            circleColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Sửa xong/Xác nhận hoàn thành',
+            lineColor: '#a9a9a9',
+            circleColor: '#a9a9a9'
+         }
+      ];
+      this.calendarTimeline = [
+         {
+            time: '11:20',
+            description: 'Yêu cầu sửa chữa mới được tạo',
+            circleColor: '#ff9501',
+            lineColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Thợ xác nhận lịch sửa',
+            circleColor: '#a9a9a9',
+            lineColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Thợ đang trên đường đến',
+            lineColor: '#a9a9a9',
+            circleColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Thợ đến nơi',
+            lineColor: '#a9a9a9',
+            circleColor: '#a9a9a9'
+         },
+         {
+            time: '',
+            description: 'Sửa xong/Xác nhận hoàn thành',
+            lineColor: '#a9a9a9',
+            circleColor: '#a9a9a9'
+         }
       ];
    }
    render() {
@@ -50,7 +137,9 @@ export default class RequestDetails extends Component {
                   <FontText emphasis="bold" style={{ fontSize: 13 }}>
                      Yêu cầu sửa chữa #FICRAA001
                   </FontText>
-                  <FontText style={{ fontSize: 12 }}>16:00 27/10/2019</FontText>
+                  <FontText style={{ fontSize: 12 }}>
+                     11:17 - 09/12/2019
+                  </FontText>
                </View>
                <FontText
                   emphasis="medium"
@@ -65,7 +154,13 @@ export default class RequestDetails extends Component {
                      style={{
                         fontSize: 18,
                         color:
-                           status == 'Đã hoàn thành' ? '#3ddc84' : '#a9a9a9',
+                           status == 'Đã hoàn thành'
+                              ? '#3ddc84'
+                              : status == 'Đang thực hiện'
+                              ? '#4285f4'
+                              : status == 'Đang đặt lịch'
+                              ? '#4285f4'
+                              : '#a9a9a9',
                         marginBottom: 10
                      }}>
                      {status}
@@ -73,6 +168,10 @@ export default class RequestDetails extends Component {
                   <FontText emphasis="light">
                      {status == 'Đã hoàn thành'
                         ? 'Quá trình sửa chữa thiết bị của bạn đã hoàn tất. Thiết bị của bạn đã được khắc phục sự cố rồi đấy!'
+                        : status == 'Đang thực hiện'
+                        ? 'Quá trình sửa chữa đang diễn ra, bạn có thể xem tiến độ công việc tại đây...'
+                        : status == 'Đang đặt lịch'
+                        ? 'Chúng tôi đang tìm kiếm thợ phù hợp với lịch hẹn của bạn...'
                         : 'Quá trình sửa chữa thiết bị đã bị huỷ...'}
                   </FontText>
                </View>
@@ -96,8 +195,8 @@ export default class RequestDetails extends Component {
                      </View>
                   </View>
                ) : (
-                     <></>
-                  )}
+                  <></>
+               )}
                <View>
                   <FontText
                      emphasis="bold"
@@ -108,16 +207,16 @@ export default class RequestDetails extends Component {
                      }}>
                      Trạng thái yêu cầu sửa chữa
                   </FontText>
-                  <View
-                     style={[
-                        styles.timelineContainer
-                     ]}>
-
+                  <View style={[styles.timelineContainer]}>
                      <Timeline
                         style={{ paddingLeft: 5 }}
                         data={
                            status == 'Đã hoàn thành'
                               ? this.doneTimeline
+                              : status == 'Đang thực hiện'
+                              ? this.processTimeline
+                              : status == 'Đang đặt lịch'
+                              ? this.calendarTimeline
                               : this.cancelTimeline
                         }
                         circleColor="#ff9501"
@@ -143,7 +242,6 @@ export default class RequestDetails extends Component {
                            </View>
                         )}
                      />
-
                   </View>
                </View>
                {status == 'Đã hoàn thành' ? (
@@ -218,7 +316,7 @@ export default class RequestDetails extends Component {
                                        paddingTop: 3,
                                        borderRadius: 12.5,
                                        overflow: 'hidden',
-                                       backgroundColor: '#3ddc84'
+                                       backgroundColor: '#F56258'
                                     }}>
                                     <Image
                                        style={{ width: 25, height: 25 }}
@@ -230,7 +328,7 @@ export default class RequestDetails extends Component {
                                  </View>
                               </View>
                               <View style={{ flex: 7 }}>
-                                 <FontText>Thắng Lương Thành</FontText>
+                                 <FontText>Bùi Văn Khánh</FontText>
                               </View>
                            </View>
                            <View
@@ -248,7 +346,133 @@ export default class RequestDetails extends Component {
                                  />
                               </View>
                               <View style={{ flex: 7 }}>
-                                 <FontText>091 113 9999</FontText>
+                                 <FontText>097 113 9999</FontText>
+                              </View>
+                           </View>
+                           <View
+                              style={{
+                                 borderBottomWidth: 0.5,
+                                 borderColor: '#c9c9c9',
+                                 marginVertical: 15
+                              }}
+                           />
+                           <View style={styles.fixerRow}>
+                              <View style={{ flex: 1, alignItems: 'center' }}>
+                                 <IconM
+                                    name="map-marker-outline"
+                                    style={{ fontSize: 20, color: '#ff9501' }}
+                                 />
+                              </View>
+                              <View style={{ flex: 7 }}>
+                                 <Text
+                                    style={{ fontFamily: 'lato-regular' }}
+                                    numberOfLines={1}
+                                    ellipsizeMode="tail">
+                                    Lô T2-4 đường D1, Khu Công Nghệ Cao, HCM
+                                 </Text>
+                              </View>
+                           </View>
+                        </View>
+                     </View>
+                  </View>
+               ) : status == 'Đang thực hiện' ? (
+                  <View>
+                     <FontText
+                        emphasis="bold"
+                        style={{
+                           marginHorizontal: '5%',
+                           marginTop: 10,
+                           fontSize: 15
+                        }}>
+                        Chi phí
+                     </FontText>
+                     <View style={styles.feeContainer}>
+                        <View style={styles.feeRow}>
+                           <FontText>Phí ước tính</FontText>
+                           <FontText>150.000đ</FontText>
+                        </View>
+                        <View
+                           style={{
+                              borderBottomWidth: 0.5,
+                              borderColor: '#c9c9c9',
+                              marginBottom: 15
+                           }}
+                        />
+                        <View style={styles.feeRow}>
+                           <FontText>Tiền tip</FontText>
+                           <FontText>50.000đ</FontText>
+                        </View>
+                        <View
+                           style={{
+                              borderBottomWidth: 0.5,
+                              borderColor: '#b9b9b9',
+                              marginTop: 20,
+                              marginBottom: 3
+                           }}
+                        />
+                        <View
+                           style={{
+                              borderBottomWidth: 0.5,
+                              borderColor: '#b9b9b9',
+                              marginBottom: 10
+                           }}
+                        />
+                        <View style={styles.feeRow}>
+                           <FontText>Chi phí tạm tính</FontText>
+                           <FontText>165.000đ</FontText>
+                        </View>
+                     </View>
+                     <View>
+                        <FontText
+                           emphasis="bold"
+                           style={{
+                              marginHorizontal: '5%',
+                              marginTop: 10,
+                              fontSize: 15
+                           }}>
+                           Thợ sửa chữa
+                        </FontText>
+                        <View style={styles.fixerContainer}>
+                           <View style={styles.fixerRow}>
+                              <View style={{ flex: 1, alignItems: 'center' }}>
+                                 <View
+                                    style={{
+                                       width: 25,
+                                       height: 25,
+                                       paddingTop: 3,
+                                       borderRadius: 12.5,
+                                       overflow: 'hidden',
+                                       backgroundColor: '#F56258'
+                                    }}>
+                                    <Image
+                                       style={{ width: 25, height: 25 }}
+                                       source={{
+                                          uri:
+                                             'https://www.pngrepo.com/png/17468/170/avatar.png'
+                                       }}
+                                    />
+                                 </View>
+                              </View>
+                              <View style={{ flex: 7 }}>
+                                 <FontText>Bùi Văn Khánh</FontText>
+                              </View>
+                           </View>
+                           <View
+                              style={{
+                                 borderBottomWidth: 0.5,
+                                 borderColor: '#c9c9c9',
+                                 marginVertical: 15
+                              }}
+                           />
+                           <View style={styles.fixerRow}>
+                              <View style={{ flex: 1, alignItems: 'center' }}>
+                                 <IconM
+                                    name="phone"
+                                    style={{ fontSize: 20, color: '#ff9501' }}
+                                 />
+                              </View>
+                              <View style={{ flex: 7 }}>
+                                 <FontText>097 113 9999</FontText>
                               </View>
                            </View>
                            <View
@@ -278,8 +502,8 @@ export default class RequestDetails extends Component {
                      </View>
                   </View>
                ) : (
-                     <></>
-                  )}
+                  <></>
+               )}
             </ScrollView>
          </SafeAreaView>
       );
