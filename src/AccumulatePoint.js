@@ -13,7 +13,8 @@ export default class AccumulatePoint extends Component {
          <ScrollView>
             <View style={{
                flex: 1,
-               backgroundColor: '##EEEEEE'
+               backgroundColor:'#ff9051',
+               //backgroundColor: '##EEEEEE'
             }}>
                <View style={{
                   flexDirection: 'column',
@@ -258,6 +259,7 @@ export default class AccumulatePoint extends Component {
 
                   <View style={{
                      backgroundColor: '#AAAAAA',
+                     //backgroundColor:'#ff9051',
                      flexDirection: 'row',
                      height: 70,
                      borderRadius: 5,
@@ -307,7 +309,8 @@ export default class AccumulatePoint extends Component {
                      borderRadius: 5,
                      margin: 5,
                      marginLeft: 10,
-                     marginRight: 10
+                     marginRight: 10,
+
 
                   }}>
                      <Text style={{
@@ -320,18 +323,19 @@ export default class AccumulatePoint extends Component {
                   </Text>
                      <Text style={{
                         padding: 10,
-                        fontSize: 12,
-                        color: 'gold'
+                        fontSize: 13,
+                        color: '#ff9051',
+                        fontWeight:'bold'
 
                      }}>
                         Đổi quà không ảnh hưởng đến tích điểm
                   </Text>
                   <View style={{
-                     flexDirection:'row',
+                     flexDirection:'column',
                      paddingLeft:10,
                      margin:10,
-                     backgroundColor:'yellow',
-                     height:100
+                     backgroundColor:'#EEEEEE',
+                     borderRadius:5
                   }}>
                      <View style={{
                         paddingLeft:10,
@@ -352,7 +356,7 @@ export default class AccumulatePoint extends Component {
                         <Text  style={{
                            fontSize:14
                         }}>
-                           Một phần bánh ngày sinh nhật
+                           Đổi ưu đãi trang cửa hàng 
                         </Text>
 
                      </View>
@@ -364,7 +368,7 @@ export default class AccumulatePoint extends Component {
                         <Text style={{
                            fontSize:14
                         }}>
-                           Một phần bánh ngày sinh nhật
+                           Miễn phí 1 ly cà phê truyền thống hoặc 1 ly trà trái cây
                         </Text>
 
                      </View>
@@ -376,7 +380,7 @@ export default class AccumulatePoint extends Component {
                         <Text  style={{
                            fontSize:14
                         }}>
-                           Một phần bánh ngày sinh nhật
+                           Giảm giá 5% khi mua sản phẩm tại The Coffee house
                         </Text>
 
                      </View>
