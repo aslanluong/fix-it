@@ -12,6 +12,7 @@
   "dependencies": {
     "@eva-design/eva": "^1.2.0",
     "@ui-kitten/eva-icons": "^4.2.0",
+    "popup-ui": "^1.0.10",
     "react": "16.9.0",
     "react-native": "0.61.4",
     "react-native-bouncing-preloader": "^1.0.1",
