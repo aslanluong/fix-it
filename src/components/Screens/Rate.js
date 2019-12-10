@@ -16,112 +16,143 @@ export default class Rate extends Component {
 
    render() {
       return (
-         <View style={{
-            backgroundColor: 'white',
-            flex: 1,
-            flexDirection: 'column'
-         }}>
-
-
+         <ScrollView>
             <View style={{
-               borderRadius: 2,
-               borderColor: 'white',
-               borderWidth: 0,
-            }}>
-               <Text style={[styles.titleText, {
-                  marginTop: 50, color: '#ff9051',
-                  fontSize: 32,
-                  fontWeight: 'bold',
-               }]}>Rate me, Thank you!</Text>
-            </View>
-
-
-            <View style={{
-               justifyContent: 'center',
-               alignItems: 'center',
-               borderRadius: 2,
-               borderColor: 'black',
-               borderWidth: 0,
-            }}>
-               <Text style={[styles.titleText, { marginTop: 30, color: '#ff9051', fontSize: 22 }]}>Please Swipe to Rate</Text>
-               <Rating
-                  showRating
-                  imageSize={40}
-                  ratingTextColor='#ff9051'
-                  ratingColor='#ff9051'
-                  onFinishRating={this.ratingCompleted}
-                  style={{ paddingVertical: 10 }}
-                  startingValue={5}
-               />
-            </View>
-
-
-            <View style={{
-               marginTop: 20,
-               justifyContent: 'center',
-               alignItems: 'center',
-               // borderWidth: 1,
-               // borderColor: 'pink'
-            }}>
-               <Text style={{
-                  paddingLeft: 25,
-                  paddingRight: 25,
-                  fontSize: 18,
-                  color: 'black',
-               }}>
-                  I hope to received your comments to improve our services,<Text style={{ color: '#f1c40f', fontWeight: 'bold', fontSize: 25 }}>Thank you!</Text>
-               </Text>
-            </View>
-
-
-            <View style={{
+               backgroundColor: '#EEEEEE',
                flex: 1,
-               flexDirection: 'column',
-               height: '100%',
-               width: '100%',
-               padding: 20
+               flexDirection: 'column'
             }}>
+
+
                <View style={{
-                  flex: 6,
-                  borderColor: '#ff9051',
-                  borderTopRightRadius: 15,
-                  borderTopLeftRadius: 15,
-                  borderWidth: 1,
+                  borderColor: 'white',
+                  backgroundColor: 'white',
+                  padding: 10,
+                  margin: 15,
+                  borderRadius: 5,
                   justifyContent: 'center',
-                  alignItems: 'center'
+                  alignContent: 'center',
+                  paddingTop: 10,
+                  marginBottom: 15,
+                  borderWidth: 1,
                }}>
-                  <TextInput
-                     style={{
-                        height: '100%',
-                        fontSize: 18,
-                        // borderColor: 'gray', 
-                        // borderWidth: 1,
-                        width: '90%',
-
-                     }}
-                     onChangeText={text => onChangeText(text)}
-                     value={value}
-                  />
-
+                  <Text style={[styles.titleText, {
+                     marginTop: 50, color: '#ff9051',
+                     fontSize: 32,
+                     fontWeight: 'bold',
+                     marginTop: 15,
+                     marginBottom: 15,
+                  }]}>Rate me, Thank you!</Text>
                </View>
-               <View style={{
-                  flex: 4,
-                  // borderWidth: 1,
-                  height: '100%'
 
+
+               <View style={{
+                  borderColor: 'white',
+                  backgroundColor: 'white',
+                  padding: 10,
+                  margin: 15,
+                  marginTop: 0,
+                  borderRadius: 5,
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                  paddingTop: 0,
+                  //marginBottom: 15,
+                  borderWidth: 1,
                }}>
-                  <Button
-                     style={{ height: '100%', borderRadius: 2 }}
-                     title="FEED BACK"
-                     color="#ff9051"
-                     onPress={() => Alert.alert('Thanks for your rating!')}
+                  <Text style={[styles.titleText, { marginTop: 30, color: '#ff9051', fontSize: 24, fontWeight: 'bold' }]}>Please Swipe to Rate</Text>
+                  <Rating
+                     showRating
+                     imageSize={40}
+                     ratingTextColor='#ff9051'
+                     ratingColor='#ff9051'
+                     onFinishRating={this.ratingCompleted}
+                     style={{ paddingVertical: 10 }}
+                     startingValue={5}
                   />
+               </View>
+
+
+               <View style={{
+                  borderColor: 'white',
+                  backgroundColor: 'white',
+                  padding: 10,
+                  margin: 15,
+                  marginTop: 0,
+                  borderRadius: 5,
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                  paddingTop: 0,
+                  marginBottom: 15,
+                  borderWidth: 1,
+                  // borderWidth: 1,
+                  // borderColor: 'pink'
+               }}>
+                  <Text style={{
+                     padding: 15,
+                     // paddingLeft: 15,
+                     // paddingRight: 15,
+                     fontSize: 15,
+                     color: 'black',
+                  }}>
+                     I hope to received your comments to improve our services, <Text style={{ color: '#f1c40f', fontWeight: 'bold', fontSize: 25 }}>Thank you!</Text>
+                  </Text>
+               </View>
+
+
+               <View style={{
+                  flexDirection: 'column',
+                  //borderColor: 'red',
+                  backgroundColor: '#DDDDDD',
+                  padding: 10,
+                  margin: 15,
+                  marginTop: 0,
+                  borderRadius: 5,
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                  paddingTop: 0,
+                  marginBottom: 15,
+                  //borderWidth: 1,
+               }}>
+                  <View style={{
+                     //borderColor: '',
+                     backgroundColor: 'white',
+                     padding: 10,
+                     margin: 10,
+                     borderRadius: 5,
+                     //borderWidth: 1,
+                  }}>
+                     <TextInput
+                        style={{
+                           fontSize: 16,
+                           paddingLeft: 15,
+                           // borderColor: 'gray', 
+                           // borderWidth: 1,
+                        }}
+                        onChangeText={text => onChangeText(text)}
+                        value={value}
+                     />
+
+                  </View>
+
+                  <View style={{
+
+                     // borderWidth: 1,
+                     // height: '100%'
+
+                  }}>
+                     <Button
+                        style={{ height: '100%', borderRadius: 2 }}
+                        title="FEED BACK"
+                        color="#009900"
+                        onPress={() => Alert.alert('Thanks for your rating!')}
+                     />
+                  </View>
                </View>
             </View>
-         </View>
-
+         </ScrollView >
       );
    }
+
 }
 
 const styles = StyleSheet.create({
