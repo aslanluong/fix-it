@@ -15,7 +15,6 @@ import Swipeable from 'react-native-swipeable';
 import NavigationService from '../../services/navigate';
 import { Button, Icon as IconUI } from 'react-native-ui-kitten/ui';
 
-
 const icons = [
    require('../../../assets/images/groove-joint-pliers.png'),
    require('../../../assets/images/hand-saw.png'),
@@ -170,7 +169,6 @@ export default class FindFixer extends Component {
                                           {...style}
                                           name="arrowhead-left-outline"
                                           style={{ marginLeft: -15 }}
-
                                        />
                                        <IconUI
                                           {...style}
@@ -180,90 +178,96 @@ export default class FindFixer extends Component {
                                     </>
                                  )}
                                  status="danger"
-                                 style={{ flexDirection: 'row-reverse', marginVertical: 10, }}>
+                                 style={{
+                                    flexDirection: 'row-reverse',
+                                    backgroundColor: 'rgba(255,255,255,0.9)',
+                                    marginVertical: 10
+                                 }}>
                                  Trượt qua trái để huỷ
                               </Button>
                            </Swipeable>
                         </View>
                      </View>
                   ) : (
-                        <View style={styles.foundContainer}>
-                           <View
-                              style={{
-                                 width: 130,
-                                 height: 130,
-                                 borderRadius: 65,
-                                 marginTop: -65,
-                                 backgroundColor: '#F56258',
-                                 overflow: 'hidden',
-                                 borderWidth: 4,
-                                 borderColor: 'white'
-                              }}>
-                              <Image
-                                 style={{ width: 122, height: 122, marginTop: 15 }}
-                                 source={{
-                                    uri:
-                                       'https://www.pngrepo.com/png/17468/170/avatar.png'
-                                 }}
-                              />
-                           </View>
-                           <FontText>Đã tìm thấy thợ!</FontText>
-
-                           <View
-                              style={{
-                                 flexDirection: 'row',
-                                 alignItems: 'center'
-                              }}>
-                              <FontText
-                                 emphasis="bold"
-                                 style={{
-                                    fontSize: 25,
-                                    justifyContent: 'center'
-                                 }}>
-                                 Bùi Văn Khánh{' '}
-                              </FontText>
-                              <Icon
-                                 name="shield-check"
-                                 style={{ fontSize: 25, color: '#3ddc84' }}
-                              />
-                           </View>
-                           <FontText>Chuyên môn: Sửa điều hoà phòng</FontText>
-                           <View style={{ flexDirection: 'row' }}>
-                              <Icon name="star" style={styles.starIcon} />
-                              <Icon name="star" style={styles.starIcon} />
-                              <Icon name="star" style={styles.starIcon} />
-                              <Icon name="star" style={styles.starIcon} />
-                              <Icon name="star-half" style={styles.starIcon} />
-                           </View>
-                           <FontText style={{ fontSize: 16 }}>
-                              097 123 4567
-                        </FontText>
-                           <Button
-                              TouchableOpacity
-                              onPress={() =>
-                                 NavigationService.navigate('Rating')
-                              }
-                              appearance="outline"
-                              icon={style => (
-                                 <IconUI
-                                    {...style}
-                                    name="arrowhead-right-outline"
-                                    style={{ marginLeft: -5 }}
-                                 />)}
-                              status="info"
-                              style={{ flexDirection: 'row-reverse', marginVertical: 10, }}>
-                              Tiếp tục
-                     </Button>
-                           <IconE
-                              name="triangle-down"
-                              style={{
-                                 fontSize: 100,
-                                 color: '#FFF',
-                                 marginTop: -30
+                     <View style={styles.foundContainer}>
+                        <View
+                           style={{
+                              width: 130,
+                              height: 130,
+                              borderRadius: 65,
+                              marginTop: -65,
+                              backgroundColor: '#F56258',
+                              overflow: 'hidden',
+                              borderWidth: 4,
+                              borderColor: 'white'
+                           }}>
+                           <Image
+                              style={{ width: 122, height: 122, marginTop: 15 }}
+                              source={{
+                                 uri:
+                                    'https://www.pngrepo.com/png/17468/170/avatar.png'
                               }}
                            />
                         </View>
-                     )}
+                        <FontText>Đã tìm thấy thợ!</FontText>
+
+                        <View
+                           style={{
+                              flexDirection: 'row',
+                              alignItems: 'center'
+                           }}>
+                           <FontText
+                              emphasis="bold"
+                              style={{
+                                 fontSize: 25,
+                                 justifyContent: 'center'
+                              }}>
+                              Bùi Văn Khánh{' '}
+                           </FontText>
+                           <Icon
+                              name="shield-check"
+                              style={{ fontSize: 25, color: '#3ddc84' }}
+                           />
+                        </View>
+                        <FontText>Chuyên môn: Sửa điều hoà phòng</FontText>
+                        <View style={{ flexDirection: 'row' }}>
+                           <Icon name="star" style={styles.starIcon} />
+                           <Icon name="star" style={styles.starIcon} />
+                           <Icon name="star" style={styles.starIcon} />
+                           <Icon name="star" style={styles.starIcon} />
+                           <Icon name="star-half" style={styles.starIcon} />
+                        </View>
+                        <FontText style={{ fontSize: 16 }}>
+                           097 123 4567
+                        </FontText>
+                        <Button
+                           TouchableOpacity
+                           onPress={() => NavigationService.navigate('Rating')}
+                           appearance="outline"
+                           icon={style => (
+                              <IconUI
+                                 {...style}
+                                 name="arrowhead-right-outline"
+                                 style={{ marginLeft: -5 }}
+                              />
+                           )}
+                           status="info"
+                           style={{
+                              flexDirection: 'row-reverse',
+                              marginVertical: 10
+                           }}>
+                           Tiếp tục
+                        </Button>
+                        <IconE
+                           name="triangle-down"
+                           style={{
+                              fontSize: 100,
+                              color: '#FFF',
+                              marginTop: -30
+                           }}
+                        />
+                     </View>
+                  )}
                </View>
             </ImageBackground>
          </View>
@@ -308,11 +312,10 @@ const styles = StyleSheet.create({
       height: 300
    },
    cancelContainer: {
-
       marginTop: -33,
       width: '70%',
       alignItems: 'center',
-      overflow: 'hidden',
+      overflow: 'hidden'
    },
    cancelButton: {
       width: '100%',

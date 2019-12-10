@@ -26,8 +26,7 @@ export default class Home extends Component {
       };
 
       this.state = {
-         orientation: isPortrait() ? 'portrait' : 'landscape',
-         choice: false
+         orientation: isPortrait() ? 'portrait' : 'landscape'
       };
       // Event Listener for orientation changes
       Dimensions.addEventListener('change', () => {
@@ -39,8 +38,7 @@ export default class Home extends Component {
    render() {
       return (
          <SafeAreaView style={{ flex: 1 }}>
-            <View
-               style={[styles.index, { elevation: this.state.choice ? 0 : 1 }]}>
+            <View style={styles.index}>
                <HeaderInfo />
                <ScrollView
                   horizontal={
@@ -49,7 +47,9 @@ export default class Home extends Component {
                   <View style={styles.menu}>
                      <View style={styles.itemContainer}>
                         <TouchableNativeFeedback
-                           onPress={() => this.setState({ choice: true })}>
+                           onPress={() =>
+                              NavigationService.navigate('CreateRequest')
+                           }>
                            <View style={styles.item}>
                               <Image
                                  style={styles.image}
@@ -61,7 +61,9 @@ export default class Home extends Component {
                      </View>
                      <View style={styles.itemContainer}>
                         <TouchableNativeFeedback
-                           onPress={() => this.setState({ choice: true })}>
+                           onPress={() =>
+                              NavigationService.navigate('CreateRequest')
+                           }>
                            <View style={styles.item}>
                               <Image
                                  style={styles.image}
@@ -73,7 +75,9 @@ export default class Home extends Component {
                      </View>
                      <View style={styles.itemContainer}>
                         <TouchableNativeFeedback
-                           onPress={() => this.setState({ choice: true })}>
+                           onPress={() =>
+                              NavigationService.navigate('CreateRequest')
+                           }>
                            <View style={styles.item}>
                               <Image
                                  style={styles.image}
@@ -85,7 +89,9 @@ export default class Home extends Component {
                      </View>
                      <View style={styles.itemContainer}>
                         <TouchableNativeFeedback
-                           onPress={() => this.setState({ choice: true })}>
+                           onPress={() =>
+                              NavigationService.navigate('CreateRequest')
+                           }>
                            <View style={styles.item}>
                               <Image
                                  style={styles.image}
@@ -97,7 +103,9 @@ export default class Home extends Component {
                      </View>
                      <View style={styles.itemContainer}>
                         <TouchableNativeFeedback
-                           onPress={() => this.setState({ choice: true })}>
+                           onPress={() =>
+                              NavigationService.navigate('CreateRequest')
+                           }>
                            <View style={styles.item}>
                               <Image
                                  style={styles.image}
@@ -109,7 +117,9 @@ export default class Home extends Component {
                      </View>
                      <View style={styles.itemContainer}>
                         <TouchableNativeFeedback
-                           onPress={() => this.setState({ choice: true })}>
+                           onPress={() =>
+                              NavigationService.navigate('CreateRequest')
+                           }>
                            <View style={styles.item}>
                               <Image
                                  style={styles.image}
@@ -122,62 +132,6 @@ export default class Home extends Component {
                   </View>
                </ScrollView>
             </View>
-            <TouchableHighlight
-               onPress={() => this.setState({ choice: false })}
-               style={[
-                  styles.choice,
-                  { width: this.state.choice ? '100%' : 0 }
-               ]}>
-               <>
-                  <View
-                     style={{
-                        backgroundColor: 'white',
-                        borderRadius: 15,
-                        overflow: 'hidden'
-                     }}>
-                     <TouchableOpacity
-                        style={styles.option}
-                        onPress={() => {
-                           this.setState({ choice: false });
-                           NavigationService.navigate('CreateRequest', {
-                              option: 'Tìm ngay'
-                           });
-                        }}>
-                        <Image
-                           source={require('../../../assets/images/search.png')}
-                           style={{ width: 80, height: 80 }}
-                        />
-
-                        <FontText style={{ fontSize: 18, marginTop: 15 }}>
-                           Tìm ngay
-                        </FontText>
-                     </TouchableOpacity>
-                  </View>
-                  <View
-                     style={{
-                        backgroundColor: 'white',
-                        borderRadius: 15,
-                        overflow: 'hidden'
-                     }}>
-                     <TouchableOpacity
-                        style={styles.option}
-                        onPress={() => {
-                           this.setState({ choice: false });
-                           NavigationService.navigate('CreateRequest', {
-                              option: 'Đặt lịch'
-                           });
-                        }}>
-                        <Image
-                           source={require('../../../assets/images/calendar.png')}
-                           style={{ width: 80, height: 80 }}
-                        />
-                        <FontText style={{ fontSize: 18, marginTop: 15 }}>
-                           Đặt lịch
-                        </FontText>
-                     </TouchableOpacity>
-                  </View>
-               </>
-            </TouchableHighlight>
          </SafeAreaView>
       );
    }

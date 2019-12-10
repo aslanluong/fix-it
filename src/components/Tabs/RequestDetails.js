@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import {
+   Alert,
    Text,
+   TextInput,
    View,
    SafeAreaView,
    StyleSheet,
    ScrollView,
+   Modal,
    Image,
    TouchableOpacity
 } from 'react-native';
 import IconE from 'react-native-vector-icons/EvilIcons';
+import IconEn from 'react-native-vector-icons/Entypo';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconS from 'react-native-vector-icons/SimpleLineIcons';
 import Timeline from 'react-native-timeline-flatlist';
 import FontText from '../FontText';
 import NavigationService from '../../services/navigate';
+import DatePicker from 'react-native-date-picker';
 
 export default class RequestDetails extends Component {
    constructor() {
@@ -26,14 +32,15 @@ export default class RequestDetails extends Component {
       ];
       this.cancelTimeline = [
          {
-            time: '09:00',
+            time: '11:20',
             description: 'Yêu cầu sửa chữa mới được tạo',
-            circleColor: '#ff9501'
+            circleColor: '#ff9501',
+            lineColor: 'red'
          },
          {
-            time: '09:05',
+            time: '11:22',
             description: 'Thợ xác nhận yêu cầu',
-            circleColor: 'red',
+            circleColor: '#a9a9a9',
             lineColor: '#a9a9a9'
          },
          {
@@ -119,8 +126,31 @@ export default class RequestDetails extends Component {
          }
       ];
    }
+
+   state = {
+      modalCancel: false,
+      modalChat: false,
+      modalCalendar: false
+   };
+
+   setModalCancel(visible) {
+      this.setState({ modalCancel: visible });
+   }
+   setModalChat(visible) {
+      this.setState({ modalChat: visible });
+   }
+   setModalCalendar(visible) {
+      this.setState({ modalCalendar: visible });
+   }
+
    render() {
       const { status } = this.props.navigation.state.params;
+      const today = new Date();
+      const next7days = new Date(
+         today.getFullYear(),
+         today.getMonth(),
+         today.getDate() + 7
+      );
       return (
          <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.headerContainer}>
@@ -141,13 +171,251 @@ export default class RequestDetails extends Component {
                      11:17 - 09/12/2019
                   </FontText>
                </View>
-               <FontText
-                  emphasis="medium"
-                  style={{ fontSize: 13, color: '#ff9501' }}>
-                  Hỗ trợ
-               </FontText>
+               {status == 'Đang đặt lịch' ? (
+                  <TouchableOpacity
+                     onPress={() => this.setModalCancel(true)}
+                     style={{
+                        borderColor: '#a9a9a9',
+                        borderWidth: 1,
+                        borderRadius: 7,
+                        paddingHorizontal: 7,
+                        paddingVertical: 5
+                     }}>
+                     <FontText
+                        emphasis="medium"
+                        style={{ fontSize: 13, color: '#DB4437' }}>
+                        Hủy
+                     </FontText>
+                  </TouchableOpacity>
+               ) : (
+                  <View style={{ width: 43 }} />
+               )}
             </View>
             <ScrollView style={styles.bodyContainer}>
+               <Modal
+                  transparent={true}
+                  visible={this.state.modalCancel}
+                  onRequestClose={() => {
+                     this.setModalCancel(!this.state.modalCancel);
+                  }}>
+                  <View
+                     style={{
+                        flex: 1,
+                        backgroundColor: 'rgba(0,0,0,0.4)',
+                        justifyContent: 'center'
+                     }}>
+                     <View
+                        style={{
+                           marginHorizontal: '5%',
+                           backgroundColor: 'white',
+                           borderRadius: 15,
+                           borderColor: '#a9a9a9',
+                           borderWidth: 0.5
+                        }}>
+                        <View
+                           style={{
+                              padding: 15
+                           }}>
+                           <FontText
+                              emphasis="bold"
+                              style={{ fontSize: 19, marginBottom: 20 }}>
+                              Bạn có muốn hủy yêu cầu sửa chữa?
+                           </FontText>
+                           <FontText style={{ fontSize: 15, color: 'red' }}>
+                              Lưu ý:
+                           </FontText>
+                           <FontText>
+                              Việc hủy yêu cầu nhiều lần sẽ làm tăng thời gian
+                              tìm kiếm thợ sửa chữa.
+                           </FontText>
+                        </View>
+                        <View
+                           style={{
+                              width: '100%',
+                              height: 56,
+                              flexDirection: 'row',
+                              borderTopColor: '#c9c9c9',
+                              borderTopWidth: 0.7
+                           }}>
+                           <View
+                              style={{
+                                 flex: 1,
+                                 borderRightColor: '#c9c9c9',
+                                 borderRightWidth: 0.7
+                              }}>
+                              <TouchableOpacity
+                                 onPress={() => {
+                                    this.setModalCancel(
+                                       !this.state.modalCancel
+                                    );
+                                 }}
+                                 style={{
+                                    flex: 1,
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                 }}>
+                                 <FontText>Không</FontText>
+                              </TouchableOpacity>
+                           </View>
+                           <TouchableOpacity
+                              onPress={() => {
+                                 this.setModalCancel(!this.state.modalCancel);
+                                 NavigationService.navigate('RequestDetails', {
+                                    status: 'Đã hủy'
+                                 });
+                              }}
+                              style={{
+                                 flex: 1,
+                                 alignItems: 'center',
+                                 justifyContent: 'center'
+                              }}>
+                              <FontText>Đồng ý</FontText>
+                           </TouchableOpacity>
+                        </View>
+                     </View>
+                  </View>
+               </Modal>
+               <Modal
+                  transparent={true}
+                  visible={this.state.modalChat}
+                  onRequestClose={() => {
+                     this.setModalChat(!this.state.modalChat);
+                  }}>
+                  <View
+                     style={{
+                        flex: 1,
+                        backgroundColor: 'rgba(0,0,0,0.4)',
+                        justifyContent: 'center'
+                     }}>
+                     <View
+                        style={{
+                           marginHorizontal: '5%',
+                           backgroundColor: 'white',
+                           borderRadius: 15,
+                           borderColor: '#a9a9a9',
+                           borderWidth: 0.5,
+                           overflow: 'hidden'
+                        }}>
+                        <View
+                           style={{
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              paddingLeft: '5%',
+                              paddingLeft: '5%',
+                              paddingVertical: 10
+                           }}>
+                           <FontText style={{ fontSize: 15 }}>
+                              Đang chat với:{' '}
+                              <FontText emphasis="bold">
+                                 Bùi Văn Khánh{' '}
+                              </FontText>
+                              <IconM
+                                 name="shield-check"
+                                 style={{
+                                    fontSize: 17,
+                                    color: '#3ddc84'
+                                 }}
+                              />
+                           </FontText>
+                           <TouchableOpacity
+                              onPress={() =>
+                                 this.setModalChat(!this.state.modalChat)
+                              }
+                              style={{
+                                 width: 50,
+                                 height: 30,
+                                 alignItems: 'center',
+                                 justifyContent: 'center'
+                              }}>
+                              <IconS name="close" size={23} />
+                           </TouchableOpacity>
+                        </View>
+                        <View
+                           style={{
+                              marginHorizontal: '3%',
+                              height: 360,
+                              borderRadius: 10,
+                              backgroundColor: '#e9e9e9'
+                           }}>
+                           <View
+                              style={{
+                                 flexDirection: 'row-reverse',
+                                 marginVertical: 10
+                              }}>
+                              <IconEn
+                                 name="triangle-right"
+                                 size={25}
+                                 style={{
+                                    marginLeft: -10,
+                                    marginTop: -2,
+                                    color: '#4285F4'
+                                 }}
+                              />
+                              <FontText
+                                 style={{
+                                    backgroundColor: '#4285F4',
+                                    color: 'white',
+                                    paddingVertical: 7,
+                                    paddingHorizontal: 10,
+                                    borderRadius: 10
+                                 }}>
+                                 Chào Khánh!
+                              </FontText>
+                           </View>
+                           <View
+                              style={{
+                                 flexDirection: 'row',
+                                 marginVertical: 5
+                              }}>
+                              <IconEn
+                                 name="triangle-left"
+                                 size={25}
+                                 style={{
+                                    marginRight: -10,
+                                    marginTop: -2,
+                                    color: '#ccffcc'
+                                 }}
+                              />
+                              <View
+                                 style={{
+                                    backgroundColor: '#ccffcc',
+                                    paddingVertical: 7,
+                                    paddingHorizontal: 10,
+                                    borderRadius: 10
+                                 }}>
+                                 <FontText>Chào anh, em đang trên</FontText>
+                                 <FontText>đường đến ạ!</FontText>
+                              </View>
+                           </View>
+                        </View>
+                        <View
+                           style={{
+                              paddingHorizontal: '5%',
+                              height: 70,
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                              alignItems: 'center'
+                           }}>
+                           <TextInput
+                              placeholder="Nhập nội dung..."
+                              style={{
+                                 fontFamily: 'lato-regular',
+                                 lineHeight: 45,
+                                 width: '90%',
+                                 paddingLeft: 15,
+                                 height: 45,
+                                 borderRadius: 20,
+                                 borderWidth: 1,
+                                 borderColor: '#c9c9c9'
+                              }}></TextInput>
+                           <TouchableOpacity>
+                              <IconM name="send" size={25} color="#4285F4" />
+                           </TouchableOpacity>
+                        </View>
+                     </View>
+                  </View>
+               </Modal>
                <View style={styles.statusContainer}>
                   <FontText
                      emphasis="bold"
@@ -165,6 +433,154 @@ export default class RequestDetails extends Component {
                      }}>
                      {status}
                   </FontText>
+                  {status == 'Đang đặt lịch' ? (
+                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                        <FontText emphasis="medium">
+                           Thời gian đã đặt:{' '}
+                        </FontText>
+                        <FontText emphasis="light">
+                           10/12/2019 - 13:45{' '}
+                        </FontText>
+                        <FontText> (</FontText>
+                        <TouchableOpacity
+                           onPress={() => this.setModalCalendar(true)}>
+                           <FontText style={{ color: '#4285f4' }}>
+                              Thay đổi
+                           </FontText>
+                        </TouchableOpacity>
+
+                        <FontText>)</FontText>
+
+                        <Modal
+                           transparent={true}
+                           visible={this.state.modalCalendar}
+                           onRequestClose={() => {
+                              this.setModalCalendar(!this.state.modalCalendar);
+                           }}>
+                           <View
+                              style={{
+                                 flex: 1,
+                                 backgroundColor: 'rgba(0,0,0,0.7)',
+                                 justifyContent: 'center'
+                              }}>
+                              <View
+                                 style={{
+                                    marginHorizontal: '5%',
+                                    backgroundColor: 'white',
+                                    borderRadius: 15,
+                                    borderColor: '#a9a9a9',
+                                    borderWidth: 0.5,
+                                    overflow: 'hidden'
+                                 }}>
+                                 <View
+                                    style={{
+                                       padding: 15
+                                    }}>
+                                    <FontText
+                                       emphasis="bold"
+                                       style={{
+                                          fontSize: 19,
+                                          marginBottom: 10,
+                                          color: '#F56258'
+                                       }}>
+                                       Thời gian hẹn:
+                                    </FontText>
+                                    <FontText
+                                       style={{
+                                          marginBottom: 20
+                                       }}>
+                                       Vui lòng chọn thời gian thợ có thể đến để
+                                       sửa chữa thiết bị của bạn.
+                                    </FontText>
+                                    <View style={{ flexDirection: 'row' }}>
+                                       <DatePicker
+                                          style={{
+                                             width: 220,
+                                             height: 100
+                                          }}
+                                          date={this.state.date}
+                                          locale="vn"
+                                          mode="date"
+                                          minimumDate={today}
+                                          maximumDate={next7days}
+                                          onDateChange={date =>
+                                             this.setState({ date })
+                                          }
+                                       />
+                                       <DatePicker
+                                          style={{
+                                             width: 130,
+                                             height: 100
+                                          }}
+                                          date={this.state.date}
+                                          locale="vn"
+                                          mode="time"
+                                          minuteInterval={15}
+                                          onDateChange={date =>
+                                             this.setState({ date })
+                                          }
+                                       />
+                                    </View>
+                                 </View>
+                                 <View
+                                    style={{
+                                       width: '100%',
+                                       height: 56,
+                                       flexDirection: 'row',
+                                       borderTopColor: '#c9c9c9',
+                                       borderTopWidth: 0.7
+                                    }}>
+                                    <View
+                                       style={{
+                                          flex: 1,
+                                          borderRightColor: '#c9c9c9',
+                                          borderRightWidth: 0.7
+                                       }}>
+                                       <TouchableOpacity
+                                          onPress={() => {
+                                             this.setModalCalendar(
+                                                !this.state.modalCalendar
+                                             );
+                                          }}
+                                          style={{
+                                             flex: 1,
+                                             alignItems: 'center',
+                                             justifyContent: 'center',
+                                             backgroundColor: '#e9e9e9'
+                                          }}>
+                                          <FontText>Hủy</FontText>
+                                       </TouchableOpacity>
+                                    </View>
+                                    <TouchableOpacity
+                                       onPress={() => {
+                                          this.setModalCalendar(
+                                             !this.state.modalCalendar
+                                          );
+                                          NavigationService.navigate(
+                                             'RequestDetails',
+                                             {
+                                                status: 'Đang đặt lịch'
+                                             }
+                                          );
+                                       }}
+                                       style={{
+                                          flex: 1,
+                                          alignItems: 'center',
+                                          justifyContent: 'center',
+                                          backgroundColor: '#F56258'
+                                       }}>
+                                       <FontText style={{ color: 'white' }}>
+                                          Đặt lịch
+                                       </FontText>
+                                    </TouchableOpacity>
+                                 </View>
+                              </View>
+                           </View>
+                        </Modal>
+                     </View>
+                  ) : (
+                     <></>
+                  )}
                   <FontText emphasis="light">
                      {status == 'Đã hoàn thành'
                         ? 'Quá trình sửa chữa thiết bị của bạn đã hoàn tất. Thiết bị của bạn đã được khắc phục sự cố rồi đấy!'
@@ -193,6 +609,65 @@ export default class RequestDetails extends Component {
                         <IconM name="star" style={styles.starIcon} />
                         <IconM name="star" style={styles.starIcon} />
                      </View>
+                  </View>
+               ) : status == 'Đang thực hiện' ? (
+                  <View
+                     style={{
+                        marginHorizontal: '5%',
+                        marginTop: 10,
+                        backgroundColor: 'white',
+                        borderRadius: 10,
+                        height: 47,
+                        flexDirection: 'row',
+                        borderWidth: 1,
+                        borderColor: '#c9c9c9',
+                        overflow: 'hidden'
+                     }}>
+                     <View
+                        style={{
+                           flex: 1,
+                           borderRightColor: '#c9c9c9',
+                           borderRightWidth: 1
+                        }}>
+                        <TouchableOpacity
+                           onPress={() => {
+                              Alert.alert('Đang gọi...', '', [], {
+                                 cancelable: true
+                              });
+                           }}
+                           style={{
+                              flex: 1,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backgroundColor: '#ccffcc',
+                              flexDirection: 'row'
+                           }}>
+                           <IconM
+                              name="phone"
+                              size={20}
+                              style={{ marginRight: 5 }}
+                           />
+                           <FontText>Gọi cho thợ</FontText>
+                        </TouchableOpacity>
+                     </View>
+                     <TouchableOpacity
+                        onPress={() => {
+                           this.setModalChat(!this.state.modalChat);
+                        }}
+                        style={{
+                           flex: 1,
+                           alignItems: 'center',
+                           justifyContent: 'center',
+                           backgroundColor: '#b3d9ff',
+                           flexDirection: 'row'
+                        }}>
+                        <IconM
+                           name="android-messages"
+                           size={23}
+                           style={{ marginRight: 5 }}
+                        />
+                        <FontText>Chat với thợ</FontText>
+                     </TouchableOpacity>
                   </View>
                ) : (
                   <></>
