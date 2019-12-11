@@ -16,7 +16,7 @@ import NavigationService from '../../services/navigate';
 import RNPicker from 'search-modal-picker';
 import ToggleSwitch from 'toggle-switch-react';
 import DatePicker from 'react-native-date-picker';
-import { Button, Icon, Input } from 'react-native-ui-kitten/ui';
+import { Button, Icon } from 'react-native-ui-kitten/ui';
 
 const options = {
    title: 'Chọn hình',
@@ -441,7 +441,7 @@ export default class CreateRequest extends Component {
                      </FontText>
                   </View>
                   <View style={styles.inputContainer}>
-                     <Input
+                     {/* <Input
                         textStyle={{ padding: 0 }}
                         label="Địa điểm"
                         // style={{ backgroundColor: 'red' }}
@@ -456,7 +456,18 @@ export default class CreateRequest extends Component {
                         onIconPress={() =>
                            NavigationService.navigate('SelectLocation')
                         }
-                     />
+                     /> */}
+                     <TextInput
+                        style={{
+                           fontFamily: 'lato-regular',
+                           fontSize: 16,
+                           borderBottomColor: '#ebebeb',
+                           borderBottomWidth: 1.5,
+                           paddingVertical: 5
+                        }}
+                        placeholder={
+                           'Đại học FPT, khu công nghệ cao quận 9'
+                        }></TextInput>
                      <TextInput
                         style={{
                            fontFamily: 'lato-regular',

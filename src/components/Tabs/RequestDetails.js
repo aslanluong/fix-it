@@ -188,8 +188,8 @@ export default class RequestDetails extends Component {
                      </FontText>
                   </TouchableOpacity>
                ) : (
-                  <View style={{ width: 43 }} />
-               )}
+                     <View style={{ width: 43 }} />
+                  )}
             </View>
             <ScrollView style={styles.bodyContainer}>
                <Modal
@@ -425,10 +425,10 @@ export default class RequestDetails extends Component {
                            status == 'Đã hoàn thành'
                               ? '#3ddc84'
                               : status == 'Đang thực hiện'
-                              ? '#4285f4'
-                              : status == 'Đang đặt lịch'
-                              ? '#4285f4'
-                              : '#a9a9a9',
+                                 ? '#4285f4'
+                                 : status == 'Đang đặt lịch'
+                                    ? '#4285f4'
+                                    : '#a9a9a9',
                         marginBottom: 10
                      }}>
                      {status}
@@ -579,16 +579,23 @@ export default class RequestDetails extends Component {
                         </Modal>
                      </View>
                   ) : (
-                     <></>
-                  )}
+                        <></>
+                     )}
                   <FontText emphasis="light">
                      {status == 'Đã hoàn thành'
                         ? 'Quá trình sửa chữa thiết bị của bạn đã hoàn tất. Thiết bị của bạn đã được khắc phục sự cố rồi đấy!'
                         : status == 'Đang thực hiện'
-                        ? 'Quá trình sửa chữa đang diễn ra, bạn có thể xem tiến độ công việc tại đây...'
-                        : status == 'Đang đặt lịch'
-                        ? 'Chúng tôi đang tìm kiếm thợ phù hợp với lịch hẹn của bạn...'
-                        : 'Quá trình sửa chữa thiết bị đã bị huỷ...'}
+                           ? 'Quá trình sửa chữa đang diễn ra, bạn có thể xem tiến độ công việc tại đây...'
+                           : status == 'Đang đặt lịch'
+                              ? 'Chúng tôi đang tìm kiếm thợ phù hợp với lịch hẹn của bạn...'
+                              : 'Quá trình sửa chữa thiết bị đã bị huỷ...'}
+                  </FontText>
+               </View>
+
+               <View style={styles.mapContainer}>
+                  <Image source={require("../../../assets/images/incomming.png")} resizeMode="center" style={{ width: "100%", marginTop: -315, borderRadius : 5 , marginBottom : -315}} />
+                  <FontText emphasis="light">
+               Thợ đang đến chỗ sửa chữa, bạn có thể xem tiến độ công việc tại đây...
                   </FontText>
                </View>
                {status == 'Đã hoàn thành' ? (
@@ -669,9 +676,10 @@ export default class RequestDetails extends Component {
                         <FontText>Chat với thợ</FontText>
                      </TouchableOpacity>
                   </View>
+
                ) : (
-                  <></>
-               )}
+                        <></>
+                     )}
                <View>
                   <FontText
                      emphasis="bold"
@@ -689,10 +697,10 @@ export default class RequestDetails extends Component {
                            status == 'Đã hoàn thành'
                               ? this.doneTimeline
                               : status == 'Đang thực hiện'
-                              ? this.processTimeline
-                              : status == 'Đang đặt lịch'
-                              ? this.calendarTimeline
-                              : this.cancelTimeline
+                                 ? this.processTimeline
+                                 : status == 'Đang đặt lịch'
+                                    ? this.calendarTimeline
+                                    : this.cancelTimeline
                         }
                         circleColor="#ff9501"
                         circleSize={10}
@@ -977,8 +985,8 @@ export default class RequestDetails extends Component {
                      </View>
                   </View>
                ) : (
-                  <></>
-               )}
+                        <></>
+                     )}
             </ScrollView>
          </SafeAreaView>
       );
@@ -1061,5 +1069,14 @@ const styles = StyleSheet.create({
    },
    fixerRow: {
       flexDirection: 'row'
+   },
+   mapContainer: {
+      backgroundColor: 'white',
+      borderWidth: 0.5,
+      borderColor: '#c9c9c9',
+      borderRadius: 10,
+      marginHorizontal: '5%',
+      marginTop: 10,
+      padding: 5
    }
 });
