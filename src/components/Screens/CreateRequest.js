@@ -5,7 +5,7 @@ import {
    KeyboardAvoidingView,
    StyleSheet,
    TouchableOpacity,
-   TouchableHighlight,
+   Modal,
    ScrollView,
    Image
 } from 'react-native';
@@ -130,7 +130,8 @@ export default class CreateRequest extends Component {
          selectedText: '',
          switchOn1: false,
          switchOn2: false,
-         date: new Date()
+         date: new Date(),
+         modalCalendar: false
       };
    }
    chooseImage = () => {
@@ -160,8 +161,10 @@ export default class CreateRequest extends Component {
       this.setState({ selectedTextDetail: item.name });
    }
 
+   setModalCalendar(visible) {
+      this.setState({ modalCalendar: visible });
+   }
    render() {
-      const { option } = this.props.navigation.state.params;
       const today = new Date();
       const next7days = new Date(
          today.getFullYear(),
@@ -170,404 +173,476 @@ export default class CreateRequest extends Component {
       );
       return (
          <KeyboardAvoidingView style={styles.createRequestContainer}>
-            <View style={styles.viewContainer}>
-               <View style={styles.titleContainer}>
-                  <TouchableOpacity
-                     style={{
-                        width: 35,
-                        height: 35,
-                        justifyContent: 'center'
-                     }}
-                     onPress={() => NavigationService.navigate('Tabs')}>
-                     <IconE name="close" style={{ fontSize: 25 }} />
-                  </TouchableOpacity>
-                  <View style={{ alignItems: 'center' }}>
-                     <FontText emphasis="medium" style={{ fontSize: 17 }}>
-                        Thông báo lỗi/hư hỏng
-                     </FontText>
-                  </View>
-                  <FontText
-                     emphasis="medium"
-                     style={{ fontSize: 13, color: '#ff9501' }}>
-                     {'      '}
+            <View style={styles.titleContainer}>
+               <TouchableOpacity
+                  style={{
+                     width: 35,
+                     height: 35,
+                     justifyContent: 'center'
+                  }}
+                  onPress={() => NavigationService.navigate('Tabs')}>
+                  <IconE name="close" style={{ fontSize: 25 }} />
+               </TouchableOpacity>
+               <View style={{ alignItems: 'center' }}>
+                  <FontText emphasis="medium" style={{ fontSize: 17 }}>
+                     Thông báo lỗi/hư hỏng
                   </FontText>
                </View>
-               <ScrollView style={{ backgroundColor: '#f0eff4' }}>
-                  {option == 'Tìm ngay' ? (
-                     <></>
-                  ) : (
-                        <View style={styles.formContainer}>
-                           <View style={styles.headerContainer}>
-                              <FontText
-                                 emphasis="medium"
-                                 style={styles.headerText}>
-                                 Thời gian mong muốn
-                           </FontText>
+               <FontText
+                  emphasis="medium"
+                  style={{ fontSize: 13, color: '#ff9501' }}>
+                  {'      '}
+               </FontText>
+            </View>
+            <ScrollView style={{ backgroundColor: '#f0eff4' }}>
+               <View style={styles.formContainer}>
+                  <View style={styles.headerContainer}>
+                     <FontText emphasis="medium" style={styles.headerText}>
+                        Thiết bị cần sửa
+                     </FontText>
+                  </View>
+                  <View style={styles.inputContainer}>
+                     <FontText emphasis="bold" style={styles.locationText}>
+                        Tên thiết bị:
+                     </FontText>
+
+                     <RNPicker
+                        dataSource={this.state.deviceType}
+                        // dummyDataSource={this.state.diviceType}
+                        defaultValue={false}
+                        pickerTitle={'Country Picker'}
+                        showSearchBar={true}
+                        disablePicker={false}
+                        changeAnimation={'none'}
+                        searchBarPlaceHolder={'Chọn tên thiết bị...'}
+                        showPickerTitle={false}
+                        searchBarContainerStyle={styles.searchBarContainerStyle}
+                        pickerStyle={styles.pickerStyle}
+                        pickerItemTextStyle={styles.listTextViewStyle}
+                        selectedLabel={this.state.selectedText}
+                        placeHolderLabel={'Tên thiết bị cần sửa'}
+                        selectLabelTextStyle={styles.selectLabelTextStyle}
+                        placeHolderTextStyle={styles.placeHolderTextStyle}
+                        dropDownImageStyle={styles.dropDownImageStyle}
+                        // dropDownImage={require("./res/ic_drop_down.png")}
+                        selectedValue={(index, item) =>
+                           this._selectedValue(index, item)
+                        }
+                     />
+                     <FontText emphasis="bold" style={styles.locationText}>
+                        Hãng sản xuất:
+                     </FontText>
+                     <RNPicker
+                        dataSource={this.state.brand}
+                        // dummyDataSource={this.state.brand}
+                        defaultValue={false}
+                        pickerTitle={'Country Picker'}
+                        showSearchBar={true}
+                        disablePicker={false}
+                        changeAnimation={'none'}
+                        searchBarPlaceHolder={'Chọn hãng sản xuất...'}
+                        showPickerTitle={false}
+                        searchBarContainerStyle={styles.searchBarContainerStyle}
+                        pickerStyle={styles.pickerStyle}
+                        pickerItemTextStyle={styles.listTextViewStyle}
+                        selectedLabel={this.state.selectedTextBrand}
+                        placeHolderLabel={'Hãng sản xuất'}
+                        selectLabelTextStyle={styles.selectLabelTextStyle}
+                        placeHolderTextStyle={styles.placeHolderTextStyle}
+                        dropDownImageStyle={styles.dropDownImageStyle}
+                        // dropDownImage={require("./res/ic_drop_down.png")}
+                        selectedValue={(index, item) =>
+                           this._selectedBrand(index, item)
+                        }
+                     />
+                     <FontText emphasis="bold" style={styles.locationText}>
+                        Mô tả hiện trạng thiết bị:
+                     </FontText>
+                     <RNPicker
+                        dataSource={this.state.detailError}
+                        // dummyDataSource={this.state.brand}
+                        defaultValue={false}
+                        pickerTitle={'Country Picker'}
+                        showSearchBar={true}
+                        disablePicker={false}
+                        changeAnimation={'none'}
+                        searchBarPlaceHolder={
+                           'Chọn mô tả hiện trạng thiết bị...'
+                        }
+                        showPickerTitle={false}
+                        searchBarContainerStyle={styles.searchBarContainerStyle}
+                        pickerStyle={styles.pickerStyle}
+                        pickerItemTextStyle={styles.listTextViewStyle}
+                        selectedLabel={this.state.selectedTextDetail}
+                        placeHolderLabel={'Mô tả hiện trạng thiết bị'}
+                        selectLabelTextStyle={styles.selectLabelTextStyle}
+                        placeHolderTextStyle={styles.placeHolderTextStyle}
+                        dropDownImageStyle={styles.dropDownImageStyle}
+                        // dropDownImage={require("./res/ic_drop_down.png")}
+                        selectedValue={(index, item) =>
+                           this._selectedDetailErr(index, item)
+                        }
+                     />
+                  </View>
+               </View>
+               <View style={styles.formContainer}>
+                  <View style={styles.headerContainer}>
+                     <FontText emphasis="medium" style={styles.headerText}>
+                        Yêu cầu thêm về thợ
+                     </FontText>
+                  </View>
+                  <View
+                     style={[
+                        styles.inputContainer,
+                        { paddingHorizontal: '3%' }
+                     ]}>
+                     <View style={{ paddingVertical: 5 }}>
+                        <TouchableOpacity
+                           activeOpacity={0.5}
+                           onPress={() =>
+                              this.setState({
+                                 switchOn1: this.state.switchOn1 ? false : true
+                              })
+                           }>
+                           <ToggleSwitch
+                              isOn={this.state.switchOn1}
+                              onColor="#f4511e"
+                              offColor="gray"
+                              label={<FontText>Thợ có bằng cấp</FontText>}
+                              labelStyle={{
+                                 color: 'black',
+                                 fontSize: 16
+                              }}
+                              size="medium"
+                              onToggle={isOn =>
+                                 this.setState({ switchOn1: isOn })
+                              }
+                           />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                           activeOpacity={0.5}
+                           onPress={() =>
+                              this.setState({
+                                 switchOn2: this.state.switchOn2 ? false : true
+                              })
+                           }>
+                           <ToggleSwitch
+                              isOn={this.state.switchOn2}
+                              onColor="#f4511e"
+                              offColor="gray"
+                              label={
+                                 <FontText>Thợ có lượt đánh giá cao</FontText>
+                              }
+                              labelStyle={{ color: 'black', fontSize: 16 }}
+                              size="medium"
+                              onToggle={isOn =>
+                                 this.setState({ switchOn2: isOn })
+                              }
+                           />
+                        </TouchableOpacity>
+                     </View>
+                     <FontText
+                        emphasis="italic"
+                        style={[
+                           {
+                              marginTop: 5,
+                              fontSize: 13,
+                              color: '#F56258'
+                           }
+                        ]}>
+                        *Lưu ý: Sẽ mất thêm thời gian tìm thợ khi chọn những
+                        tiêu chí này
+                     </FontText>
+                     <FontText
+                        emphasis="bold"
+                        style={{
+                           fontSize: 16,
+                           marginHorizontal: 6,
+                           marginTop: 7
+                        }}>
+                        Ghi chú thêm:
+                     </FontText>
+                     <TextInput
+                        style={{
+                           fontFamily: 'lato-regular',
+                           fontSize: 16,
+                           borderBottomColor: '#ebebeb',
+                           borderBottomWidth: 1.5,
+                           paddingVertical: 5,
+                           marginHorizontal: 6
+                        }}
+                        placeholder={'Nhập ghi chú...'}></TextInput>
+                  </View>
+               </View>
+               <View style={styles.formContainer}>
+                  <View style={styles.headerContainer}>
+                     <FontText emphasis="medium" style={styles.headerText}>
+                        Hình ảnh thiết bị
+                     </FontText>
+                  </View>
+                  <View style={styles.inputContainer}>
+                     <View
+                        style={{
+                           width: '100%',
+                           flexDirection: 'row',
+                           justifyContent: 'space-evenly',
+                           flexWrap: 'wrap',
+                           marginBottom: 5
+                        }}>
+                        {this.state.avatarSource.map((image, index) => (
+                           <View
+                              key={index}
+                              style={{
+                                 borderRadius: 10,
+                                 overflow: 'hidden',
+                                 margin: 5,
+                                 marginTop: 20
+                              }}>
+                              <Image
+                                 style={{
+                                    height: 100,
+                                    width: 100
+                                 }}
+                                 source={{ uri: image }}
+                              />
                            </View>
-                           <View style={styles.inputContainer}>
+                        ))}
+                        <TouchableOpacity
+                           style={{
+                              height: 100,
+                              width: 100,
+                              borderWidth: 1,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              opacity: 0.3,
+                              marginTop: 20,
+                              marginHorizontal: 5,
+                              borderRadius: 10
+                           }}
+                           onPress={this.chooseImage}>
+                           <Image
+                              source={{
+                                 uri:
+                                    'https://img.icons8.com/small/64/000000/add-camera.png'
+                              }}
+                              style={{
+                                 height: 60,
+                                 width: 60
+                              }}
+                           />
+                        </TouchableOpacity>
+                     </View>
+                  </View>
+               </View>
+               <View style={styles.formContainer}>
+                  <View style={styles.headerContainer}>
+                     <FontText emphasis="medium" style={styles.headerText}>
+                        Vị trí của bạn
+                     </FontText>
+                  </View>
+                  <View style={styles.inputContainer}>
+                     <Input
+                        textStyle={{ padding: 0 }}
+                        label="Địa điểm"
+                        // style={{ backgroundColor: 'red' }}
+                        value={'Đại học FPT, khu công nghệ cao quận 9'}
+                        icon={style => (
+                           <Icon
+                              {...style}
+                              name="navigation-2"
+                              style={{ marginLeft: 0 }}
+                           />
+                        )}
+                        onIconPress={() =>
+                           NavigationService.navigate('SelectLocation')
+                        }
+                     />
+                     <TextInput
+                        style={{
+                           fontFamily: 'lato-regular',
+                           fontSize: 16,
+                           borderBottomColor: '#ebebeb',
+                           borderBottomWidth: 1.5,
+                           paddingVertical: 5
+                        }}
+                        placeholder={
+                           'Ghi chú: Kế bên c.ty dịch vụ tin học HPT...'
+                        }></TextInput>
+                  </View>
+               </View>
+               <View style={styles.buttonContainer}>
+                  <View style={{ width: '100%', alignItems: 'center' }}>
+                     <Button
+                        TouchableOpacity
+                        onPress={() => NavigationService.navigate('FindFixer')}
+                        icon={style => (
+                           <Icon
+                              {...style}
+                              name="paper-plane-outline"
+                              style={{ marginLeft: -5 }}
+                           />
+                        )}
+                        status="danger"
+                        style={{
+                           width: '90%',
+                           height: 47,
+                           backgroundColor: '#F56258',
+                           borderWidth: 0,
+                           borderRadius: 12
+                        }}>
+                        Tìm thợ ngay
+                     </Button>
+                     <Button
+                        TouchableOpacity
+                        onPress={() => this.setModalCalendar(true)}
+                        icon={style => (
+                           <Icon
+                              {...style}
+                              name="paper-plane-outline"
+                              style={{ marginLeft: -5 }}
+                           />
+                        )}
+                        status="danger"
+                        textStyle={{ fontFamily: 'lato-regular' }}
+                        style={{
+                           width: '90%',
+                           height: 47,
+                           backgroundColor: '#4285F4',
+                           borderWidth: 0,
+                           borderRadius: 12,
+                           marginTop: 20
+                        }}>
+                        Đặt lịch ngay
+                     </Button>
+                     <Modal
+                        transparent={true}
+                        visible={this.state.modalCalendar}
+                        onRequestClose={() => {
+                           this.setModalCalendar(!this.state.modalCalendar);
+                        }}>
+                        <View
+                           style={{
+                              flex: 1,
+                              backgroundColor: 'rgba(0,0,0,0.7)',
+                              justifyContent: 'center'
+                           }}>
+                           <View
+                              style={{
+                                 marginHorizontal: '5%',
+                                 backgroundColor: 'white',
+                                 borderRadius: 15,
+                                 borderColor: '#a9a9a9',
+                                 borderWidth: 0.5,
+                                 overflow: 'hidden'
+                              }}>
                               <View
                                  style={{
-                                    marginTop: 10,
-                                    paddingHorizontal: '13%',
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-between'
+                                    padding: 15
                                  }}>
-                                 <FontText emphasis="bold">Ngày</FontText>
-                                 <FontText emphasis="bold">Giờ</FontText>
+                                 <FontText
+                                    emphasis="bold"
+                                    style={{
+                                       fontSize: 19,
+                                       marginBottom: 10,
+                                       color: '#F56258'
+                                    }}>
+                                    Thời gian hẹn:
+                                 </FontText>
+                                 <FontText
+                                    style={{
+                                       marginBottom: 20
+                                    }}>
+                                    Vui lòng chọn thời gian thợ có thể đến để
+                                    sửa chữa thiết bị của bạn.
+                                 </FontText>
+                                 <View style={{ flexDirection: 'row' }}>
+                                    <DatePicker
+                                       style={{
+                                          width: 220,
+                                          height: 100
+                                       }}
+                                       date={this.state.date}
+                                       locale="vn"
+                                       mode="date"
+                                       minimumDate={today}
+                                       maximumDate={next7days}
+                                       onDateChange={date =>
+                                          this.setState({ date })
+                                       }
+                                    />
+                                    <DatePicker
+                                       style={{
+                                          width: 130,
+                                          height: 100
+                                       }}
+                                       date={this.state.date}
+                                       locale="vn"
+                                       mode="time"
+                                       minuteInterval={15}
+                                       onDateChange={date =>
+                                          this.setState({ date })
+                                       }
+                                    />
+                                 </View>
                               </View>
                               <View
                                  style={{
                                     width: '100%',
-                                    justifyContent: 'center',
-                                    overflow: 'hidden',
-                                    height: 100,
-                                    alignItems: 'center',
-                                    flexDirection: 'row'
+                                    height: 56,
+                                    flexDirection: 'row',
+                                    borderTopColor: '#c9c9c9',
+                                    borderTopWidth: 0.7
                                  }}>
-                                 <DatePicker
-                                    style={{ width: 220, height: 100 }}
-                                    date={this.state.date}
-                                    locale="vn"
-                                    mode="date"
-                                    minimumDate={today}
-                                    maximumDate={next7days}
-                                    onDateChange={date => this.setState({ date })}
-                                 />
-                                 <DatePicker
-                                    style={{ width: 130, height: 100 }}
-                                    date={this.state.date}
-                                    locale="vn"
-                                    mode="time"
-                                    minuteInterval={15}
-                                    onDateChange={date => this.setState({ date })}
-                                 />
+                                 <View
+                                    style={{
+                                       flex: 1,
+                                       borderRightColor: '#c9c9c9',
+                                       borderRightWidth: 0.7
+                                    }}>
+                                    <TouchableOpacity
+                                       onPress={() => {
+                                          this.setModalCalendar(
+                                             !this.state.modalCalendar
+                                          );
+                                       }}
+                                       style={{
+                                          flex: 1,
+                                          alignItems: 'center',
+                                          justifyContent: 'center',
+                                          backgroundColor: '#e9e9e9'
+                                       }}>
+                                       <FontText>Hủy</FontText>
+                                    </TouchableOpacity>
+                                 </View>
+                                 <TouchableOpacity
+                                    onPress={() => {
+                                       this.setModalCalendar(
+                                          !this.state.modalCalendar
+                                       );
+                                       NavigationService.navigate(
+                                          'RequestDetails',
+                                          {
+                                             status: 'Đang đặt lịch'
+                                          }
+                                       );
+                                    }}
+                                    style={{
+                                       flex: 1,
+                                       alignItems: 'center',
+                                       justifyContent: 'center',
+                                       backgroundColor: '#F56258'
+                                    }}>
+                                    <FontText style={{ color: 'white' }}>
+                                       Đặt lịch
+                                    </FontText>
+                                 </TouchableOpacity>
                               </View>
                            </View>
                         </View>
-                     )}
-                  <View style={styles.formContainer}>
-                     <View style={styles.headerContainer}>
-                        <FontText emphasis="medium" style={styles.headerText}>
-                           Thiết bị cần sửa
-                        </FontText>
-                     </View>
-                     <View style={styles.inputContainer}>
-                        <FontText emphasis="bold" style={styles.locationText}>
-                           Tên thiết bị:
-                        </FontText>
-
-                        <RNPicker
-                           dataSource={this.state.deviceType}
-                           // dummyDataSource={this.state.diviceType}
-                           defaultValue={false}
-                           pickerTitle={'Country Picker'}
-                           showSearchBar={true}
-                           disablePicker={false}
-                           changeAnimation={'none'}
-                           searchBarPlaceHolder={'Chọn tên thiết bị...'}
-                           showPickerTitle={false}
-                           searchBarContainerStyle={
-                              styles.searchBarContainerStyle
-                           }
-                           pickerStyle={styles.pickerStyle}
-                           pickerItemTextStyle={styles.listTextViewStyle}
-                           selectedLabel={this.state.selectedText}
-                           placeHolderLabel={'Tên thiết bị cần sửa'}
-                           selectLabelTextStyle={styles.selectLabelTextStyle}
-                           placeHolderTextStyle={styles.placeHolderTextStyle}
-                           dropDownImageStyle={styles.dropDownImageStyle}
-                           // dropDownImage={require("./res/ic_drop_down.png")}
-                           selectedValue={(index, item) =>
-                              this._selectedValue(index, item)
-                           }
-                        />
-                        <FontText emphasis="bold" style={styles.locationText}>
-                           Hãng sản xuất:
-                        </FontText>
-                        <RNPicker
-                           dataSource={this.state.brand}
-                           // dummyDataSource={this.state.brand}
-                           defaultValue={false}
-                           pickerTitle={'Country Picker'}
-                           showSearchBar={true}
-                           disablePicker={false}
-                           changeAnimation={'none'}
-                           searchBarPlaceHolder={'Chọn hãng sản xuất...'}
-                           showPickerTitle={false}
-                           searchBarContainerStyle={
-                              styles.searchBarContainerStyle
-                           }
-                           pickerStyle={styles.pickerStyle}
-                           pickerItemTextStyle={styles.listTextViewStyle}
-                           selectedLabel={this.state.selectedTextBrand}
-                           placeHolderLabel={'Hãng sản xuất'}
-                           selectLabelTextStyle={styles.selectLabelTextStyle}
-                           placeHolderTextStyle={styles.placeHolderTextStyle}
-                           dropDownImageStyle={styles.dropDownImageStyle}
-                           // dropDownImage={require("./res/ic_drop_down.png")}
-                           selectedValue={(index, item) =>
-                              this._selectedBrand(index, item)
-                           }
-                        />
-                        <FontText emphasis="bold" style={styles.locationText}>
-                           Mô tả hiện trạng thiết bị:
-                        </FontText>
-                        <RNPicker
-                           dataSource={this.state.detailError}
-                           // dummyDataSource={this.state.brand}
-                           defaultValue={false}
-                           pickerTitle={'Country Picker'}
-                           showSearchBar={true}
-                           disablePicker={false}
-                           changeAnimation={'none'}
-                           searchBarPlaceHolder={
-                              'Chọn mô tả hiện trạng thiết bị...'
-                           }
-                           showPickerTitle={false}
-                           searchBarContainerStyle={
-                              styles.searchBarContainerStyle
-                           }
-                           pickerStyle={styles.pickerStyle}
-                           pickerItemTextStyle={styles.listTextViewStyle}
-                           selectedLabel={this.state.selectedTextDetail}
-                           placeHolderLabel={'Mô tả hiện trạng thiết bị'}
-                           selectLabelTextStyle={styles.selectLabelTextStyle}
-                           placeHolderTextStyle={styles.placeHolderTextStyle}
-                           dropDownImageStyle={styles.dropDownImageStyle}
-                           // dropDownImage={require("./res/ic_drop_down.png")}
-                           selectedValue={(index, item) =>
-                              this._selectedDetailErr(index, item)
-                           }
-                        />
-                     </View>
+                     </Modal>
                   </View>
-                  <View style={styles.formContainer}>
-                     <View style={styles.headerContainer}>
-                        <FontText emphasis="medium" style={styles.headerText}>
-                           Yêu cầu thêm về thợ
-                        </FontText>
-                     </View>
-                     <View
-                        style={[
-                           styles.inputContainer,
-                           { paddingHorizontal: '3%' }
-                        ]}>
-                        <View style={{ paddingVertical: 5 }}>
-                           <TouchableOpacity
-                              activeOpacity={0.5}
-                              onPress={() =>
-                                 this.setState({
-                                    switchOn1: this.state.switchOn1
-                                       ? false
-                                       : true
-                                 })
-                              }>
-                              <ToggleSwitch
-                                 isOn={this.state.switchOn1}
-                                 onColor="#f4511e"
-                                 offColor="gray"
-                                 label={<FontText>Thợ có bằng cấp</FontText>}
-                                 labelStyle={{
-                                    color: 'black',
-                                    fontSize: 16
-                                 }}
-                                 size="medium"
-                                 onToggle={isOn =>
-                                    this.setState({ switchOn1: isOn })
-                                 }
-                              />
-                           </TouchableOpacity>
-                           <TouchableOpacity
-                              activeOpacity={0.5}
-                              onPress={() =>
-                                 this.setState({
-                                    switchOn2: this.state.switchOn2
-                                       ? false
-                                       : true
-                                 })
-                              }>
-                              <ToggleSwitch
-                                 isOn={this.state.switchOn2}
-                                 onColor="#f4511e"
-                                 offColor="gray"
-                                 label={
-                                    <FontText>
-                                       Thợ có lượt đánh giá cao
-                                    </FontText>
-                                 }
-                                 labelStyle={{ color: 'black', fontSize: 16 }}
-                                 size="medium"
-                                 onToggle={isOn =>
-                                    this.setState({ switchOn2: isOn })
-                                 }
-                              />
-                           </TouchableOpacity>
-                        </View>
-
-                        <FontText
-                           emphasis="italic"
-                           style={[
-                              {
-                                 marginTop: 5,
-                                 fontSize: 13,
-                                 color: '#F56258'
-                              }
-                           ]}>
-                           *Lưu ý: Sẽ mất thêm thời gian tìm thợ khi chọn những
-                           tiêu chí này
-                        </FontText>
-                        <FontText
-                           emphasis="bold"
-                           style={{
-                              fontSize: 16,
-                              marginHorizontal: 6,
-                              marginTop: 7
-                           }}>
-                           Ghi chú thêm:
-                        </FontText>
-                        <TextInput
-                           style={{
-                              fontSize: 16,
-                              borderBottomColor: '#ebebeb',
-                              borderBottomWidth: 1.5,
-                              paddingVertical: 5,
-                              marginHorizontal: 6
-                           }}
-                           placeholder={'Nhập ghi chú...'}></TextInput>
-                     </View>
-                  </View>
-                  <View style={styles.formContainer}>
-                     <View style={styles.headerContainer}>
-                        <FontText emphasis="medium" style={styles.headerText}>
-                           Hình ảnh thiết bị
-                        </FontText>
-                     </View>
-                     <View style={styles.inputContainer}>
-                        <View
-                           style={{
-                              width: '100%',
-                              flexDirection: 'row',
-                              justifyContent: 'space-evenly',
-                              flexWrap: 'wrap',
-                              marginBottom: 5
-                           }}>
-                           {this.state.avatarSource.map((image, index) => (
-                              <View
-                                 key={index}
-                                 style={{
-                                    borderRadius: 10,
-                                    overflow: 'hidden',
-                                    margin: 5,
-                                    marginTop: 20
-                                 }}>
-                                 <Image
-                                    style={{
-                                       height: 100,
-                                       width: 100
-                                    }}
-                                    source={{ uri: image }}
-                                 />
-                              </View>
-                           ))}
-                           <TouchableOpacity
-                              style={{
-                                 height: 100,
-                                 width: 100,
-                                 borderWidth: 1,
-                                 alignItems: 'center',
-                                 justifyContent: 'center',
-                                 opacity: 0.3,
-                                 marginTop: 20,
-                                 marginHorizontal: 5,
-                                 borderRadius: 10
-                              }}
-                              onPress={this.chooseImage}>
-                              <Image
-                                 source={{
-                                    uri:
-                                       'https://img.icons8.com/small/64/000000/add-camera.png'
-                                 }}
-                                 style={{
-                                    height: 60,
-                                    width: 60
-                                 }}
-                              />
-                           </TouchableOpacity>
-                        </View>
-                     </View>
-                  </View>
-                  <View style={styles.formContainer}>
-                     <View style={styles.headerContainer}>
-                        <FontText emphasis="medium" style={styles.headerText}>
-                           Vị trí của bạn
-                        </FontText>
-                     </View>
-                     <View style={styles.inputContainer}>
-                        <Input
-                           textStyle={{ padding: 0 }}
-                           label="Địa điểm"
-                           // style={{ backgroundColor: 'red' }}
-                           value={"Đại học FPT, khu công nghệ cao quận 9"}
-                           icon={style => (<Icon
-                              {...style}
-                              name="navigation-2"
-                              style={{ marginLeft: 0 }}
-                           />)}
-                           onIconPress={() => NavigationService.navigate("SelectLocation")}
-                        // onChangeText={setValue}
-                        />
-                        {/* <FontText emphasis="bold" style={styles.locationText}>
-                           Đại học FPT, khu công nghệ cao quận 9
-                        </FontText> */}
-                        <TextInput
-                           style={{
-                              fontSize: 16,
-                              borderBottomColor: '#ebebeb',
-                              borderBottomWidth: 1.5,
-                              paddingVertical: 5
-                           }}
-                           placeholder={
-                              'Ghi chú: Kế bên c.ty dịch vụ tin học HPT...'
-                           }></TextInput>
-                     </View>
-                  </View>
-                  <View style={styles.buttonContainer}>
-                     <View style={{ width: '100%', alignItems: 'center' }}>
-                        {option == 'Tìm ngay' ? (
-                           <Button
-                              TouchableOpacity
-                              onPress={() => NavigationService.navigate('FindFixer')}
-                              icon={style => (
-                                 <Icon
-                                    {...style}
-                                    name="paper-plane-outline"
-                                    style={{ marginLeft: -5 }}
-                                 />
-                              )}
-                              status="danger"
-                              style={{ width: '100%' }}>
-                              Tìm thợ ngay
-                     </Button>
-                        ) : (
-                              <Button
-                                 TouchableOpacity
-                                 onPress={() => NavigationService.navigate('FindFixer')}
-                                 icon={style => (
-                                    <Icon
-                                       {...style}
-                                       name="paper-plane-outline"
-                                       style={{ marginLeft: -5 }}
-                                    />
-                                 )}
-                                 status="danger"
-                                 style={{ width: '100%' }}>
-                                 Đặt lịch ngay
-                     </Button>
-                           )}
-                     </View>
-                  </View>
-               </ScrollView>
-            </View>
+               </View>
+            </ScrollView>
          </KeyboardAvoidingView>
       );
    }
@@ -640,7 +715,7 @@ const styles = StyleSheet.create({
       // color: '#F56258'
    },
    buttonContainer: {
-      marginTop: 10,
+      marginTop: 30,
       marginBottom: 10,
       width: '100%',
       flexDirection: 'row',

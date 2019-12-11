@@ -28,15 +28,15 @@ export default class HeaderInfo extends Component {
                </View>
                <View
                   style={{
-                     width: 70,
-                     height: 70,
-                     paddingTop: 10,
+                     width: 60,
+                     height: 60,
+                     paddingTop: 7,
                      borderRadius: 35,
                      overflow: 'hidden',
                      backgroundColor: '#3ddc84'
                   }}>
                   <Image
-                     style={{ width: 70, height: 70 }}
+                     style={{ width: 60, height: 60 }}
                      source={{
                         uri: 'https://www.pngrepo.com/png/17468/170/avatar.png'
                      }}
