@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Icon } from 'react-native-elements';
 import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
 
 export default class AccumulatePoint extends Component {
@@ -13,11 +14,12 @@ export default class AccumulatePoint extends Component {
          <ScrollView>
             <View style={{
                flex: 1,
-               backgroundColor:'#white',
-               //backgroundColor: '##EEEEEE'
+               //backgroundColor: '#white',
+               backgroundColor: '##EEEEEE'
             }}>
                <View style={{
                   flexDirection: 'column',
+
 
                }}>
                   {/* <Image style={styles.imageStyle}
@@ -29,9 +31,18 @@ export default class AccumulatePoint extends Component {
 
                      height: 150,
                      borderRadius: 5,
-                     margin: 5,
-                     marginLeft: 10,
-                     marginRight: 10
+                     margin: 15,
+                     marginLeft: 15,
+                     marginRight: 15,
+                     shadowColor: "#000",
+                     shadowOffset: {
+                        width: 0,
+                        height: 9,
+                     },
+                     shadowOpacity: 0.50,
+                     shadowRadius: 12.35,
+
+                     elevation: 19,
 
                   }}>
                      <Text style={{
@@ -64,9 +75,19 @@ export default class AccumulatePoint extends Component {
                   <View style={{
                      backgroundColor: 'white',
                      borderRadius: 5,
-                     margin: 5,
-                     marginLeft: 10,
-                     marginRight: 10
+                     margin: 15,
+                     marginTop:15,
+                     marginLeft: 15,
+                     marginRight: 15,
+                     shadowColor: "#000",
+                     shadowOffset: {
+                        width: 0,
+                        height: 9,
+                     },
+                     shadowOpacity: 0.50,
+                     shadowRadius: 12.35,
+
+                     elevation: 19,
 
                   }}>
                      <View style={{
@@ -139,12 +160,12 @@ export default class AccumulatePoint extends Component {
 
                         }}>
                            <View style={{
-                              borderWidth: 1,
+                              //borderWidth: 1,
                               borderTopWidth: 0,
                               borderLeftWidth: 0,
                               borderBottomWidth: 0,
                               marginRight: 0,
-                              marginTop:15,
+                              marginTop: 15,
                               margin: 10,
                               flex: 1
                            }}>
@@ -158,9 +179,10 @@ export default class AccumulatePoint extends Component {
 
 
                            <View style={{
-                              backgroundColor: 'red',
+
+                              // backgroundColor: 'red',
                               //borderColor:'red',
-                              borderWidth: 1,
+                              //borderWidth: 1,
                               borderTopWidth: 0,
                               borderLeftWidth: 0,
                               borderBottomWidth: 0,
@@ -169,7 +191,8 @@ export default class AccumulatePoint extends Component {
                               width: 50,
                               // flex:1
                            }}>
-
+                              <Icon
+                                 name='rowing' />
                            </View>
 
                         </View>
@@ -191,12 +214,12 @@ export default class AccumulatePoint extends Component {
 
                         }}>
                            <View style={{
-                              borderWidth: 1,
+                              // borderWidth: 1,
                               borderTopWidth: 0,
                               borderLeftWidth: 0,
                               borderBottomWidth: 0,
                               marginRight: 0,
-                              marginTop:15,
+                              marginTop: 15,
                               margin: 10,
                               flex: 1
                            }}>
@@ -210,9 +233,9 @@ export default class AccumulatePoint extends Component {
 
 
                            <View style={{
-                              backgroundColor: 'red',
+                              // backgroundColor: 'red',
                               //borderColor:'red',
-                              borderWidth: 1,
+                              // borderWidth: 1,
                               borderTopWidth: 0,
                               borderLeftWidth: 0,
                               borderBottomWidth: 0,
@@ -221,7 +244,11 @@ export default class AccumulatePoint extends Component {
                               width: 50,
                               // flex:1
                            }}>
-
+                              <Icon
+                                 name='sc-telegram'
+                                 type='evilicon'
+                                 color='#517fa4'
+                              />
                            </View>
 
                         </View>
@@ -233,9 +260,19 @@ export default class AccumulatePoint extends Component {
 
                      height: 100,
                      borderRadius: 5,
-                     margin: 5,
-                     marginLeft: 10,
-                     marginRight: 10
+                     margin: 15,
+                     //padding:15,
+                     //marginLeft: 15,
+                     //marginRight: 15,
+                     shadowColor: "#000",
+                     shadowOffset: {
+                        width: 0,
+                        height: 9,
+                     },
+                     shadowOpacity: 0.50,
+                     shadowRadius: 12.35,
+
+                     elevation: 19,
 
                   }}>
                      <Text style={{
@@ -251,7 +288,7 @@ export default class AccumulatePoint extends Component {
                         fontSize: 16,
 
                      }}>
-                        Bạn cần tích lũy thêm 100 <Text style={{color:'gold'}}>Points</Text> trước ngày 01/02/2020 để giữ hạng vàng
+                        Bạn cần tích lũy thêm 100 <Text style={{ color: 'gold' }}>Points</Text> trước ngày 01/02/2020 để giữ hạng vàng
                   </Text>
                   </View>
 
@@ -259,14 +296,23 @@ export default class AccumulatePoint extends Component {
 
 
                   <View style={{
-                     backgroundColor: '#AAAAAA',
+                     backgroundColor: '#EEEEEE',
                      //backgroundColor:'#ff9051',
                      flexDirection: 'row',
                      height: 70,
                      borderRadius: 5,
-                     margin: 5,
-                     marginLeft: 10,
-                     marginRight: 10
+                     margin: 15,
+                     marginLeft: 15,
+                     marginRight: 15,
+                     shadowColor: "#000",
+                     shadowOffset: {
+                        width: 0,
+                        height: 9,
+                     },
+                     shadowOpacity: 0.50,
+                     shadowRadius: 12.35,
+
+                     elevation: 19,
 
                   }}>
                      <View style={{
@@ -308,9 +354,9 @@ export default class AccumulatePoint extends Component {
                   <View style={{
                      backgroundColor: 'white',
                      borderRadius: 5,
-                     margin: 5,
-                     marginLeft: 10,
-                     marginRight: 10,
+                     margin: 15,
+                    // marginLeft: 10,
+                     //marginRight: 10,
 
 
                   }}>
@@ -326,69 +372,69 @@ export default class AccumulatePoint extends Component {
                         padding: 10,
                         fontSize: 13,
                         color: '#ff9051',
-                        fontWeight:'bold'
+                        fontWeight: 'bold'
 
                      }}>
                         Đổi quà không ảnh hưởng đến tích điểm
                   </Text>
-                  <View style={{
-                     flexDirection:'column',
-                     paddingLeft:10,
-                     margin:10,
-                     backgroundColor:'#EEEEEE',
-                     borderRadius:5
-                  }}>
                      <View style={{
-                        paddingLeft:10,
-                        margin:10,
+                        flexDirection: 'column',
+                        paddingLeft: 10,
+                        margin: 10,
+                        backgroundColor: '#EEEEEE',
+                        borderRadius: 5
                      }}>
-                        <Text  style={{
-                           fontSize:14
+                        <View style={{
+                           paddingLeft: 10,
+                           margin: 10,
                         }}>
-                           Một phần bánh ngày sinh nhật
+                           <Text style={{
+                              fontSize: 14
+                           }}>
+                              Một phần bánh ngày sinh nhật
                         </Text>
 
-                     </View>
-                     <View style={{
-                        paddingLeft:10,
-                        margin:10,
+                        </View>
+                        <View style={{
+                           paddingLeft: 10,
+                           margin: 10,
 
-                     }}>
-                        <Text  style={{
-                           fontSize:14
                         }}>
-                           Đổi ưu đãi trang cửa hàng 
+                           <Text style={{
+                              fontSize: 14
+                           }}>
+                              Đổi ưu đãi trang cửa hàng
                         </Text>
 
-                     </View>
-                     <View style={{
-                        paddingLeft:10,
-                        margin:10,
+                        </View>
+                        <View style={{
+                           paddingLeft: 10,
+                           margin: 10,
 
-                     }}>
-                        <Text style={{
-                           fontSize:14
                         }}>
-                           Miễn phí 1 ly cà phê truyền thống hoặc 1 ly trà trái cây
+                           <Text style={{
+                              fontSize: 14
+                           }}>
+                              Miễn phí 1 ly cà phê truyền thống hoặc 1 ly trà trái cây
                         </Text>
 
-                     </View>
-                     <View style={{
-                        paddingLeft:10,
-                        margin:10,
+                        </View>
+                        <View style={{
+                           paddingLeft: 10,
+                           margin: 10,
 
-                     }}>
-                        <Text  style={{
-                           fontSize:14
                         }}>
-                           Giảm giá 5% khi mua sản phẩm tại The Coffee house
+                           <Text style={{
+                              fontSize: 14
+                           }}>
+                              Giảm giá 5% khi mua sản phẩm tại The Coffee house
                         </Text>
 
+                        </View>
+
                      </View>
-                     
                   </View>
-                  </View>
-                  
+
 
 
 
